@@ -12,6 +12,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import logoDrawing from "./logo-image.png";
+import logoText from "./logo.png";
 
 function Copyright() {
   return (
@@ -38,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#2EC4B6",
   },
 }));
 
@@ -48,12 +51,14 @@ export default function SignUp() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+        <img src={logoDrawing} width="309px" height="182px" />
+        <img src={logoText} width="309px" height="182px" />
+        {/* <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
+        </Avatar> */}
+        {/* <Typography component="h1" variant="h5">
           Sign up
-        </Typography>
+        </Typography> */}
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -62,9 +67,8 @@ export default function SignUp() {
                 name="firstName"
                 variant="outlined"
                 required
-                fullWidth
                 id="firstName"
-                label="First Name"
+                label="Email"
                 autoFocus
               />
             </Grid>
@@ -72,40 +76,11 @@ export default function SignUp() {
               <TextField
                 variant="outlined"
                 required
-                fullWidth
+                // fullWidth
                 id="lastName"
-                label="Last Name"
+                label="Password"
                 name="lastName"
                 autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive notifcations via email."
               />
             </Grid>
           </Grid>
@@ -116,12 +91,13 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            Log in
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
+              Don't have an account?{" "}
               <Link href="#" variant="body2">
-                Already have an account? Sign in
+                Register here
               </Link>
             </Grid>
           </Grid>
