@@ -1,12 +1,18 @@
 import React from "react";
 import SignUp from "./components/SignUp";
-import PersonalInfo from "./components/PersonalInfo";
+import StartPoll from "./components/StartPoll";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <PersonalInfo />
+    <Router>
+    <div>
+      <Switch>
+        <Route path="/" exact component={SignUp} />
+        <Route path="/StartPoll" component={StartPoll} />
+      </Switch>
     </div>
+    </Router>
   );
 }
 
