@@ -1,12 +1,18 @@
 import React from "react";
 import SignUp from "./components/SignUp";
-import Home from "./components/Home";
+import StartPoll from "./components/StartPoll";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <SignUp />
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact component={SignUp} />
+          <Route path="/startpoll" component={StartPoll} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
