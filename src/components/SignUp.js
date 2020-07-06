@@ -82,9 +82,11 @@ export default function SignUp() {
           <Grid container justify="flex-end">
             <Grid item>
               Don't have an account?{" "}
-              <Link href="/StartPoll" variant="body2">
-                Register here
-              </Link>
+              <RouterLink to='/Registration-personal-info'>
+                <Link href="/StartPoll" variant="body2">
+                  Register here
+                </Link>
+              </RouterLink>
             </Grid>
           </Grid>
         </form>
