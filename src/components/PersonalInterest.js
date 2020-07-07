@@ -1,20 +1,14 @@
 import React, {Component} from 'react'
 import './registration.css'
-import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
 import logoDrawing from "./../assets/logo-image.png";
-import FormControl from '@material-ui/core/FormControl';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
 import Link from "@material-ui/core/Link";
 import Checkbox from '@material-ui/core/Checkbox';
-import { withStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
@@ -26,12 +20,24 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-      border:'1px solid black',
-      marginTop: theme.spacing(8), //needed?
-      display: "flex",
-      flexDirection: "column",
-      alignItems: 'center',
-      height: "700px", //TODO: set hight to be phone height
+        border:'1px solid black',
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: 'center',
+        position: "relative",
+        height: "700px", //TODO: set hight to be phone height
+    },
+    login: {
+        position: "absolute",
+        bottom: "10px",
+    },
+    everythingElse: {
+        display: "flex",
+        position: "absolute",
+        flexDirection: "column",
+        alignItems: 'center',
+        top: "5%",
     },
     form: {
       width: "80%", // Fix IE 11 issue.
@@ -42,10 +48,6 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(3, 0, 2),
       backgroundColor: "#2EC4B6",
     },
-    login: {
-      position: "absolute",
-      bottom: "70px",
-    },
     interestGrid: {
         border: "1px solid gray",
         borderRadius: "5px",
@@ -55,6 +57,10 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
+const changeHandler = (event) => {
+  console.log(event.target.value);
+};
+
 export default function PersonalInterest () {
       const classes = useStyles();
 
@@ -62,14 +68,14 @@ export default function PersonalInterest () {
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
+            <div className={classes.everythingElse}>
             <p>Progress bar placeholder</p>
             <img src={logoDrawing} width="309px" height="182px" alt=""/>
             <p className='top-para'>Last step! What peaks your interests?</p>
 
-            <Link href='/StartPoll'>
-                <form>
-                    <Grid xs={6} sm={6}>
-                        <Grid className={classes.interestGrid}>
+                <form >
+                    <Grid container xs={12}>
+                        <Grid container item xs={6}>
                         <img />
                         <FormControlLabel
                             control={<Checkbox icon={<FavoriteBorder />} 
@@ -78,7 +84,7 @@ export default function PersonalInterest () {
                             label="Music"/>
                         </Grid>
 
-                        <Grid className={classes.interestGrid} >
+                        <Grid container item xs={6}>
                         <img />
                         <FormControlLabel
                             control={<Checkbox icon={<FavoriteBorder />} 
@@ -86,8 +92,10 @@ export default function PersonalInterest () {
                             name="checkedH" />}
                             label="Entertainment"/>
                         </Grid>
-
-                        <Grid className={classes.interestGrid}>
+                    </Grid>
+                    
+                    <Grid container xs={12}>
+                        <Grid container item xs={6}>
                         <img />
                         <FormControlLabel
                             control={<Checkbox icon={<FavoriteBorder />} 
@@ -96,7 +104,7 @@ export default function PersonalInterest () {
                             label="Sports"/>
                         </Grid>
                         
-                        <Grid className={classes.interestGrid}>
+                        <Grid container item xs={6}>
                         <img />
                         <FormControlLabel
                             control={<Checkbox icon={<FavoriteBorder />} 
@@ -105,8 +113,10 @@ export default function PersonalInterest () {
                             label="Politics"
                         />
                         </Grid>
+                    </Grid>
                         
-                        <Grid className={classes.interestGrid}>
+                    <Grid container xs={12}>  
+                        <Grid container item xs={6}>
                         <img />
                         <FormControlLabel 
                             control={<Checkbox icon={<FavoriteBorder />} 
@@ -116,7 +126,7 @@ export default function PersonalInterest () {
                         />
                         </Grid>
                         
-                        <Grid className={classes.interestGrid}>
+                        <Grid container item xs={6}>
                         <img />
                         <FormControlLabel
                             control={<Checkbox icon={<FavoriteBorder />} 
@@ -128,12 +138,14 @@ export default function PersonalInterest () {
                     </Grid>
 
                 </form>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}>Complete!</Button>
-              </Link>
+                <Link href='/StartPoll'>
+                  <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      className={classes.submit}>Complete!</Button>
+                  </Link>
+                  </div>
             <Grid className={classes.login}>Already have an account? <Link href='/'>Log in here.</Link></Grid>
           </div>
         </Container>

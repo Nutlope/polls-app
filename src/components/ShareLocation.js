@@ -14,16 +14,30 @@ import Geolocation from '@react-native-community/geolocation';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-      marginTop: theme.spacing(8),
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
+        border:'1px solid black',
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: 'center',
+        position: "relative",
+        height: "700px", //TODO: set hight to be phone height
     },
     login: {
         position: "absolute",
-        bottom: "70px",
+        bottom: "10px",
     },
-    submit: {
+    everythingElse: {
+        display: "flex",
+        position: "absolute",
+        flexDirection: "column",
+        alignItems: 'center',
+        top: "5%",
+    },
+    words: {
+        width:"80%",
+    },
+    share: {
+        width:'60%',
         margin: theme.spacing(3, 0, 2),
         backgroundColor: "#2EC4B6",
     },
@@ -47,23 +61,25 @@ export default function ShareLocation() {
     <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
+        <div className={classes.everythingElse} >
             <p>Progress bar placeholder</p>
             <img src={logoDrawing} width="309px" height="182px" alt=""/>
-            <Grid>
-                <Grid>Give us your location so we can pair you with 
-                    polls in your area!
-                </Grid>
+            <Grid className={classes.words}>Give us your location so we can pair you with 
+                polls in your area!
+            </Grid>
                 <Button
                     type="submit"
                     fullWidth
                     variant="contained"
                     color="primary"
-                    className={classes.submit}
+                    className={classes.share}
                     onClick={getLocationHandler}>
                         Share my location<img />
                 </Button>
+
                 <Link href='/registration-personal-interest'>
                     <Button
+                        className={classes.share}
                         type="submit"
                         fullWidth
                         variant="contained"
@@ -72,7 +88,7 @@ export default function ShareLocation() {
                         Next
                     </Button>
                 </Link>
-            </Grid>
+                </div>
             <Grid className={classes.login}>Already have an account? <Link href='/'>Log in here.</Link></Grid>
         </div>
     </Container>
