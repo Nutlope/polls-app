@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'Futura';
+  src: url('./../../FuturaLT-Book.woff') format('woff');
+}
+  
+.paper {
+    font-family: 'Futura';
+    font-style: "light";
+    display: "flex";
+    justify-content: "center";
+    flex-direction: "column";
+    align-items: 'center';
+    position: "relative";
+    height: "700px";
+    border: 1px solid red
+}
+
+.login {
+  position: "absolute";
+  bottom: "10px";
+}
+
+.everythingElse {
+  border:'1px solid purple';
+  display: "flex";
+  position: "absolute";
+  flex-direction: "column";
+  align-items: 'center';
+  top: "5%";
+}
+
+.form {
+border:'1px solid green';
+width: "75%";
+display: "flex";
+flex-direction: "column";
+}
+
+.submit {
+  background-color: "#2EC4B6";
+}
+
+.textfield {
+font-family: 'Futura';
+display: "flex";
+flex-direction:"column";
+align-items: "center";
+margin-bottom: "10px";
+}
+
+.questionBox {
+  margin-bottom: "10px";
+}
+
+.firstLine {
+  flex-direction: "row"
+}
+
+.text {
+  font-family: 'Futura';
+  font-style  : 'Medium';
+  font-size: '18px';
+  align-items: 'Center';
+  vertical-align: 'Top';
+  letter-spacing: '0.3px';
+}
+
+.radioChoice {
+  font-family: 'Futura';
+}
+
+.button {
+  font-family: 'Futura';
+}
+
+.progressBar {
+  display: 'flex';
+  justify-content: 'spaces-between';
+}
+
+/* .progressDot {
+  margin-top: theme.spacing(0.3);
+  margin-left: theme.spacing(2);
+  margin-right: theme.spacing(2);
+  width: '11.78px';
+  height: '12px';
+  left: '239px';
+  top: '101px';
+}
+
+.vector {
+  margin-left: theme.spacing(4);
+  margin-right: theme.spacing(4);
+} */

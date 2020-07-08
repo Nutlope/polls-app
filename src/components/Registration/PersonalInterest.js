@@ -5,16 +5,18 @@ import Grid from "@material-ui/core/Grid";
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
-import logoDrawing from "./../assets/logo-image.png";
+import logoDrawing from "./../../assets/logo-image.png";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Link from "@material-ui/core/Link";
 import Checkbox from '@material-ui/core/Checkbox';
-import { green } from '@material-ui/core/colors';
-import FormGroup from '@material-ui/core/FormGroup';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png"
+import ProgressDotFinished from "./../../assets/progress-dot-finished.png"
+import vectorLeft from "./../../assets/vector-left.png"
+import vectorRight from "./../../assets/vector-right.png"
 
 
 
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     },
     login: {
         position: "absolute",
-        bottom: "10px",
+        bottom: "30px",
     },
     everythingElse: {
         display: "flex",
@@ -54,7 +56,24 @@ const useStyles = makeStyles((theme) => ({
         width: "100%", // Fix IE 11 issue.
         border: "1px solid black",
         display:"flex",
-    }
+    },
+    progressBar: {
+        display: 'flex',
+        justifyContent: 'spaces-between',
+      },
+      progressDot: {
+        marginTop: theme.spacing(0.3),
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+        width: '11.78px',
+        height: '12px',
+        left: '239px',
+        top: '101px',
+      },
+      vector: {
+        marginLeft: theme.spacing(4),
+        marginRight: theme.spacing(4),
+      },
   }));
 
 const changeHandler = (event) => {
@@ -69,7 +88,18 @@ export default function PersonalInterest () {
           <CssBaseline />
           <div className={classes.paper}>
             <div className={classes.everythingElse}>
-            <p>Progress bar placeholder</p>
+            <div className={classes.progressBar}>
+                <Link href="/registration-share-location">
+                <img src={vectorLeft} className={classes.vector}/>
+                </Link>
+                <img src={ProgressDotFinished} className={classes.progressDot}/>
+                <img src={ProgressDotFinished} className={classes.progressDot}/>
+                <img src={ProgressDotFinished} className={classes.progressDot}/>
+                <img src={ProgressDotFinished} className={classes.progressDot}/>
+                <Link>
+                    <img type='submit' src={vectorRight} className={classes.vector}/>
+                </Link>
+            </div>
             <img src={logoDrawing} width="309px" height="182px" alt=""/>
             <p className='top-para'>Last step! What peaks your interests?</p>
 
@@ -138,7 +168,7 @@ export default function PersonalInterest () {
                     </Grid>
 
                 </form>
-                <Link href='/StartPoll'>
+                <Link href='/Poll'>
                   <Button
                       type="submit"
                       variant="contained"
@@ -150,9 +180,9 @@ export default function PersonalInterest () {
           </div>
         </Container>
       );
-
-
-
-
-
 }
+
+
+/**
+ * todo: remove the right vector
+ */
