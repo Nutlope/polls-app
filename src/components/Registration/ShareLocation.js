@@ -17,8 +17,13 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     fontFamily: "Futura",
     border: "1px solid black",
+<<<<<<< HEAD
     justifyContent: "center",
     display: "flex",
+=======
+    display: "flex",
+    justifyContent: "center",
+>>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
     flexDirection: "column",
     alignItems: "center",
     position: "relative",
@@ -28,7 +33,11 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Futura",
     fontStyle: "normal",
     fontWeight: "500",
+<<<<<<< HEAD
     fontSize: "16px",
+=======
+    fontSize: "18px",
+>>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
     lineHeight: "22px",
     /* or 122% */
 
@@ -92,11 +101,16 @@ export default function ShareLocation() {
   const classes = useStyles();
 
   return (
+<<<<<<< HEAD
     <Container component='main' maxWidth='xs'>
+=======
+    <Container component="main" maxWidth="xs">
+>>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
+<<<<<<< HEAD
             <Link href='/registration-create-account'>
               <img src={vectorLeft} className={classes.vector} alt='Back' />
             </Link>
@@ -127,14 +141,32 @@ export default function ShareLocation() {
                 className={classes.vector}
                 alt='Next'
               />
+=======
+            <Link href="/registration-create-account">
+              <img src={vectorLeft} className={classes.vector} />
+            </Link>
+            <img src={ProgressDotFinished} className={classes.progressDot} />
+            <img src={ProgressDotFinished} className={classes.progressDot} />
+            <img src={ProgressDotFinished} className={classes.progressDot} />
+            <img src={ProgressDotUnfinished} className={classes.progressDot} />
+            <Link href="/registration-personal-interest">
+              <img type="submit" src={vectorRight} className={classes.vector} />
+>>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
             </Link>
           </div>
           <img
             src={logoDrawing}
+<<<<<<< HEAD
             width='234px'
             height='140px'
             top='138px'
             alt=''
+=======
+            width="234px"
+            height="140px"
+            top="138px"
+            alt=""
+>>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
           />
 
           <p className={classes.topPara}>
@@ -142,10 +174,17 @@ export default function ShareLocation() {
           </p>
 
           <Button
+<<<<<<< HEAD
             type='submit'
             fullWidth
             variant='contained'
             color='primary'
+=======
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+>>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
             className={classes.share}
             onClick={getLocationHandler}
           >
@@ -154,7 +193,11 @@ export default function ShareLocation() {
           </Button>
         </div>
         <Grid className={classes.login}>
+<<<<<<< HEAD
           Already have an account? <Link href='/'>Log in here.</Link>
+=======
+          Already have an account? <Link href="/">Log in here.</Link>
+>>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
         </Grid>
       </div>
     </Container>
