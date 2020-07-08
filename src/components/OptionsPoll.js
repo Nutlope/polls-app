@@ -22,6 +22,8 @@ import ProgressDotUnfinished from "./../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../assets/progress-dot-finished.png";
 import vectorLeft from "./../assets/vector-left.png";
 import vectorRight from "./../assets/vector-right.png";
+import Button from "@material-ui/core/Button";
+import Icon from "@material-ui/core/Icon";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -74,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bottom: {
     position: "relative",
-    bottom: "-70px",
+    bottom: "-50px",
   },
   progressBar: {
     marginTop: "23px",
@@ -94,9 +96,19 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(4),
     marginRight: theme.spacing(4),
   },
+  button: {
+    margin: "12px",
+    fontWeight: "bold",
+    fontFamily: "Futura",
+    textAlign: "left",
+    color: "grey",
+  },
+  addButton: {
+    marginTop: "20px",
+  },
 }));
 
-function StartPoll() {
+function OptionsPoll() {
   const classes = useStyles();
   const [value, setValue] = useState("recents");
 
@@ -114,53 +126,33 @@ function StartPoll() {
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <div className={classes.progressBar}>
+            <Link href="/StartPoll">
+              <img src={vectorLeft} className={classes.vector} />
+            </Link>
+            <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotUnfinished} className={classes.progressDot} />
             <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link href="/OptionsPoll">
+            <Link href="">
               <img type="submit" src={vectorRight} className={classes.vector} />
             </Link>
           </div>
-          <div className={classes.title}>What's on your mind?</div>
-          <form className={classes.form} noValidate>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="fname"
-                  name="firstName"
-                  variant="outlined"
-                  fullWidth
-                  required
-                  id="firstName"
-                  label="Enter your question here"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-label">
-                    What category does it fall under?
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    fullWidth
-                    id="demo-simple-select"
-                    value="5"
-                    onChange=""
-                  >
-                    <MenuItem>Music</MenuItem>
-                    <MenuItem>Entertainment</MenuItem>
-                    <MenuItem>Sports</MenuItem>
-                    <MenuItem>Politics</MenuItem>
-                    <MenuItem>Fashion</MenuItem>
-                    <MenuItem>Lifestyle</MenuItem>
-                    <MenuItem>Not Applicable</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-            </Grid>
-          </form>
+          <div className={classes.title}>What do they have to choose from?</div>
+          <Button variant="contained" fullWidth className={classes.button}>
+            Yes
+          </Button>
+          <Button variant="contained" fullWidth className={classes.button}>
+            No
+          </Button>
+          <Link href="">
+            <Icon
+              className={classes.addButton}
+              color="primary"
+              style={{ fontSize: 50 }}
+            >
+              add_circle
+            </Icon>
+          </Link>
           <img
             src={logoDrawing}
             width="234px"
@@ -169,23 +161,10 @@ function StartPoll() {
             alt=""
             className={classes.bottom}
           />
-          {/* Sample botton navigation bar */}
-          {/* <BottomNavigation
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          showLabels
-          className={classes.root}
-        >
-          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-        </BottomNavigation> */}
         </div>
       </Container>
     </>
   );
 }
 
-export default StartPoll;
+export default OptionsPoll;
