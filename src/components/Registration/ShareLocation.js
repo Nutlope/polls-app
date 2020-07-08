@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     fontFamily: "Futura",
     border: "1px solid black",
-    display: "flex",
     justifyContent: "center",
+    display: "flex",
     flexDirection: "column",
     alignItems: "center",
     position: "relative",
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Futura",
     fontStyle: "normal",
     fontWeight: "500",
-    fontSize: "18px",
+    fontSize: "16px",
     lineHeight: "22px",
     /* or 122% */
 
@@ -92,28 +92,49 @@ export default function ShareLocation() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
-            <Link href="/registration-create-account">
-              <img src={vectorLeft} className={classes.vector} />
+            <Link href='/registration-create-account'>
+              <img src={vectorLeft} className={classes.vector} alt='Back' />
             </Link>
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link href="/registration-personal-interest">
-              <img type="submit" src={vectorRight} className={classes.vector} />
+            <img
+              src={ProgressDotFinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotFinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotFinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <Link href='/registration-personal-interest'>
+              <img
+                type='submit'
+                src={vectorRight}
+                className={classes.vector}
+                alt='Next'
+              />
             </Link>
           </div>
           <img
             src={logoDrawing}
-            width="234px"
-            height="140px"
-            top="138px"
-            alt=""
+            width='234px'
+            height='140px'
+            top='138px'
+            alt=''
           />
 
           <p className={classes.topPara}>
@@ -121,10 +142,10 @@ export default function ShareLocation() {
           </p>
 
           <Button
-            type="submit"
+            type='submit'
             fullWidth
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             className={classes.share}
             onClick={getLocationHandler}
           >
@@ -133,7 +154,7 @@ export default function ShareLocation() {
           </Button>
         </div>
         <Grid className={classes.login}>
-          Already have an account? <Link href="/">Log in here.</Link>
+          Already have an account? <Link href='/'>Log in here.</Link>
         </Grid>
       </div>
     </Container>

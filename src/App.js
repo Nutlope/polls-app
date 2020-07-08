@@ -14,23 +14,23 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route path="/" exact component={SignUp} />
-          <Route path="/StartPoll" component={StartPoll} />
-          <Route path="/OptionsPoll" component={OptionsPoll} />
-          <Route path="/Registration-personal-info" component={PersonalInfo} />
+          <Route path='/' exact component={SignUp} />
+          <Route path='/StartPoll' component={StartPoll} />
+          <Route path='/OptionsPoll' component={OptionsPoll} />
+          <Route path='/Registration-personal-info' component={PersonalInfo} />
           <Route
-            path="/Registration-create-account"
+            path='/Registration-create-account'
             component={CreateAccount}
           />
           <Route
-            path="/Registration-share-location"
+            path='/Registration-share-location'
             component={ShareLocation}
           />
           <Route
-            path="/Registration-personal-interest"
+            path='/Registration-personal-interest'
             component={PersonalInterest}
           />
-          <Route path="/Poll" component={Poll} />
+          <Route path='/Poll' component={Poll} />
         </Switch>
       </div>
     </Router>

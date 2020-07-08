@@ -142,125 +142,125 @@ class PersonalInfo extends Component {
 
   render() {
     return (
-      <Container component="registration-main" maxWidth="xs">
+      <Container component='registration-main' maxWidth='xs'>
         <CssBaseline />
-        <div className="paper">
-          <div className="everythingElse">
-            <div className="progressBar">
+        <div className='paper'>
+          <div className='everythingElse'>
+            <div className='progressBar'>
               <Link>
-                <img src={vectorLeft} className="vector" />
+                <img src={vectorLeft} className='vector' />
               </Link>
-              <img src={ProgressDotFinished} className="progressDot" />
-              <img src={ProgressDotUnfinished} className="progressDot" />
-              <img src={ProgressDotUnfinished} className="progressDot" />
-              <img src={ProgressDotUnfinished} className="progressDot" />
-              <Link href="/registration-create-account">
-                <img type="submit" src={vectorRight} className="vector" />
+              <img src={ProgressDotFinished} className='progressDot' />
+              <img src={ProgressDotUnfinished} className='progressDot' />
+              <img src={ProgressDotUnfinished} className='progressDot' />
+              <img src={ProgressDotUnfinished} className='progressDot' />
+              <Link href='/registration-create-account'>
+                <img type='submit' src={vectorRight} className='vector' />
               </Link>
             </div>
             <img
-              className="App-logo"
+              className='App-logo'
               src={logoDrawing}
-              width="309px"
-              height="182px"
-              alt=""
+              width='309px'
+              height='182px'
+              alt=''
             />
-            <p className="text">Tell us a little about yourself.</p>
+            <p className='text'>Tell us a little about yourself.</p>
 
             <form
-              className="registration-form"
-              className="form"
+              className='registration-form'
+              className='form'
               onSubmit={this.submitHandler}
               xs={12}
               sm={12}
             >
-              <Grid className="FirstLine">
-                <Grid className="questionBox" item xs={6} sm={6}>
+              <Grid className='FirstLine'>
+                <Grid className='questionBox' item xs={6} sm={6}>
                   <TextField
-                    autoComplete="fname"
-                    name="firstName"
-                    variant="outlined"
+                    autoComplete='fname'
+                    name='firstName'
+                    variant='outlined'
                     required
-                    id="firstName"
-                    label="First Name"
+                    id='firstName'
+                    label='First Name'
                     autoFocus
                     value={this.props.firstname}
                     onChange={this.changeHandler}
                   />
                 </Grid>
-                <Grid className="questionBox" item xs={12} sm={6}>
+                <Grid className='questionBox' item xs={12} sm={6}>
                   <TextField
-                    autoComplete="lname"
-                    name="lastName"
-                    variant="outlined"
+                    autoComplete='lname'
+                    name='lastName'
+                    variant='outlined'
                     required
-                    id="lastName"
-                    label="Last Name"
+                    id='lastName'
+                    label='Last Name'
                     autoFocus
                     value={this.props.lastname}
                     onChange={this.changeHandler}
                   />
                 </Grid>
               </Grid>
-              <Grid className="questionBox" item xs={12}>
+              <Grid className='questionBox' item xs={12}>
                 <TextField
-                  autoComplete="dateOfBirth"
-                  name="dob"
-                  variant="outlined"
+                  autoComplete='dateOfBirth'
+                  name='dob'
+                  variant='outlined'
                   required
-                  id="dob"
-                  label="Date Of Brith:"
+                  id='dob'
+                  label='Date Of Brith:'
                   autoFocus
-                  type="date"
+                  type='date'
                   onChange={this.changeHandler}
                 />
               </Grid>
-              <FormControl component="gender-radio">
-                <FormLabel component="legend">Gender</FormLabel>
+              <FormControl component='gender-radio'>
+                <FormLabel component='legend'>Gender</FormLabel>
                 <RadioGroup
-                  defaultValue="female"
-                  aria-label="gender"
-                  name="gender"
+                  defaultValue='female'
+                  aria-label='gender'
+                  name='gender'
                 >
                   <FormControlLabel
-                    className="radioChoice"
-                    value="female"
+                    className='radioChoice'
+                    value='female'
                     control={<Radio />}
-                    label="Female"
+                    label='Female'
                     onChange={this.changeHandler}
                   />
                   <FormControlLabel
-                    className="radioChoice"
-                    value="male"
+                    className='radioChoice'
+                    value='male'
                     control={<Radio />}
-                    label="Male"
+                    label='Male'
                     onChange={this.changeHandler}
                   />
                   <FormControlLabel
-                    className="radioChoice"
-                    value="other"
+                    className='radioChoice'
+                    value='other'
                     control={<Radio />}
-                    label="Other"
+                    label='Other'
                     onChange={this.changeHandler}
                   />
                 </RadioGroup>
               </FormControl>
 
-              <Link href="/Registration-create-account">
+              <Link href='/Registration-create-account'>
                 <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  className="button"
+                  variant='contained'
+                  color='primary'
+                  type='submit'
+                  className='button'
                 >
                   Next
                 </Button>
               </Link>
             </form>
           </div>
-          <Grid className="login">
+          <Grid className='login'>
             Already have an account?
-            <Link href="/">Log in here.</Link>
+            <Link href='/'>Log in here.</Link>
           </Grid>
         </div>
       </Container>

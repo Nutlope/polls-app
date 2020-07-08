@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Futura",
     fontStyle: "normal",
     fontWeight: "500",
-    fontSize: "18px",
+    fontSize: "16px",
     lineHeight: "22px",
     /* or 122% */
 
@@ -116,7 +116,6 @@ const submitHandler = (event) => {
 
 export default function CreateAccount() {
   const classes = useStyles();
-  let userInput;
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -124,56 +123,79 @@ export default function CreateAccount() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
-            <Link href="/registration-personal-info">
-              <img src={vectorLeft} className={classes.vector} />
+            <Link href='/registration-personal-info'>
+              <img src={vectorLeft} className={classes.vector} alt='Back' />
             </Link>
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link href="/registration-share-location">
-              <img type="submit" src={vectorRight} className={classes.vector} />
+            <img
+              src={ProgressDotFinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotFinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <Link href='/registration-share-location'>
+              <img
+                type='submit'
+                src={vectorRight}
+                className={classes.vector}
+                alt='Next'
+              />
             </Link>
           </div>
           <img
             src={logoDrawing}
-            width="234px"
-            height="140px"
-            top="138px"
-            alt=""
+            width='234px'
+            height='140px'
+            top='138px'
+            alt=''
           />
 
-          <p className="topPara">Create your log in to join our community!</p>
+          <p className={classes.topPara}>
+            Create your log in to join our community!
+          </p>
 
           <form className={classes.form} onSubmit={submitHandler}>
             <TextField
               className={classes.textfield}
               required
               fullWidth
-              autoComplete="email"
-              id="email"
-              label="Email"
-              variant="outlined"
+              autoComplete='email'
+              id='email'
+              label='Email'
+              variant='outlined'
               onChange={changeHandler}
             />
             <TextField
               required
               className={classes.textfield}
               fullWidth
-              id="create-password"
-              label="Create Password"
-              variant="outlined"
+              id='create-password'
+              label='Create Password'
+              variant='outlined'
               onChange={changeHandler}
             />
           </form>
         </div>
         <Grid className={classes.login}>
-          Already have an account? <Link href="/">Log in here.</Link>
+          Already have an account? <Link href='/'>Log in here.</Link>
         </Grid>
       </div>
     </Container>
