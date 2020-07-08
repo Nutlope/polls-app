@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -8,6 +8,12 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import FolderIcon from "@material-ui/icons/Folder";
+import RestoreIcon from "@material-ui/icons/Restore";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,10 +38,18 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 320,
   },
+  root: {
+    width: 500,
+  },
 }));
 
 function StartPoll() {
   const classes = useStyles();
+  const [value, setValue] = useState("recents");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -44,8 +58,8 @@ function StartPoll() {
           What's on your mind?
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
               <TextField
                 autoComplete="fname"
                 name="firstName"
@@ -57,28 +71,43 @@ function StartPoll() {
                 autoFocus
               />
             </Grid>
-            <FormControl className={classes.formControl}>
-              <InputLabel id="demo-simple-select-label">
-                What category does it fall under?
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                fullWidth
-                id="demo-simple-select"
-                value="5"
-                onChange=""
-              >
-                <MenuItem>Music</MenuItem>
-                <MenuItem>Entertainment</MenuItem>
-                <MenuItem>Sports</MenuItem>
-                <MenuItem>Entertainment</MenuItem>
-                <MenuItem>Entertainment</MenuItem>
-                <MenuItem>Entertainment</MenuItem>
-                <MenuItem>Entertainment</MenuItem>
-              </Select>
-            </FormControl>
+            <Grid item xs={12}>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">
+                  What category does it fall under?
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  fullWidth
+                  id="demo-simple-select"
+                  value="5"
+                  onChange=""
+                >
+                  <MenuItem>Music</MenuItem>
+                  <MenuItem>Entertainment</MenuItem>
+                  <MenuItem>Sports</MenuItem>
+                  <MenuItem>Politics</MenuItem>
+                  <MenuItem>Fashion</MenuItem>
+                  <MenuItem>Lifestyle</MenuItem>
+                  <MenuItem>Not Applicable</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
           </Grid>
         </form>
+        {/* Sample botton navigation bar */}
+        {/* <BottomNavigation
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          showLabels
+          className={classes.root}
+        >
+          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+          <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+        </BottomNavigation> */}
       </div>
     </Container>
   );
