@@ -24,6 +24,7 @@ import vectorLeft from "./../assets/vector-left.png";
 import vectorRight from "./../assets/vector-right.png";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
+import RangeSlider from "./Util/RangeSlider";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -108,13 +109,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function OptionsPoll() {
+function AgesPoll() {
   const classes = useStyles();
-  const [value, setValue] = useState("recents");
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <>
@@ -126,33 +122,19 @@ function OptionsPoll() {
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <div className={classes.progressBar}>
-            <Link href="/StartPoll">
+            <Link href="/OptionsPoll">
               <img src={vectorLeft} className={classes.vector} />
             </Link>
             <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotFinished} className={classes.progressDot} />
+            <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link href="/AgesPoll">
+            <Link href="">
               <img type="submit" src={vectorRight} className={classes.vector} />
             </Link>
           </div>
-          <div className={classes.title}>What do they have to choose from?</div>
-          <Button variant="contained" fullWidth className={classes.button}>
-            Yes
-          </Button>
-          <Button variant="contained" fullWidth className={classes.button}>
-            No
-          </Button>
-          <Link href="">
-            <Icon
-              className={classes.addButton}
-              color="primary"
-              style={{ fontSize: 50 }}
-            >
-              add_circle
-            </Icon>
-          </Link>
+          <div className={classes.title}>Who do you want opinions from?</div>
+          <RangeSlider />
           <img
             src={logoDrawing}
             width="234px"
@@ -167,4 +149,4 @@ function OptionsPoll() {
   );
 }
 
-export default OptionsPoll;
+export default AgesPoll;

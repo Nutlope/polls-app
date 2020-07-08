@@ -2,6 +2,7 @@ import React from "react";
 import SignUp from "./components/SignUp";
 import StartPoll from "./components/StartPoll";
 import OptionsPoll from "./components/OptionsPoll";
+import AgesPoll from "./components/AgesPoll";
 import PersonalInfo from "./components/Registration/PersonalInfo";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CreateAccount from "./components/Registration/CreateAccount";
@@ -14,23 +15,24 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route path='/' exact component={SignUp} />
-          <Route path='/StartPoll' component={StartPoll} />
-          <Route path='/OptionsPoll' component={OptionsPoll} />
-          <Route path='/Registration-personal-info' component={PersonalInfo} />
+          <Route path="/" exact component={SignUp} />
+          <Route path="/StartPoll" component={StartPoll} />
+          <Route path="/OptionsPoll" component={OptionsPoll} />
+          <Route path="/AgesPoll" component={AgesPoll} />
+          <Route path="/Registration-personal-info" component={PersonalInfo} />
           <Route
-            path='/Registration-create-account'
+            path="/Registration-create-account"
             component={CreateAccount}
           />
           <Route
-            path='/Registration-share-location'
+            path="/Registration-share-location"
             component={ShareLocation}
           />
           <Route
-            path='/Registration-personal-interest'
+            path="/Registration-personal-interest"
             component={PersonalInterest}
           />
-          <Route path='/Poll' component={Poll} />
+          <Route path="/Poll" component={Poll} />
         </Switch>
       </div>
     </Router>
