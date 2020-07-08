@@ -84,9 +84,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
-  interestImage: {
-    height: "125px",
-  },
+  interestImage: {},
   formRow: {
     display: "flex",
     alignItems: "center",

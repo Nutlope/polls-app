@@ -52,11 +52,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Futura",
     fontStyle: "normal",
     fontWeight: "500",
-<<<<<<< HEAD
     fontSize: "16px",
-=======
-    fontSize: "18px",
->>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
     lineHeight: "22px",
     /* or 122% */
 
@@ -120,10 +116,6 @@ const submitHandler = (event) => {
 
 export default function CreateAccount() {
   const classes = useStyles();
-<<<<<<< HEAD
-=======
-  let userInput;
->>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -131,16 +123,11 @@ export default function CreateAccount() {
   };
 
   return (
-<<<<<<< HEAD
     <Container component='main' maxWidth='xs'>
-=======
-    <Container component="main" maxWidth="xs">
->>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
-<<<<<<< HEAD
             <Link href='/registration-personal-info'>
               <img src={vectorLeft} className={classes.vector} alt='Back' />
             </Link>
@@ -171,22 +158,10 @@ export default function CreateAccount() {
                 className={classes.vector}
                 alt='Next'
               />
-=======
-            <Link href="/registration-personal-info">
-              <img src={vectorLeft} className={classes.vector} />
-            </Link>
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link href="/registration-share-location">
-              <img type="submit" src={vectorRight} className={classes.vector} />
->>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
             </Link>
           </div>
           <img
             src={logoDrawing}
-<<<<<<< HEAD
             width='234px'
             height='140px'
             top='138px'
@@ -196,57 +171,31 @@ export default function CreateAccount() {
           <p className={classes.topPara}>
             Create your log in to join our community!
           </p>
-=======
-            width="234px"
-            height="140px"
-            top="138px"
-            alt=""
-          />
-
-          <p className="topPara">Create your log in to join our community!</p>
->>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
 
           <form className={classes.form} onSubmit={submitHandler}>
             <TextField
               className={classes.textfield}
               required
               fullWidth
-<<<<<<< HEAD
               autoComplete='email'
               id='email'
               label='Email'
               variant='outlined'
-=======
-              autoComplete="email"
-              id="email"
-              label="Email"
-              variant="outlined"
->>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
               onChange={changeHandler}
             />
             <TextField
               required
               className={classes.textfield}
               fullWidth
-<<<<<<< HEAD
               id='create-password'
               label='Create Password'
               variant='outlined'
-=======
-              id="create-password"
-              label="Create Password"
-              variant="outlined"
->>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
               onChange={changeHandler}
             />
           </form>
         </div>
         <Grid className={classes.login}>
-<<<<<<< HEAD
           Already have an account? <Link href='/'>Log in here.</Link>
-=======
-          Already have an account? <Link href="/">Log in here.</Link>
->>>>>>> 63287448d8333ff9e4127b5d9785a13fab61a867
         </Grid>
       </div>
     </Container>
