@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   login: {
     position: "absolute",
-    bottom: "10px",
+    bottom: "30px",
   },
   everythingElse: {
     display: "flex",
@@ -63,33 +63,34 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "spaces-between",
   },
   progressDot: {
-    marginTop: theme.spacing(0.3),
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginTop: "4px",
+    marginLeft: "15px",
+    marginRight: "15px",
     width: "11.78px",
     height: "12px",
     left: "239px",
-    top: "101px",
   },
   vector: {
-    marginLeft: theme.spacing(4),
-    marginRight: theme.spacing(4),
+    marginLeft: "35px",
+    marginRight: "35px",
   },
 }));
 
-const getLocationHandler = () => {
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      console.log(position);
-    },
-    function (error) {
-      console.error("Error Code = " + error.code + " - " + error.message);
-    }
-  );
-};
-
 export default function ShareLocation() {
   const classes = useStyles();
+  const [location, setLocation] = useState("");
+
+  const getLocationHandler = (event) => {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        setLocation(position);
+        console.log(position);
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+      }
+    );
+  };
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -154,9 +155,12 @@ export default function ShareLocation() {
           </Button>
         </div>
         <Grid className={classes.login}>
-          Already have an account? <Link href='/'>Log in here.</Link>
+          Already have an account?&nbsp; <Link href='/'>Log in here.</Link>
         </Grid>
       </div>
     </Container>
   );
 }
+/**
+ * figure out what to do if passing location has error
+ */

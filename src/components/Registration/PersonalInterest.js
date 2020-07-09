@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./registration.css";
 import ScrollContainer from "react-indiana-drag-scroll";
 import Button from "@material-ui/core/Button";
@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
-  interestImage: {},
+
   formRow: {
     display: "flex",
     alignItems: "center",
@@ -94,26 +94,43 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "spaces-between",
   },
   progressDot: {
-    marginTop: theme.spacing(0.3),
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginTop: "4px",
+    marginLeft: "15px",
+    marginRight: "15px",
     width: "11.78px",
     height: "12px",
     left: "239px",
-    top: "101px",
   },
   vector: {
-    marginLeft: theme.spacing(4),
-    marginRight: theme.spacing(4),
+    marginLeft: "35px",
+    marginRight: "35px",
   },
 }));
 
-const changeHandler = (event) => {
-  console.log(event.target.value);
-};
-
 export default function PersonalInterest() {
   const classes = useStyles();
+  // declaring initial states here
+  const interestsDefault = {
+    music: false,
+    entertainment: false,
+    sports: false,
+    politics: false,
+    fashion: false,
+    lifestyle: false,
+  };
+  const [interests, setInterests] = useState(interestsDefault);
+
+  const clickHandler = (event) => {
+    interestsDefault[event.target.value] = !interestsDefault[
+      event.target.value
+    ];
+    // console.log(interestsDefault);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    console.log(interests);
+  };
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -164,117 +181,132 @@ export default function PersonalInterest() {
             Last step! What peaks your interests?
           </p>
           <ScrollContainer className={classes.form}>
-            <Grid container className={classes.formRow} xs={12}>
-              <Grid container item className={classes.interestGrid} xs={6}>
-                <img className={classes.interestImage} src={music} alt='' />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      icon={<FavoriteBorder />}
-                      checkedIcon={<Favorite />}
-                      name='checkedH'
-                    />
-                  }
-                  label={
-                    <Box component='div' fontSize={15} fontFamily='Futura'>
-                      Music
-                    </Box>
-                  }
-                />
+            {" "}
+            <Grid className={classes.temporary}>
+              <Grid container className={classes.formRow} xs={12}>
+                <Grid container item className={classes.interestGrid} xs={6}>
+                  <img className={classes.interestImage} src={music} alt='' />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite />}
+                        name='checkedH'
+                        value='music'
+                        onClick={clickHandler}
+                      />
+                    }
+                    label={
+                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                        Music
+                      </Box>
+                    }
+                  />
+                </Grid>
+
+                <Grid container item className={classes.interestGrid} xs={6}>
+                  <img src={entertainment} alt='' />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite />}
+                        name='checkedH'
+                        value='entertainment'
+                        onClick={clickHandler}
+                      />
+                    }
+                    label={
+                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                        Entertainment
+                      </Box>
+                    }
+                  />
+                </Grid>
               </Grid>
 
-              <Grid container item className={classes.interestGrid} xs={6}>
-                <img src={entertainment} alt='' />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      icon={<FavoriteBorder />}
-                      checkedIcon={<Favorite />}
-                      name='checkedH'
-                    />
-                  }
-                  label={
-                    <Box component='div' fontSize={15} fontFamily='Futura'>
-                      Entertainment
-                    </Box>
-                  }
-                />
-              </Grid>
-            </Grid>
+              <Grid container className={classes.formRow} xs={12}>
+                <Grid container item className={classes.interestGrid} xs={6}>
+                  <img src={sports} alt='' />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite />}
+                        name='checkedH'
+                        value='sports'
+                        onClick={clickHandler}
+                      />
+                    }
+                    label={
+                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                        Sports
+                      </Box>
+                    }
+                  />
+                </Grid>
 
-            <Grid container className={classes.formRow} xs={12}>
-              <Grid container item className={classes.interestGrid} xs={6}>
-                <img src={sports} alt='' />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      icon={<FavoriteBorder />}
-                      checkedIcon={<Favorite />}
-                      name='checkedH'
-                    />
-                  }
-                  label={
-                    <Box component='div' fontSize={15} fontFamily='Futura'>
-                      Sports
-                    </Box>
-                  }
-                />
-              </Grid>
-
-              <Grid container item className={classes.interestGrid} xs={6}>
-                <img src={politics} alt='' />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      icon={<FavoriteBorder />}
-                      checkedIcon={<Favorite />}
-                      name='checkedH'
-                    />
-                  }
-                  label={
-                    <Box component='div' fontSize={15} fontFamily='Futura'>
-                      Politics
-                    </Box>
-                  }
-                />
-              </Grid>
-            </Grid>
-
-            <Grid container className={classes.formRow} xs={12}>
-              <Grid container item className={classes.interestGrid} xs={6}>
-                <img src={fashion} alt='' />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      icon={<FavoriteBorder />}
-                      checkedIcon={<Favorite />}
-                      name='checkedH'
-                    />
-                  }
-                  label={
-                    <Box component='div' fontSize={15} fontFamily='Futura'>
-                      Fashion
-                    </Box>
-                  }
-                />
+                <Grid container item className={classes.interestGrid} xs={6}>
+                  <img src={politics} alt='' />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite />}
+                        name='checkedH'
+                        value='politics'
+                        onClick={clickHandler}
+                      />
+                    }
+                    label={
+                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                        Politics
+                      </Box>
+                    }
+                  />
+                </Grid>
               </Grid>
 
-              <Grid container item className={classes.interestGrid} xs={6}>
-                <img src={lifestyle} alt='' />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      icon={<FavoriteBorder />}
-                      checkedIcon={<Favorite />}
-                      name='checkedH'
-                    />
-                  }
-                  label={
-                    <Box component='div' fontSize={15} fontFamily='Futura'>
-                      Lifestyle
-                    </Box>
-                  }
-                />
+              <Grid container className={classes.formRow} xs={12}>
+                <Grid container item className={classes.interestGrid} xs={6}>
+                  <img src={fashion} alt='' />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite />}
+                        name='checkedH'
+                        value='fashion'
+                        onClick={clickHandler}
+                      />
+                    }
+                    label={
+                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                        Fashion
+                      </Box>
+                    }
+                  />
+                </Grid>
+
+                <Grid container item className={classes.interestGrid} xs={6}>
+                  <img src={lifestyle} alt='' />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite />}
+                        name='checkedH'
+                        value='lifestyle'
+                        onClick={clickHandler}
+                      />
+                    }
+                    label={
+                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                        Lifestyle
+                      </Box>
+                    }
+                  />
+                </Grid>
               </Grid>
             </Grid>
           </ScrollContainer>
@@ -284,13 +316,15 @@ export default function PersonalInterest() {
               variant='contained'
               color='primary'
               className={classes.submit}
+              onClick={submitHandler}
             >
               Complete!
             </Button>
           </Link>
         </div>
         <Grid className={classes.login}>
-          Already have an account? <Link href='/'>Log in here.</Link>
+          Already have an account?&nbsp;
+          <Link href='/'>Log in here.</Link>
         </Grid>
       </div>
     </Container>

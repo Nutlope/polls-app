@@ -17,19 +17,20 @@ import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorLeft from "./../../assets/vector-left.png";
 import vectorRight from "./../../assets/vector-right.png";
 import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/styles";
 
 /**
  * functional components
  */
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   paper: {
     fontFamily: "Futura",
     border: "1px solid black",
     display: "flex",
     justifyContent: "center",
-    flexDirection: "column",
     alignItems: "center",
+    flexDirection: "column",
     position: "relative",
     height: "700px", //TODO: set hight to be phone height
   },
@@ -38,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     bottom: "30px",
   },
   everythingElse: {
-    //border: "1px solid green",
     display: "flex",
     position: "absolute",
     flexDirection: "column",
@@ -46,22 +46,16 @@ const useStyles = makeStyles((theme) => ({
     top: "5%",
   },
   form: {
-    //border: "1px solid pink",
-    width: "80%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    width: "70%", // Fix IE 11 issue.
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    backgroundColor: "#2EC4B6",
   },
   topPara: {
     fontFamily: "Futura",
     fontStyle: "normal",
     fontWeight: "500",
-    fontSize: "18px",
+    fontSize: "16px",
     lineHeight: "22px",
     /* or 122% */
 
@@ -71,11 +65,18 @@ const useStyles = makeStyles((theme) => ({
 
     color: "#707070",
   },
+  nameLine: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    position: "relative",
+  },
   textfield: {
+    width: "45%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: "30px",
+    marginBottom: "20px",
     fontFamily: "Futura",
     fontStyle: "normal",
     fontWeight: "500",
@@ -96,24 +97,30 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "center",
     margin: "0px 0px",
   },
+  dobField: {
+    width: "100%",
+    marginBottom: "20px",
+  },
+  genderGrid: {
+    width: "90%",
+  },
   progressBar: {
     display: "flex",
     justifyContent: "spaces-between",
   },
   progressDot: {
-    marginTop: theme.spacing(0.3),
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginTop: "4px",
+    marginLeft: "15px",
+    marginRight: "15px",
     width: "11.78px",
     height: "12px",
     left: "239px",
-    top: "101px",
   },
   vector: {
-    marginLeft: theme.spacing(4),
-    marginRight: theme.spacing(4),
+    marginLeft: "35px",
+    marginRight: "35px",
   },
-}));
+};
 
 class PersonalInfo extends Component {
   constructor(props) {
@@ -141,41 +148,53 @@ class PersonalInfo extends Component {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <Container component='registration-main' maxWidth='xs'>
+      <Container component='main' maxWidth='xs'>
         <CssBaseline />
-        <div className='paper'>
-          <div className='everythingElse'>
-            <div className='progressBar'>
-              <Link>
-                <img src={vectorLeft} className='vector' />
+        <div className={classes.paper}>
+          <div className={classes.everythingElse}>
+            <div className={classes.progressBar}>
+              <Link href='/registration-personal-info'>
+                <img src={vectorLeft} className={classes.vector} alt='Back' />
               </Link>
-              <img src={ProgressDotFinished} className='progressDot' />
-              <img src={ProgressDotUnfinished} className='progressDot' />
-              <img src={ProgressDotUnfinished} className='progressDot' />
-              <img src={ProgressDotUnfinished} className='progressDot' />
+              <img
+                src={ProgressDotFinished}
+                className={classes.progressDot}
+                alt=''
+              />
+              <img
+                src={ProgressDotFinished}
+                className={classes.progressDot}
+                alt=''
+              />
+              <img
+                src={ProgressDotUnfinished}
+                className={classes.progressDot}
+                alt=''
+              />
+              <img
+                src={ProgressDotUnfinished}
+                className={classes.progressDot}
+                alt=''
+              />
               <Link href='/registration-create-account'>
-                <img type='submit' src={vectorRight} className='vector' />
+                <img src={vectorRight} className={classes.vector} alt='Next' />
               </Link>
             </div>
             <img
-              className='App-logo'
               src={logoDrawing}
-              width='309px'
-              height='182px'
+              width='234px'
+              height='140px'
+              top='138px'
               alt=''
             />
-            <p className='text'>Tell us a little about yourself.</p>
+            <p className={classes.topPara}>Tell us a little about yourself.</p>
 
-            <form
-              className='registration-form'
-              className='form'
-              onSubmit={this.submitHandler}
-              xs={12}
-              sm={12}
-            >
-              <Grid className='FirstLine'>
-                <Grid className='questionBox' item xs={6} sm={6}>
+            <form className={classes.form} onSubmit={this.submitHandler}>
+              <Grid className={classes.nameLine}>
+                <Grid className={classes.textfield} item>
                   <TextField
                     autoComplete='fname'
                     name='firstName'
@@ -188,7 +207,7 @@ class PersonalInfo extends Component {
                     onChange={this.changeHandler}
                   />
                 </Grid>
-                <Grid className='questionBox' item xs={12} sm={6}>
+                <Grid className={classes.textfield} item>
                   <TextField
                     autoComplete='lname'
                     name='lastName'
@@ -202,64 +221,56 @@ class PersonalInfo extends Component {
                   />
                 </Grid>
               </Grid>
-              <Grid className='questionBox' item xs={12}>
+              <Grid item className={classes.dobField}>
                 <TextField
+                  className={classes.dobField}
                   autoComplete='dateOfBirth'
                   name='dob'
                   variant='outlined'
                   required
                   id='dob'
-                  label='Date Of Brith:'
+                  label='Date Of Birth:'
                   autoFocus
                   type='date'
                   onChange={this.changeHandler}
                 />
               </Grid>
-              <FormControl component='gender-radio'>
-                <FormLabel component='legend'>Gender</FormLabel>
-                <RadioGroup
-                  defaultValue='female'
-                  aria-label='gender'
-                  name='gender'
-                >
-                  <FormControlLabel
-                    className='radioChoice'
-                    value='female'
-                    control={<Radio />}
-                    label='Female'
-                    onChange={this.changeHandler}
-                  />
-                  <FormControlLabel
-                    className='radioChoice'
-                    value='male'
-                    control={<Radio />}
-                    label='Male'
-                    onChange={this.changeHandler}
-                  />
-                  <FormControlLabel
-                    className='radioChoice'
-                    value='other'
-                    control={<Radio />}
-                    label='Other'
-                    onChange={this.changeHandler}
-                  />
-                </RadioGroup>
-              </FormControl>
-
-              <Link href='/Registration-create-account'>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  type='submit'
-                  className='button'
-                >
-                  Next
-                </Button>
-              </Link>
+              <Grid className={classes.genderGrid}>
+                <FormControl component='gender-radio'>
+                  <FormLabel component='legend'>Gender</FormLabel>
+                  <RadioGroup
+                    defaultValue='female'
+                    aria-label='gender'
+                    name='gender'
+                  >
+                    <FormControlLabel
+                      className={classes.radioChoice}
+                      value='female'
+                      control={<Radio />}
+                      label='Female'
+                      onChange={this.changeHandler}
+                    />
+                    <FormControlLabel
+                      className={classes.radioChoice}
+                      value='male'
+                      control={<Radio />}
+                      label='Male'
+                      onChange={this.changeHandler}
+                    />
+                    <FormControlLabel
+                      className={classes.radioChoice}
+                      value='other'
+                      control={<Radio />}
+                      label='Other'
+                      onChange={this.changeHandler}
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
             </form>
           </div>
-          <Grid className='login'>
-            Already have an account?
+          <Grid className={classes.login}>
+            Already have an account?&nbsp;
             <Link href='/'>Log in here.</Link>
           </Grid>
         </div>
@@ -268,7 +279,7 @@ class PersonalInfo extends Component {
   }
 }
 
-export default PersonalInfo;
+export default withStyles(styles)(PersonalInfo);
 
 /**
  * TODOs:

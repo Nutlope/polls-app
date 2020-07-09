@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     top: "5%",
   },
   form: {
-    //border: "1px solid pink",
     width: "80%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
     display: "flex",
@@ -92,34 +91,36 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "spaces-between",
   },
   progressDot: {
-    marginTop: theme.spacing(0.3),
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginTop: "4px",
+    marginLeft: "15px",
+    marginRight: "15px",
     width: "11.78px",
     height: "12px",
     left: "239px",
-    top: "101px",
   },
   vector: {
-    marginLeft: theme.spacing(4),
-    marginRight: theme.spacing(4),
+    marginLeft: "35px",
+    marginRight: "35px",
   },
 }));
 
-const changeHandler = (event) => {
-  //userInput = event.target.name;
-};
-
-const submitHandler = (event) => {
-  console.log(event.target.value);
-};
-
 export default function CreateAccount() {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const changeEmailHandler = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const changePasswordHandler = (event) => {
+    setPassword(event.target.value);
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log("submitted.");
+    console.log(email);
+    console.log(password);
   };
 
   return (
@@ -152,12 +153,7 @@ export default function CreateAccount() {
               alt=''
             />
             <Link href='/registration-share-location'>
-              <img
-                type='submit'
-                src={vectorRight}
-                className={classes.vector}
-                alt='Next'
-              />
+              <img src={vectorRight} className={classes.vector} alt='Next' />
             </Link>
           </div>
           <img
@@ -181,7 +177,7 @@ export default function CreateAccount() {
               id='email'
               label='Email'
               variant='outlined'
-              onChange={changeHandler}
+              onChange={changeEmailHandler}
             />
             <TextField
               required
@@ -190,12 +186,12 @@ export default function CreateAccount() {
               id='create-password'
               label='Create Password'
               variant='outlined'
-              onChange={changeHandler}
+              onChange={changePasswordHandler}
             />
           </form>
         </div>
         <Grid className={classes.login}>
-          Already have an account? <Link href='/'>Log in here.</Link>
+          Already have an account?&nbsp;<Link href='/'>Log in here.</Link>
         </Grid>
       </div>
     </Container>
@@ -203,5 +199,6 @@ export default function CreateAccount() {
 }
 
 /**
- * check: if type='submit' here is doing its job
+ * Todo: 1. either make some stateful components pass down states and change it here(enabled change),
+ *       or make the Link thingie both trigger submitHandler and go to a href
  */
