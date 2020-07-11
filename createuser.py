@@ -3,17 +3,17 @@ import urllib.request
 import requests as r
 from datetime import date
 
-homepage = 'https://curiocity-bemm.firebaseio.com/.json'
+homepage = 'https://bemm-app.firebaseio.com/.json'
 with urllib.request.urlopen(homepage) as response:
    db = response.read()
 db = json.loads(db)
 
-def user1(request):
-    email = "djmackay"
+def user1():
+    email = "djmackay@mit.edu"
     fname = "David"
     lname = "Mackay"
-    prefs = ["movies", "music"]
-    username = "dskull"
+    prefs = ["entertainment", "miscellaneous"]
+    username = "dmack1"
     dob = [12,1,1998]
     pword = "dman"
     location = [18, -77]
@@ -35,7 +35,7 @@ def user1(request):
         for pref in prefs:
             interests[pref] = True
     user = {
-        username:{
+
                 "fname" : fname,
                 "lname" : lname,
                 "email": email,
@@ -47,10 +47,10 @@ def user1(request):
                 "age": age,
                 "dob": dob,
                 "location": location
-        }
+
     }
-    page = 'https://curiocity-bemm.firebaseio.com/users/.json' 
+    page = 'https://bemm-app.firebaseio.com/users/'+username+'/.json' 
     user = json.dumps(user)
     r.put(page,user)
     return 'User Created Successfully'
-
+print(user1())
