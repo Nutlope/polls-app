@@ -1,24 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import "./poll.css";
-import logoSmall from "./../../assets/logoSmall.png";
-import home from "./../../assets/home.png";
-import trending from "./../../assets/trending.png";
-import profile from "./../../assets/profile.png";
-import addPoll from "./../../assets/addPoll.png";
-import saveIcon from "./../../assets/save.png";
-import vectorRight from "./../../assets/vector-right.png";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
-import { shadows } from "@material-ui/system";
-import Chip from "@material-ui/core/Chip";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import ChoiceGrid from "./ChoiceGrid";
 import commenter from "./../../assets/commenter.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
     width: "90%",
     display: "flex",
     flexDirection: "column",
-    display: "flex",
     position: "absolute",
     bottom: "10px",
   },

@@ -8,6 +8,7 @@ import CreateAccount from "./components/Registration/CreateAccount";
 import ShareLocation from "./components/Registration/ShareLocation";
 import PersonalInterest from "./components/Registration/PersonalInterest";
 import Poll from "./components/Poll/Poll";
+import Me from "./components/Profile/Me";
 
 export default class App extends Component {
   constructor(props) {
@@ -25,6 +26,47 @@ export default class App extends Component {
         "If you’re fan of animation, go with Isle of Dogs",
         "Grand Budapest Hotel has a great cast!",
       ],
+      name: "Jane Doe",
+      location: "Atlanta, GA",
+      polls: {
+        //only need id
+        posted: [
+          {
+            category: "politics",
+            title: "Should JHU install a private police force",
+            choices: {
+              choiceOne: "yes",
+              choiceTwo: "no",
+              choiceThree: "",
+              choiceFour: "",
+            },
+            results: {
+              choiceOne: "53",
+              choiceTwo: "47",
+              choiceThree: "",
+              choiceFour: "",
+            },
+          },
+        ],
+        saved: [
+          {
+            category: "fashion",
+            title: "Which pair should I buy?",
+            choices: {
+              choiceOne: "img 1",
+              choiceTwo: "img 2",
+              choiceThree: "img 3",
+              choiceFour: "",
+            },
+            results: {
+              choiceOne: "23",
+              choiceTwo: "50",
+              choiceThree: "27",
+              choiceFour: "",
+            },
+          },
+        ],
+      },
     };
   }
 
@@ -60,6 +102,16 @@ export default class App extends Component {
                   title={this.state.title}
                   choices={this.state.choices}
                   comments={this.state.comments}
+                />
+              )}
+            />
+            <Route
+              path='/Me'
+              render={(props) => (
+                <Me
+                  polls={this.state.polls}
+                  name={this.state.name}
+                  location={this.state.location}
                 />
               )}
             />
