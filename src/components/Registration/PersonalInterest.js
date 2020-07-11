@@ -11,11 +11,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Link from "@material-ui/core/Link";
 import Checkbox from "@material-ui/core/Checkbox";
 import Box from "@material-ui/core/Box";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorLeft from "./../../assets/vector-left.png";
 import vectorRight from "./../../assets/vector-right.png";
@@ -52,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     //***/
     height: "270px",
     overflowY: "scroll",
-    width: "80%", // Fix IE 11 issue.
+    width: "95%", // Fix IE 11 issue.
     display: "flex",
     flexDirection: "column",
   },
@@ -83,11 +80,20 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     display: "flex",
     justifyContent: "center",
+    flexDirection: "column",
+    marginLeft: "10px",
+    marginRight: "10px",
+    marginBottom: "20px",
   },
-
+  interestImage: {
+    width: "125px",
+    height: "100px",
+    backgroundPosition: "1cm 2cm",
+  },
   formRow: {
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
   },
   progressBar: {
     display: "flex",
@@ -182,9 +188,15 @@ export default function PersonalInterest() {
           </p>
           <ScrollContainer className={classes.form}>
             {" "}
-            <Grid className={classes.temporary}>
+            <Grid>
               <Grid container className={classes.formRow} xs={12}>
-                <Grid container item className={classes.interestGrid} xs={6}>
+                <Box
+                  container
+                  item
+                  className={classes.interestGrid}
+                  boxShadow={1}
+                  xs={6}
+                >
                   <img className={classes.interestImage} src={music} alt='' />
                   <FormControlLabel
                     control={
@@ -197,15 +209,25 @@ export default function PersonalInterest() {
                       />
                     }
                     label={
-                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                      <Box component='div' fontSize={13} fontFamily='Futura'>
                         Music
                       </Box>
                     }
                   />
-                </Grid>
+                </Box>
 
-                <Grid container item className={classes.interestGrid} xs={6}>
-                  <img src={entertainment} alt='' />
+                <Box
+                  container
+                  item
+                  className={classes.interestGrid}
+                  boxShadow={1}
+                  xs={6}
+                >
+                  <img
+                    src={entertainment}
+                    className={classes.interestImage}
+                    alt=''
+                  />
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -217,17 +239,24 @@ export default function PersonalInterest() {
                       />
                     }
                     label={
-                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                      <Box component='div' fontSize={13} fontFamily='Futura'>
                         Entertainment
                       </Box>
                     }
                   />
-                </Grid>
+                </Box>
               </Grid>
 
               <Grid container className={classes.formRow} xs={12}>
-                <Grid container item className={classes.interestGrid} xs={6}>
-                  <img src={sports} alt='' />
+                <Box
+                  container
+                  item
+                  className={classes.interestGrid}
+                  boxShadow={1}
+                  xs={6}
+                >
+                  {" "}
+                  <img src={sports} className={classes.interestImage} alt='' />
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -239,15 +268,25 @@ export default function PersonalInterest() {
                       />
                     }
                     label={
-                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                      <Box component='div' fontSize={13} fontFamily='Futura'>
                         Sports
                       </Box>
                     }
                   />
-                </Grid>
+                </Box>
 
-                <Grid container item className={classes.interestGrid} xs={6}>
-                  <img src={politics} alt='' />
+                <Box
+                  container
+                  item
+                  className={classes.interestGrid}
+                  boxShadow={1}
+                  xs={6}
+                >
+                  <img
+                    src={politics}
+                    className={classes.interestImage}
+                    alt=''
+                  />
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -259,17 +298,24 @@ export default function PersonalInterest() {
                       />
                     }
                     label={
-                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                      <Box component='div' fontSize={13} fontFamily='Futura'>
                         Politics
                       </Box>
                     }
                   />
-                </Grid>
+                </Box>
               </Grid>
 
               <Grid container className={classes.formRow} xs={12}>
-                <Grid container item className={classes.interestGrid} xs={6}>
-                  <img src={fashion} alt='' />
+                <Box
+                  container
+                  item
+                  className={classes.interestGrid}
+                  boxShadow={1}
+                  xs={6}
+                >
+                  {" "}
+                  <img src={fashion} className={classes.interestImage} alt='' />
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -281,15 +327,26 @@ export default function PersonalInterest() {
                       />
                     }
                     label={
-                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                      <Box component='div' fontSize={13} fontFamily='Futura'>
                         Fashion
                       </Box>
                     }
                   />
-                </Grid>
+                </Box>
 
-                <Grid container item className={classes.interestGrid} xs={6}>
-                  <img src={lifestyle} alt='' />
+                <Box
+                  container
+                  item
+                  className={classes.interestGrid}
+                  boxShadow={1}
+                  xs={6}
+                >
+                  {" "}
+                  <img
+                    src={lifestyle}
+                    className={classes.interestImage}
+                    alt=''
+                  />
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -301,12 +358,12 @@ export default function PersonalInterest() {
                       />
                     }
                     label={
-                      <Box component='div' fontSize={15} fontFamily='Futura'>
+                      <Box component='div' fontSize={13} fontFamily='Futura'>
                         Lifestyle
                       </Box>
                     }
                   />
-                </Grid>
+                </Box>
               </Grid>
             </Grid>
           </ScrollContainer>

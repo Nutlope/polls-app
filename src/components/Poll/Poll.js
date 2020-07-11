@@ -1,153 +1,156 @@
-import React, {Component} from 'react'
-import TextField from "@material-ui/core/TextField";
-import Button from '@material-ui/core/Button';
+import React from "react";
+import "./poll.css";
+import logoSmall from "./../../assets/logoSmall.png";
+import home from "./../../assets/home.png";
+import trending from "./../../assets/trending.png";
+import profile from "./../../assets/profile.png";
+import addPoll from "./../../assets/addPoll.png";
+import saveIcon from "./../../assets/save.png";
+import vectorRight from "./../../assets/vector-right.png";
 import Grid from "@material-ui/core/Grid";
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from '@material-ui/core/Container';
+import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
-import { shadows } from '@material-ui/system';
-import Chip from '@material-ui/core/Chip';
-import Box from '@material-ui/core/Box';
-
+import { shadows } from "@material-ui/system";
+import Box from "@material-ui/core/Box";
+import ChoiceGrid from "./ChoiceGrid";
+import Comments from "./Comments";
 
 const useStyle = makeStyles((theme) => ({
-    paper: {
-        border:'1px solid black',
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        alignItems: 'center',
-        position: "relative",
-        height: "700px", //TODO: set hight to be phone height
-    },
-    everythingElse: {
-        display: "flex",
-        position: "absolute",
-        flexDirection: "column",
-        alignItems: 'center',
-        top: "5%",
-    },
-    box: {
-      borderRadius: "10px",
-      width: "80%", // Fix IE 11 issue.
-      marginTop: theme.spacing(3),
-      display: "flex",
-      flexDirection: "column",
-      position: "absolute",
-      height: "80%",
-      alignItems: "center",
-    },
-    question: {
-        display: "flex",
-        width: "100%",
-        flexDirection: "column",
-        position: "absolute",
-        top: "10%",
-        alignItems: "center",
-    },
-    heading: {
-        display: "flex",
-        flexDirection:"column",
-        width: "80%",
-    },
-    category: {
-        width: "100%",
-        height: "6%",
-        position: "absolute",
-        top: "0px",
-        backgroundColor: "gray",
-        textAlign: "center",
-    },
-    choice: {
-        width: "60%",
-        border: "1px solid grays",
-        marginBotton: "10px",
-        margin: theme.spacing(1),
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2),
-      backgroundColor: "#2EC4B6",
-    },
-    interestGrid: {
-        border: "1px solid gray",
-        borderRadius: "5px",
-        width: "100%", // Fix IE 11 issue.
-        border: "1px solid black",
-        display:"flex",
-    },
+  paper: {
+    fontFamily: "Futura",
+    border: "1px solid black",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    position: "relative",
+    height: "700px", //TODO: set hight to be phone height
+  },
+  topBar: {
+    paddingLeft: "10%",
+    paddingRight: "10%",
+    zIndex: "-1",
+    display: "flex",
+    width: "100%",
+    height: "50px",
+    backgroundColor: "#EDEDED",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  logo: {
+    display: "flex",
+    width: "20px",
+  },
+  box: {
+    borderRadius: "10px",
+    width: "90%",
+    height: "87%",
+    display: "flex",
+    position: "absolute",
+    flexDirection: "column",
+    alignItems: "center",
+    top: "10%",
+  },
+  boxTopBar: {
+    width: "100%",
+    height: "30px",
+    backgroundColor: "rgba(150, 150, 150, 0.57)",
+    borderRadius: "12px 12px 0px 0px",
+    justifyContent: "space-between",
+    alignItems: "center",
+    display: "flex",
+    position: "relative",
+  },
+  formRow: {
+    width: "305px",
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  choiceGrid: {
+    display: "flex",
+    position: "absolute",
+    marginTop: "1000px",
+  },
+  saveIcon: {
+    marginLeft: "20px",
+    display: "flex",
+  },
+  skipIcon: {
+    marginRight: "10px",
+    display: "flex",
+  },
+  form: {
+    width: "80%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  category: {
+    fontWeight: "bold",
+    fontSize: "15px",
+  },
+  question: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  heading: {
+    width: "80%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  title: {
+    textAlign: "center",
+    fontWeight: "bold",
+    height: "40px",
+  },
+  comments: {
+    display: "flex",
+    position: "absolute",
+  },
 }));
 
-class Poll extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            numQuestion: 4,
-            category: "Entertainment",
-            title: "I am a hard-coded question. Is curioCity Cool?",
-            choices: {
-                "choiceOne": "Very Good!",
-                "choiceTwo": "Of course",
-                "choiceThree": "Fabulous",
-                "choiceFour": "No need to ask",
-            }            
-        }
-    };
+export default function Poll(props) {
+  const classes = useStyle();
 
+  return (
+    <Container component='main' maxWidth='xs'>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <div className={classes.topBar}>
+          <img src={home} />
+          <img src={trending} />
+          <img src={logoSmall} className={classes.logo} width='100px' alt='' />
+          <img src={addPoll} />
+          <img src={profile} />
+        </div>
+        <Box container className={classes.box} boxShadow={2}>
+          <Grid className={classes.boxTopBar}>
+            <img src={saveIcon} className={classes.saveIcon} />
 
-    render() {
-        return(
-            <Container component="registration-main" maxWidth="xs">
-                <CssBaseline />
-                <div style={useStyle.paper}>
-                <Box container style={useStyle.box} boxShadow={2}>
-                    <div style={useStyle.category}>
-                        {this.state.category}
-                    </div>
-                    <div style={useStyle.question}> 
-                        <Grid style={useStyle.heading}>
-                            <h2>{this.state.title}</h2>
-                            <br/>
-                            <p>PlaceHolder-Save ...and ..Skip</p>
-                        </Grid>
-                        <Chip
-                            label={this.state.choices.choiceOne}
-                            clickable
-                            variant="outlined"
-                            color="primary"
-                            style={useStyle.choice}
-                        />
-                        <Chip
-                            label={this.state.choices.choiceTwo}
-                            clickable
-                            variant="outlined"
-                            color="primary"
-                            style={useStyle.choice}
-                        />
-                        <Chip
-                            label={this.state.choices.choiceThree}
-                            clickable
-                            variant="outlined"
-                            color="primary"
-                            style={useStyle.choice}
-                        />
-                        <Chip
-                            label={this.state.choices.choiceFour}
-                            clickable
-                            variant="outlined"
-                            color="primary"
-                            style={useStyle.choice}
-                        />
-                    </div>
-                </Box>
-
-                <div style={useStyle.comments}>
-                        
-                </div>
-                </div>
-            </Container>
-        );
-    }
+            <div className={classes.category}>{props.category}</div>
+            <Link className={classes.skipIcon}>
+              <img src={vectorRight} className='vectorRight' />
+              <img src={vectorRight} className='vectorRight' />
+            </Link>
+          </Grid>
+          <div className={classes.question}>
+            <Grid className={classes.heading}>
+              <h2 className={classes.title}>{props.title}</h2>
+              <br />
+            </Grid>
+            <ChoiceGrid
+              className={classes.choiceGrid}
+              choices={props.choices}
+            />
+            <Comments comments={props.comments} />
+          </div>
+        </Box>
+        <div className={classes.comments}></div>
+      </div>
+    </Container>
+  );
 }
-
-export default Poll;

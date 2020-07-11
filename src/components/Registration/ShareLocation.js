@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./registration.css";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logoDrawing from "./../../assets/logo-image.png";
 import Link from "@material-ui/core/Link";
-import Geolocation from "@react-native-community/geolocation";
 import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorLeft from "./../../assets/vector-left.png";
@@ -76,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ShareLocation() {
+function ShareLocation() {
   const classes = useStyles();
   const [location, setLocation] = useState("");
 
@@ -151,7 +150,6 @@ export default function ShareLocation() {
             onClick={getLocationHandler}
           >
             Share my location
-            <img />
           </Button>
         </div>
         <Grid className={classes.login}>
@@ -164,3 +162,5 @@ export default function ShareLocation() {
 /**
  * figure out what to do if passing location has error
  */
+
+export default ShareLocation;

@@ -123,31 +123,52 @@ function OptionsPoll() {
           Start a Poll
         </Grid>
       </Grid>
-      <Container component="main" maxWidth="xs">
+      <Container component='main' maxWidth='xs'>
         <div className={classes.paper}>
           <div className={classes.progressBar}>
-            <Link href="/StartPoll">
-              <img src={vectorLeft} className={classes.vector} />
+            <Link href='/StartPoll'>
+              <img src={vectorLeft} className={classes.vector} alt='Back' />
             </Link>
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link href="">
-              <img type="submit" src={vectorRight} className={classes.vector} />
+            <img
+              src={ProgressDotFinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotFinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <Link href=''>
+              <img
+                type='submit'
+                src={vectorRight}
+                className={classes.vector}
+                alt='Next'
+              />
             </Link>
           </div>
           <div className={classes.title}>What do they have to choose from?</div>
-          <Button variant="contained" fullWidth className={classes.button}>
+          <Button variant='contained' fullWidth className={classes.button}>
             Yes
           </Button>
-          <Button variant="contained" fullWidth className={classes.button}>
+          <Button variant='contained' fullWidth className={classes.button}>
             No
           </Button>
-          <Link href="">
+          <Link href=''>
             <Icon
               className={classes.addButton}
-              color="primary"
+              color='primary'
               style={{ fontSize: 50 }}
             >
               add_circle
@@ -155,10 +176,10 @@ function OptionsPoll() {
           </Link>
           <img
             src={logoDrawing}
-            width="234px"
-            height="140px"
-            top="138px"
-            alt=""
+            width='234px'
+            height='140px'
+            top='138px'
+            alt=''
             className={classes.bottom}
           />
         </div>

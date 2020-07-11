@@ -64,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
   textfield: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
     marginBottom: "30px",
     fontFamily: "Futura",
     fontStyle: "normal",
