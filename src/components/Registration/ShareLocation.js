@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { RegistrationContext } from "./RegistrationContext";
 import "./registration.css";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -6,7 +7,7 @@ import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logoDrawing from "./../../assets/logo-image.png";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorLeft from "./../../assets/vector-left.png";
@@ -76,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ShareLocation() {
+  const [person, setPerson] = useContext(RegistrationContext);
   const classes = useStyles();
   const [location, setLocation] = useState("");
 
@@ -83,7 +85,10 @@ function ShareLocation() {
     navigator.geolocation.getCurrentPosition(
       function (position) {
         setLocation(position);
-        console.log(position);
+        person.location.longitude = position.coords.longitude;
+        person.location.latitude = position.coords.latitude;
+        setPerson(person);
+        console.log(person);
       },
       function (error) {
         console.error("Error Code = " + error.code + " - " + error.message);
@@ -97,7 +102,7 @@ function ShareLocation() {
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
-            <Link href='/registration-create-account'>
+            <Link to='/registration-create-account'>
               <img src={vectorLeft} className={classes.vector} alt='Back' />
             </Link>
             <img
@@ -120,7 +125,7 @@ function ShareLocation() {
               className={classes.progressDot}
               alt=''
             />
-            <Link href='/registration-personal-interest'>
+            <Link to='/registration-personal-interest'>
               <img
                 type='submit'
                 src={vectorRight}
@@ -153,7 +158,7 @@ function ShareLocation() {
           </Button>
         </div>
         <Grid className={classes.login}>
-          Already have an account?&nbsp; <Link href='/'>Log in here.</Link>
+          Already have an account?&nbsp; <Link to='/'>Log in here.</Link>
         </Grid>
       </div>
     </Container>

@@ -1,8 +1,10 @@
-import React, { Component } from "react";
+import React, { useState, useContext } from "react";
+import { RegistrationContext } from "./RegistrationContext";
 import "./registration.css";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { CssBaseline } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logoDrawing from "./../../assets/logo-image.png";
 import FormControl from "@material-ui/core/FormControl";
@@ -10,18 +12,17 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorLeft from "./../../assets/vector-left.png";
 import vectorRight from "./../../assets/vector-right.png";
-import { withStyles } from "@material-ui/styles";
 
 /**
  * functional components
  */
 
-const styles = {
+const useStyles = makeStyles((theme) => ({
   paper: {
     fontFamily: "Futura",
     border: "1px solid black",
@@ -117,166 +118,169 @@ const styles = {
     marginLeft: "35px",
     marginRight: "35px",
   },
-};
+}));
 
-class PersonalInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstname: "",
-      lastname: "",
-      dob: "",
-      gender: "female",
-    };
-    this.submitHandler = this.submitHandler.bind(this);
-    this.changeHandler = this.changeHandler.bind(this);
-  }
+export default function PersonalInfo() {
+  const classes = useStyles();
+  const [person, setPerson] = useContext(RegistrationContext);
 
-  changeHandler = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [dob, setDob] = useState("");
+  const [gender, setGender] = useState("");
+
+  const changeFirstnameHandler = (e) => {
+    setFirstname(e.target.value);
   };
 
-  submitHandler = (event) => {
+  const changeLastnameHandler = (e) => {
+    setLastname(e.target.value);
+  };
+
+  const changeDobHandler = (e) => {
+    setDob(e.target.value);
+  };
+
+  const changeGenderHandler = (e) => {
+    setGender(e.target.value);
+  };
+
+  const submitHandler = (event) => {
     event.preventDefault();
-    console.log("submitted");
-    console.log(this.state);
+    person.firstname = firstname;
+    person.lastname = lastname;
+    person.gender = gender;
+    person.dob = dob;
+    setPerson(person);
+    console.log(person);
   };
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <Container component='main' maxWidth='xs'>
-        <CssBaseline />
-        <div className={classes.paper}>
-          <div className={classes.everythingElse}>
-            <div className={classes.progressBar}>
-              <Link href='/registration-personal-info'>
-                <img src={vectorLeft} className={classes.vector} alt='Back' />
-              </Link>
-              <img
-                src={ProgressDotFinished}
-                className={classes.progressDot}
-                alt=''
-              />
-              <img
-                src={ProgressDotFinished}
-                className={classes.progressDot}
-                alt=''
-              />
-              <img
-                src={ProgressDotUnfinished}
-                className={classes.progressDot}
-                alt=''
-              />
-              <img
-                src={ProgressDotUnfinished}
-                className={classes.progressDot}
-                alt=''
-              />
-              <Link href='/registration-create-account'>
-                <img src={vectorRight} className={classes.vector} alt='Next' />
-              </Link>
-            </div>
+  return (
+    <Container component='main' maxWidth='xs'>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <div className={classes.everythingElse}>
+          <div className={classes.progressBar}>
+            <Link to='/registration-personal-info'>
+              <img src={vectorLeft} className={classes.vector} alt='Back' />
+            </Link>
             <img
-              src={logoDrawing}
-              width='234px'
-              height='140px'
-              top='138px'
+              src={ProgressDotFinished}
+              className={classes.progressDot}
               alt=''
             />
-            <p className={classes.topPara}>Tell us a little about yourself.</p>
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <Link onClick={submitHandler} to='/registration-create-account'>
+              <img src={vectorRight} className={classes.vector} alt='Next' />
+            </Link>
+          </div>
+          <img
+            src={logoDrawing}
+            width='234px'
+            height='140px'
+            top='138px'
+            alt=''
+          />
+          <p className={classes.topPara}>Tell us a little about yourself.</p>
 
-            <form className={classes.form} onSubmit={this.submitHandler}>
-              <Grid className={classes.nameLine}>
-                <Grid className={classes.textfield} item>
-                  <TextField
-                    autoComplete='fname'
-                    name='firstName'
-                    variant='outlined'
-                    required
-                    id='firstName'
-                    label='First Name'
-                    autoFocus
-                    value={this.props.firstname}
-                    onChange={this.changeHandler}
-                  />
-                </Grid>
-                <Grid className={classes.textfield} item>
-                  <TextField
-                    autoComplete='lname'
-                    name='lastName'
-                    variant='outlined'
-                    required
-                    id='lastName'
-                    label='Last Name'
-                    autoFocus
-                    value={this.props.lastname}
-                    onChange={this.changeHandler}
-                  />
-                </Grid>
-              </Grid>
-              <Grid item className={classes.dobField}>
+          <form className={classes.form} onSubmit={submitHandler}>
+            <Grid className={classes.nameLine}>
+              <Grid className={classes.textfield} item>
                 <TextField
-                  className={classes.dobField}
-                  autoComplete='dateOfBirth'
-                  name='dob'
+                  autoComplete='fname'
+                  name='firstName'
                   variant='outlined'
                   required
-                  id='dob'
-                  label='Date Of Birth:'
+                  id='firstName'
+                  label='First Name'
                   autoFocus
-                  type='date'
-                  onChange={this.changeHandler}
+                  value={firstname}
+                  onChange={changeFirstnameHandler}
                 />
               </Grid>
-              <Grid className={classes.genderGrid}>
-                <FormControl component='gender-radio'>
-                  <FormLabel component='legend'>Gender</FormLabel>
-                  <RadioGroup
-                    defaultValue='female'
-                    aria-label='gender'
-                    name='gender'
-                  >
-                    <FormControlLabel
-                      className={classes.radioChoice}
-                      value='female'
-                      control={<Radio />}
-                      label='Female'
-                      onChange={this.changeHandler}
-                    />
-                    <FormControlLabel
-                      className={classes.radioChoice}
-                      value='male'
-                      control={<Radio />}
-                      label='Male'
-                      onChange={this.changeHandler}
-                    />
-                    <FormControlLabel
-                      className={classes.radioChoice}
-                      value='other'
-                      control={<Radio />}
-                      label='Other'
-                      onChange={this.changeHandler}
-                    />
-                  </RadioGroup>
-                </FormControl>
+              <Grid className={classes.textfield} item>
+                <TextField
+                  autoComplete='lname'
+                  name='lastName'
+                  variant='outlined'
+                  required
+                  id='lastName'
+                  label='Last Name'
+                  autoFocus
+                  onChange={changeLastnameHandler}
+                />
               </Grid>
-            </form>
-          </div>
-          <Grid className={classes.login}>
-            Already have an account?&nbsp;
-            <Link href='/'>Log in here.</Link>
-          </Grid>
+            </Grid>
+            <Grid item className={classes.dobField}>
+              <TextField
+                className={classes.dobField}
+                autoComplete='dateOfBirth'
+                name='dob'
+                variant='outlined'
+                required
+                id='dob'
+                label='Date Of Birth:'
+                autoFocus
+                type='date'
+                onChange={changeDobHandler}
+              />
+            </Grid>
+            <Grid className={classes.genderGrid}>
+              <FormControl component='gender-radio'>
+                <FormLabel component='legend'>Gender</FormLabel>
+                <RadioGroup
+                  defaultValue='female'
+                  aria-label='gender'
+                  name='gender'
+                >
+                  <FormControlLabel
+                    className={classes.radioChoice}
+                    value='female'
+                    control={<Radio />}
+                    label='Female'
+                    onChange={changeGenderHandler}
+                  />
+                  <FormControlLabel
+                    className={classes.radioChoice}
+                    value='male'
+                    control={<Radio />}
+                    label='Male'
+                    onChange={changeGenderHandler}
+                  />
+                  <FormControlLabel
+                    className={classes.radioChoice}
+                    value='other'
+                    control={<Radio />}
+                    label='Other'
+                    onChange={changeGenderHandler}
+                  />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+          </form>
         </div>
-      </Container>
-    );
-  }
+        <Grid className={classes.login}>
+          Already have an account?&nbsp;
+          <Link to='/'>Log in here.</Link>
+        </Grid>
+      </div>
+    </Container>
+  );
 }
-
-export default withStyles(styles)(PersonalInfo);
 
 /**
  * TODOs:

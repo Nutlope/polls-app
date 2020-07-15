@@ -40,10 +40,10 @@ function renderComments(comments, classes) {
   const len = comments.length;
 
   // one comment occupies two lines, only display one
-  if (len == 1 || comments[0].length >= "50") {
+  if (len === 1 || comments[0].length >= "50") {
     return (
       <div className={classes.comment}>
-        <img src={commenter} className={classes.commenter} />
+        <img src={commenter} className={classes.commenter} alt='' />
         <p>{comments[0]}</p>
       </div>
     );
@@ -52,7 +52,7 @@ function renderComments(comments, classes) {
   if (comments[1].length >= "50") {
     return (
       <div className={classes.comment}>
-        <img src={commenter} className={classes.commenter} />
+        <img src={commenter} className={classes.commenter} alt='' />
         <p>{comments[1]}</p>
       </div>
     );
@@ -65,7 +65,7 @@ function renderComments(comments, classes) {
         <p>{comments[0]}</p>
       </div>
       <div className={classes.comment}>
-        <img src={commenter} className={classes.commenter} />
+        <img src={commenter} className={classes.commenter} alt='' />
         <p>{comments[1]}</p>
       </div>
     </div>

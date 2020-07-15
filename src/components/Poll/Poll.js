@@ -12,7 +12,7 @@ import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
-import { shadows } from "@material-ui/system";
+
 import Box from "@material-ui/core/Box";
 import ChoiceGrid from "./ChoiceGrid";
 import Comments from "./Comments";
@@ -121,20 +121,20 @@ export default function Poll(props) {
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.topBar}>
-          <img src={home} />
-          <img src={trending} />
+          <img src={home} alt='Home' />
+          <img src={trending} alt='Trending' />
           <img src={logoSmall} className={classes.logo} width='100px' alt='' />
-          <img src={addPoll} />
-          <img src={profile} />
+          <img src={addPoll} alt='Add Poll' />
+          <img src={profile} alt='Me' />
         </div>
         <Box container className={classes.box} boxShadow={2}>
           <Grid className={classes.boxTopBar}>
-            <img src={saveIcon} className={classes.saveIcon} />
+            <img src={saveIcon} className={classes.saveIcon} alt='Save' />
 
             <div className={classes.category}>{props.category}</div>
             <Link className={classes.skipIcon}>
-              <img src={vectorRight} className='vectorRight' />
-              <img src={vectorRight} className='vectorRight' />
+              <img src={vectorRight} className='vectorRight' alt='Next' />
+              <img src={vectorRight} className='vectorRight' alt='' />
             </Link>
           </Grid>
           <div className={classes.question}>

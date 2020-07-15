@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { RegistrationContext } from "./RegistrationContext";
 import "./registration.css";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -6,7 +7,7 @@ import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logoDrawing from "./../../assets/logo-image.png";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorLeft from "./../../assets/vector-left.png";
@@ -107,6 +108,7 @@ export default function CreateAccount() {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [person, setPerson] = useContext(RegistrationContext);
 
   const changeEmailHandler = (event) => {
     setEmail(event.target.value);
@@ -118,8 +120,9 @@ export default function CreateAccount() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(email);
-    console.log(password);
+    person.email = email;
+    person.password = password;
+    setPerson(person);
   };
 
   return (
@@ -128,7 +131,7 @@ export default function CreateAccount() {
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
-            <Link href='/registration-personal-info'>
+            <Link to='/registration-personal-info'>
               <img src={vectorLeft} className={classes.vector} alt='Back' />
             </Link>
             <img
@@ -151,7 +154,7 @@ export default function CreateAccount() {
               className={classes.progressDot}
               alt=''
             />
-            <Link href='/registration-share-location'>
+            <Link to='/registration-share-location' onClick={submitHandler}>
               <img src={vectorRight} className={classes.vector} alt='Next' />
             </Link>
           </div>
@@ -166,8 +169,7 @@ export default function CreateAccount() {
           <p className={classes.topPara}>
             Create your log in to join our community!
           </p>
-
-          <form className={classes.form} onSubmit={submitHandler}>
+          <form className={classes.form}>
             <TextField
               className={classes.textfield}
               required
@@ -190,14 +192,9 @@ export default function CreateAccount() {
           </form>
         </div>
         <Grid className={classes.login}>
-          Already have an account?&nbsp;<Link href='/'>Log in here.</Link>
+          Already have an account?&nbsp;<Link to='/'>Log in here.</Link>
         </Grid>
       </div>
     </Container>
   );
 }
-
-/**
- * Todo: 1. either make some stateful components pass down states and change it here(enabled change),
- *       or make the Link thingie both trigger submitHandler and go to a href
- */

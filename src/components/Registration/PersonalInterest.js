@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./registration.css";
+import { RegistrationContext } from "./RegistrationContext";
 import ScrollContainer from "react-indiana-drag-scroll";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -8,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logoDrawing from "./../../assets/logo-image.png";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import Checkbox from "@material-ui/core/Checkbox";
 import Box from "@material-ui/core/Box";
 import Favorite from "@material-ui/icons/Favorite";
@@ -114,6 +115,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PersonalInterest() {
+  const [person, setPerson] = useContext(RegistrationContext);
+
   const classes = useStyles();
   // declaring initial states here
   const interestsDefault = {
@@ -130,12 +133,21 @@ export default function PersonalInterest() {
     interestsDefault[event.target.value] = !interestsDefault[
       event.target.value
     ];
-    // console.log(interestsDefault);
+    setInterests(interestsDefault);
+    console.log(person.location); // state management did not work...
   };
 
   const submitHandler = (event) => {
+    //TODO: FIX THIS
     event.preventDefault();
-    console.log(interests);
+    person.interests = [];
+    for (const [key, value] of Object.entries(interests)) {
+      if (value === true) {
+        person.interests.push(key);
+      }
+    }
+    setPerson(person);
+    console.log(person);
   };
 
   return (
@@ -144,7 +156,7 @@ export default function PersonalInterest() {
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
-            <Link href='/registration-share-location'>
+            <Link to='/registration-share-location'>
               <img src={vectorLeft} className={classes.vector} alt='Back' />
             </Link>
             <img
@@ -367,7 +379,7 @@ export default function PersonalInterest() {
               </Grid>
             </Grid>
           </ScrollContainer>
-          <Link href='/Poll'>
+          <Link to='/Poll'>
             <Button
               type='submit'
               variant='contained'
@@ -381,7 +393,7 @@ export default function PersonalInterest() {
         </div>
         <Grid className={classes.login}>
           Already have an account?&nbsp;
-          <Link href='/'>Log in here.</Link>
+          <Link to='/'>Log in here.</Link>
         </Grid>
       </div>
     </Container>
