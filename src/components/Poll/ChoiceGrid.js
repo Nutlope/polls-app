@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
+import VotedGrid from "./VotedGrid";
 
 const useStyle = makeStyles((theme) => ({
   formRow: {
@@ -38,15 +39,25 @@ const useStyle = makeStyles((theme) => ({
 
 export default function ChoiceGrid(props) {
   const classes = useStyle();
-  const [voted, setVoted] = useState(false);
+  const [voted, setVoted] = useState("");
 
-  const clickHandler = (e) => {
-    setVoted(true);
-    console.log("clicked");
-    console.log(voted);
+  const clickChoiceOneHandler = (event) => {
+    setVoted("choiceOne");
   };
 
-  if (!voted) {
+  const clickChoiceTwoHandler = (event) => {
+    setVoted("choiceTwo");
+  };
+
+  const clickChoiceThreeHandler = (event) => {
+    setVoted("choiceThree");
+  };
+
+  const clickChoiceFourHandler = (event) => {
+    setVoted("choiceFour");
+  };
+
+  if (voted === "") {
     if (props.choices.choiceThree === "") {
       return (
         <div>
@@ -57,8 +68,9 @@ export default function ChoiceGrid(props) {
                   {props.choices.choiceOne}
                 </Typography>
               }
+              value='choiceOne'
               clickable={props.choices.choiceOne !== ""}
-              onClick={clickHandler}
+              onClick={clickChoiceOneHandler}
               variant='outlined'
               className={classes.choiceLong}
               style={{ backgroundColor: "#FF9F1C" }}
@@ -70,10 +82,69 @@ export default function ChoiceGrid(props) {
                 </Typography>
               }
               clickable={props.choices.choiceTwo !== ""}
-              onClick={clickHandler}
+              value='choiceTwo'
+              onClick={clickChoiceTwoHandler}
               variant='outlined'
               className={classes.choiceLong}
               style={{ backgroundColor: "#2EC4B6" }}
+            />
+          </Grid>
+        </div>
+      );
+    }
+
+    if (props.choices.choiceFour === "") {
+      return (
+        <div>
+          <Grid className={classes.formRow}>
+            <Chip
+              label={
+                <Typography className={classes.choiceWords}>
+                  {props.choices.choiceOne}
+                </Typography>
+              }
+              clickable
+              onClick={clickChoiceOneHandler}
+              value='choiceOne'
+              variant='outlined'
+              className={classes.choice}
+              style={{ backgroundColor: "#FF9F1C" }}
+            />
+            <Chip
+              label={
+                <Typography className={classes.choiceWords}>
+                  {props.choices.choiceTwo}
+                </Typography>
+              }
+              clickable
+              onClick={clickChoiceTwoHandler}
+              variant='outlined'
+              className={classes.choice}
+              style={{ backgroundColor: "#2EC4B6" }}
+            />
+          </Grid>
+          <Grid className={classes.formRow}>
+            <Chip
+              label={
+                <Typography className={classes.choiceWords}>
+                  {props.choices.choiceThree}
+                </Typography>
+              }
+              clickable
+              onClick={clickChoiceThreeHandler}
+              variant='outlined'
+              className={classes.choice}
+              style={{ backgroundColor: "#E71D36" }}
+            />
+            <Chip
+              label={
+                <Typography className={classes.choiceWords}>
+                  {props.choices.choiceFour}
+                </Typography>
+              }
+              variant='outlined'
+              className={classes.choice}
+              style={{ backgroundColor: "#8093F1" }}
             />
           </Grid>
         </div>
@@ -89,7 +160,8 @@ export default function ChoiceGrid(props) {
               </Typography>
             }
             clickable={props.choices.choiceOne !== ""}
-            onClick={clickHandler}
+            onClick={clickChoiceOneHandler}
+            value='choiceOne'
             variant='outlined'
             className={classes.choice}
             style={{ backgroundColor: "#FF9F1C" }}
@@ -101,7 +173,7 @@ export default function ChoiceGrid(props) {
               </Typography>
             }
             clickable={props.choices.choiceTwo !== ""}
-            onClick={clickHandler}
+            onClick={clickChoiceTwoHandler}
             variant='outlined'
             className={classes.choice}
             style={{ backgroundColor: "#2EC4B6" }}
@@ -115,7 +187,7 @@ export default function ChoiceGrid(props) {
               </Typography>
             }
             clickable={props.choices.choiceThree !== ""}
-            onClick={clickHandler}
+            onClick={clickChoiceThreeHandler}
             variant='outlined'
             className={classes.choice}
             style={{ backgroundColor: "#E71D36" }}
@@ -127,7 +199,7 @@ export default function ChoiceGrid(props) {
               </Typography>
             }
             clickable={props.choices.choiceFour !== ""}
-            onClick={clickHandler}
+            onClick={clickChoiceFourHandler} //todo: 3 choices but still clickable
             variant='outlined'
             className={classes.choice}
             style={{ backgroundColor: "#8093F1" }}
@@ -136,38 +208,13 @@ export default function ChoiceGrid(props) {
       </div>
     );
   } else {
-    if (props.choices.choiceThree === "") {
-      return (
-        <div>
-          <Grid className={classes.formRow}>
-            <Chip
-              label={
-                <Typography className={classes.choiceWords}>
-                  {props.choices.choiceOne}
-                </Typography>
-              }
-              clickable={props.choices.choiceOne !== ""}
-              onClick={clickHandler}
-              variant='outlined'
-              className={classes.choiceLong}
-              style={{ backgroundColor: "#FF9F1C" }}
-            />
-            <Chip
-              label={
-                <Typography className={classes.choiceWords}>
-                  {props.choices.choiceTwo}
-                </Typography>
-              }
-              clickable={props.choices.choiceTwo !== ""}
-              onClick={clickHandler}
-              variant='outlined'
-              className={classes.choiceLong}
-              style={{ backgroundColor: "#2EC4B6" }}
-            />
-          </Grid>
-        </div>
-      );
-    }
-    return <h1>hello</h1>;
+    return (
+      <VotedGrid
+        choices={props.choices}
+        results={props.results}
+        vote={voted}
+        setVoted={setVoted}
+      />
+    );
   }
 }
