@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logoSmall from "./../../assets/logoSmall.png";
 import home from "./../../assets/home.png";
 import trending from "./../../assets/trending.png";
@@ -18,6 +18,11 @@ import { shadows } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
 import ScrollContainer from "react-indiana-drag-scroll";
 import PollGrid from "./PollGrid";
+import TabPanel from "@material-ui/lab/TabPanel";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import AppBar from "@material-ui/core/AppBar";
+import SwipeableViews from "react-swipeable-views";
 
 const useStyle = makeStyles((theme) => ({
   paper: {
@@ -137,21 +142,74 @@ const useStyle = makeStyles((theme) => ({
     marginRight: "10px",
   },
   polls: {
-    border: "1px solid green",
     display: "flex",
     width: "90%",
-    height: "46%",
+    height: "54%",
     position: "absolute",
     bottom: "5%",
     justifyContent: "center",
+  },
+  pollsScroll: {},
+  appBar: {
+    border: "1px solid pink",
+    width: "100%",
+    padding: "0",
   },
 }));
 
 export default function Me(props) {
   const classes = useStyle();
-
   const numSavedPolls = props.polls.saved.length;
   const numPostedPolls = props.polls.posted.length;
+
+  const [page, setPage] = useState("posted");
+
+  const changeHandler = () => {
+    if (page === "posted") {
+      setPage("saved");
+    } else {
+      setPage("posted");
+    }
+  };
+
+  function a11yProps(index) {
+    return {
+      id: `${index}`,
+      "aria-controls": `tabpanel-${index}`,
+    };
+  }
+
+  const displayPolls = (polls) => {
+    const saved = polls.saved;
+    const posted = polls.posted;
+    return (
+      <div className={classes.polls} role='tabpanel'>
+        <AppBar position='static' className={classes.appBar}>
+          <Tabs
+            onChange={changeHandler}
+            indicatorColor='white'
+            textColor='gray' //todo
+            variant='fullWidth'
+            aria-label='poll tab'
+          >
+            <Tab label='My polls' {...a11yProps(0)} />
+            <Tab label='Saved Polls' {...a11yProps(1)} />
+          </Tabs>
+        </AppBar>
+        <SwipeableViews onChangeIndex={changeHandler}>
+          {/* <TabPanel value='1' index={0}>
+            one
+          </TabPanel>
+          <TabPanel value='2' index={1}>
+            two
+            <ScrollContainer className={classes.pollsScroll}>
+              two
+            </ScrollContainer>
+          </TabPanel> */}
+        </SwipeableViews>
+      </div>
+    );
+  };
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -177,11 +235,7 @@ export default function Me(props) {
           </Grid>
         </div>
 
-        {/**dummy values, only display one for now
-         */}
-        <ScrollContainer className={classes.polls}>
-          <PollGrid polls={props.polls.posted[0]} />
-        </ScrollContainer>
+        {displayPolls(props.polls)}
       </div>
     </Container>
   );
