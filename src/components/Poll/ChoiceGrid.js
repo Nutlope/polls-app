@@ -40,6 +40,13 @@ const useStyle = makeStyles((theme) => ({
 export default function ChoiceGrid(props) {
   const classes = useStyle();
   const [voted, setVoted] = useState("");
+  const [dummy, setDummy] = useState(0);
+
+  const refreshHandler = (qnNum) => {
+    // use if statement to check if qnNum matches with this.qnNum
+    // API
+    // increment qnNum by 1
+  };
 
   const clickChoiceOneHandler = (event) => {
     setVoted("choiceOne");
@@ -212,8 +219,9 @@ export default function ChoiceGrid(props) {
       <VotedGrid
         choices={props.choices}
         results={props.results}
-        vote={voted}
+        voted={voted}
         setVoted={setVoted}
+        //refreshHandler={refreshHandler}
       />
     );
   }

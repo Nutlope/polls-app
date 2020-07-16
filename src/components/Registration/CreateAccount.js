@@ -119,7 +119,6 @@ export default function CreateAccount() {
   };
 
   const submitHandler = (event) => {
-    event.preventDefault();
     person.email = email;
     person.password = password;
     setPerson(person);

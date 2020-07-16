@@ -112,12 +112,17 @@ const useStyle = makeStyles((theme) => ({
     color: "#A6A6A6", //todo
   },
   colorBand: {
-    width: "inherit", //todo
+    width: "100%", //todo
     display: "flex",
-    position: "absolute",
+    position: "relative",
     marginBottom: "0px",
   },
-  selected: {}, //todo
+  selected: {
+    display: "flex",
+    position: "relative",
+    marginBottom: "5px",
+    marginRight: "5px",
+  }, //todo
   nextIcon: {
     display: "flex",
     position: "absolute",
@@ -142,7 +147,7 @@ export default function VotedGrid(props) {
 
   const nextHandler = () => {
     //todo
-    props.setVoted("");
+    //props.refreshHadnler(props.curQ + 1);
   };
 
   const blackBlock = (choice, result, backgroundColor) => {
@@ -159,9 +164,8 @@ export default function VotedGrid(props) {
           variant='outlined'
           className={classes.colorBand}
           style={{ height: heightStr, backgroundColor: backgroundColor }}
-        >
-          <img src={selected} className={classes.selected} />
-        </Container>
+        ></Container>
+        <img src={selected} className={classes.selected} />
       </Container>
     );
   };
@@ -227,26 +231,26 @@ export default function VotedGrid(props) {
 
   const blockOne = (choiceOne, resultOne, backgroundColor) => {
     return "choiceOne" === props.voted
-      ? grayBlock(choiceOne, resultOne, backgroundColor)
-      : blackBlock(choiceOne, resultOne, backgroundColor);
+      ? blackBlock(choiceOne, resultOne, backgroundColor)
+      : grayBlock(choiceOne, resultOne, backgroundColor);
   };
 
   const blockTwo = (choiceTwo, resultTwo, backgroundColor) => {
     return "choiceTwo" === props.voted
-      ? grayBlock(choiceTwo, resultTwo, backgroundColor)
-      : blackBlock(choiceTwo, resultTwo, backgroundColor);
+      ? blackBlock(choiceTwo, resultTwo, backgroundColor)
+      : grayBlock(choiceTwo, resultTwo, backgroundColor);
   };
 
   const blockThree = (choiceThree, resultThree, backgroundColor) => {
     return "choiceThree" === props.voted
-      ? grayBlock(choiceThree, resultThree, backgroundColor)
-      : blackBlock(choiceThree, resultThree, backgroundColor);
+      ? blackBlock(choiceThree, resultThree, backgroundColor)
+      : grayBlock(choiceThree, resultThree, backgroundColor);
   };
 
   const blockFour = (choiceFour, resultFour, backgroundColor) => {
     return "choiceFour" === props.voted
-      ? grayBlock(choiceFour, resultFour, backgroundColor)
-      : blackBlock(choiceFour, resultFour, backgroundColor);
+      ? blackBlock(choiceFour, resultFour, backgroundColor)
+      : grayBlock(choiceFour, resultFour, backgroundColor);
   };
 
   const blankGrid = () => {
@@ -255,14 +259,14 @@ export default function VotedGrid(props) {
 
   const blockOneLong = (choiceOne, resultOne, backgroundColor) => {
     return "choiceOne" === props.voted
-      ? grayBlockLong(choiceOne, resultOne, backgroundColor)
-      : blackBlockLong(choiceOne, resultOne, backgroundColor);
+      ? blackBlockLong(choiceOne, resultOne, backgroundColor)
+      : grayBlockLong(choiceOne, resultOne, backgroundColor);
   };
 
   const blockTwoLong = (choiceTwo, resultTwo, backgroundColor) => {
     return "choiceTwo" === props.voted
-      ? grayBlockLong(choiceTwo, resultTwo, backgroundColor)
-      : blackBlockLong(choiceTwo, resultTwo, backgroundColor);
+      ? blackBlockLong(choiceTwo, resultTwo, backgroundColor)
+      : grayBlockLong(choiceTwo, resultTwo, backgroundColor);
   };
 
   // render component
@@ -293,6 +297,7 @@ export default function VotedGrid(props) {
   }
 
   if (props.choices.choiceFour === "") {
+    console.log(props.voted);
     return (
       <div>
         <Grid className={classes.formRow}>

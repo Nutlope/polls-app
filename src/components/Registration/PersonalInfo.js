@@ -141,12 +141,20 @@ export default function PersonalInfo() {
     setDob(e.target.value);
   };
 
-  const changeGenderHandler = (e) => {
-    setGender(e.target.value);
+  const changeGenderFemaleHandler = (e) => {
+    setGender("female");
+  };
+
+  const changeGenderMaleHandler = (e) => {
+    setGender("male");
+  };
+
+  const changeGenderOtherHandler = (e) => {
+    setGender("other");
   };
 
   const submitHandler = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     person.firstname = firstname;
     person.lastname = lastname;
     person.gender = gender;
@@ -252,21 +260,21 @@ export default function PersonalInfo() {
                     value='female'
                     control={<Radio />}
                     label='Female'
-                    onChange={changeGenderHandler}
+                    onChange={changeGenderFemaleHandler}
                   />
                   <FormControlLabel
                     className={classes.radioChoice}
                     value='male'
                     control={<Radio />}
                     label='Male'
-                    onChange={changeGenderHandler}
+                    onChange={changeGenderMaleHandler}
                   />
                   <FormControlLabel
                     className={classes.radioChoice}
                     value='other'
                     control={<Radio />}
                     label='Other'
-                    onChange={changeGenderHandler}
+                    onChange={changeGenderOtherHandler}
                   />
                 </RadioGroup>
               </FormControl>
