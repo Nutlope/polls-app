@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { RegistrationContext } from "./RegistrationContext";
 import "./registration.css";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -6,7 +7,7 @@ import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logoDrawing from "./../../assets/logo-image.png";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorLeft from "./../../assets/vector-left.png";
@@ -37,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
     top: "5%",
   },
   form: {
-    //border: "1px solid pink",
     width: "80%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
     display: "flex",
@@ -65,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
   textfield: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
     marginBottom: "30px",
     fontFamily: "Futura",
     fontStyle: "normal",
@@ -92,34 +91,37 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "spaces-between",
   },
   progressDot: {
-    marginTop: theme.spacing(0.3),
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginTop: "4px",
+    marginLeft: "15px",
+    marginRight: "15px",
     width: "11.78px",
     height: "12px",
     left: "239px",
-    top: "101px",
   },
   vector: {
-    marginLeft: theme.spacing(4),
-    marginRight: theme.spacing(4),
+    marginLeft: "35px",
+    marginRight: "35px",
   },
 }));
 
-const changeHandler = (event) => {
-  //userInput = event.target.name;
-};
-
-const submitHandler = (event) => {
-  console.log(event.target.value);
-};
-
 export default function CreateAccount() {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [person, setPerson] = useContext(RegistrationContext);
+
+  const changeEmailHandler = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const changePasswordHandler = (event) => {
+    setPassword(event.target.value);
+  };
 
   const submitHandler = (event) => {
-    event.preventDefault();
-    console.log("submitted.");
+    person.email = email;
+    person.password = password;
+    setPerson(person);
   };
 
   return (
@@ -128,7 +130,7 @@ export default function CreateAccount() {
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
-            <Link href='/registration-personal-info'>
+            <Link to='/registration-personal-info'>
               <img src={vectorLeft} className={classes.vector} alt='Back' />
             </Link>
             <img
@@ -151,13 +153,8 @@ export default function CreateAccount() {
               className={classes.progressDot}
               alt=''
             />
-            <Link href='/registration-share-location'>
-              <img
-                type='submit'
-                src={vectorRight}
-                className={classes.vector}
-                alt='Next'
-              />
+            <Link to='/registration-share-location' onClick={submitHandler}>
+              <img src={vectorRight} className={classes.vector} alt='Next' />
             </Link>
           </div>
           <img
@@ -171,8 +168,7 @@ export default function CreateAccount() {
           <p className={classes.topPara}>
             Create your log in to join our community!
           </p>
-
-          <form className={classes.form} onSubmit={submitHandler}>
+          <form className={classes.form}>
             <TextField
               className={classes.textfield}
               required
@@ -181,7 +177,7 @@ export default function CreateAccount() {
               id='email'
               label='Email'
               variant='outlined'
-              onChange={changeHandler}
+              onChange={changeEmailHandler}
             />
             <TextField
               required
@@ -190,18 +186,14 @@ export default function CreateAccount() {
               id='create-password'
               label='Create Password'
               variant='outlined'
-              onChange={changeHandler}
+              onChange={changePasswordHandler}
             />
           </form>
         </div>
         <Grid className={classes.login}>
-          Already have an account? <Link href='/'>Log in here.</Link>
+          Already have an account?&nbsp;<Link to='/'>Log in here.</Link>
         </Grid>
       </div>
     </Container>
   );
 }
-
-/**
- * check: if type='submit' here is doing its job
- */

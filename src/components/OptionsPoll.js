@@ -1,20 +1,7 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import FolderIcon from "@material-ui/icons/Folder";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-import Divider from "@material-ui/core/Divider";
 import "./general.css";
 import logoDrawing from "./../assets/logo-image.png";
 import Link from "@material-ui/core/Link";
@@ -127,14 +114,35 @@ function OptionsPoll() {
         <div className={classes.paper}>
           <div className={classes.progressBar}>
             <Link href="/StartPoll">
-              <img src={vectorLeft} className={classes.vector} />
+              <img src={vectorLeft} className={classes.vector} alt="Back" />
             </Link>
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link href="/AgesPoll">
-              <img type="submit" src={vectorRight} className={classes.vector} />
+            <img
+              src={ProgressDotFinished}
+              className={classes.progressDot}
+              alt=""
+            />
+            <img
+              src={ProgressDotFinished}
+              className={classes.progressDot}
+              alt=""
+            />
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=""
+            />
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=""
+            />
+            <Link href="">
+              <img
+                type="submit"
+                src={vectorRight}
+                className={classes.vector}
+                alt="Next"
+              />
             </Link>
           </div>
           <div className={classes.title}>What do they have to choose from?</div>

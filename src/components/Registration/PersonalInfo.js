@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { useState, useContext } from "react";
+import { RegistrationContext } from "./RegistrationContext";
 import "./registration.css";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { CssBaseline } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logoDrawing from "./../../assets/logo-image.png";
 import FormControl from "@material-ui/core/FormControl";
@@ -11,12 +12,11 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorLeft from "./../../assets/vector-left.png";
 import vectorRight from "./../../assets/vector-right.png";
-import { makeStyles } from "@material-ui/core/styles";
 
 /**
  * functional components
@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid black",
     display: "flex",
     justifyContent: "center",
-    flexDirection: "column",
     alignItems: "center",
+    flexDirection: "column",
     position: "relative",
     height: "700px", //TODO: set hight to be phone height
   },
@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
     bottom: "30px",
   },
   everythingElse: {
-    //border: "1px solid green",
     display: "flex",
     position: "absolute",
     flexDirection: "column",
@@ -46,22 +45,16 @@ const useStyles = makeStyles((theme) => ({
     top: "5%",
   },
   form: {
-    //border: "1px solid pink",
-    width: "80%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    width: "70%", // Fix IE 11 issue.
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    backgroundColor: "#2EC4B6",
   },
   topPara: {
     fontFamily: "Futura",
     fontStyle: "normal",
     fontWeight: "500",
-    fontSize: "18px",
+    fontSize: "16px",
     lineHeight: "22px",
     /* or 122% */
 
@@ -71,11 +64,17 @@ const useStyles = makeStyles((theme) => ({
 
     color: "#707070",
   },
+  nameLine: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    position: "relative",
+  },
   textfield: {
+    width: "45%",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    marginBottom: "30px",
+    marginBottom: "20px",
     fontFamily: "Futura",
     fontStyle: "normal",
     fontWeight: "500",
@@ -96,125 +95,159 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "center",
     margin: "0px 0px",
   },
+  dobField: {
+    width: "100%",
+    marginBottom: "20px",
+  },
+  genderGrid: {
+    width: "90%",
+  },
   progressBar: {
     display: "flex",
     justifyContent: "spaces-between",
   },
   progressDot: {
-    marginTop: theme.spacing(0.3),
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginTop: "4px",
+    marginLeft: "15px",
+    marginRight: "15px",
     width: "11.78px",
     height: "12px",
     left: "239px",
-    top: "101px",
   },
   vector: {
-    marginLeft: theme.spacing(4),
-    marginRight: theme.spacing(4),
+    marginLeft: "35px",
+    marginRight: "35px",
   },
 }));
 
-class PersonalInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstname: "",
-      lastname: "",
-      dob: "",
-      gender: "female",
-    };
-    this.submitHandler = this.submitHandler.bind(this);
-    this.changeHandler = this.changeHandler.bind(this);
-  }
+export default function PersonalInfo() {
+  const classes = useStyles();
+  const [person, setPerson] = useContext(RegistrationContext);
 
-  changeHandler = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [dob, setDob] = useState("");
+  const [gender, setGender] = useState("");
+
+  const changeFirstnameHandler = (e) => {
+    setFirstname(e.target.value);
   };
 
-  submitHandler = (event) => {
-    event.preventDefault();
-    console.log("submitted");
-    console.log(this.state);
+  const changeLastnameHandler = (e) => {
+    setLastname(e.target.value);
   };
 
-  render() {
-    return (
-      <Container component='registration-main' maxWidth='xs'>
-        <CssBaseline />
-        <div className='paper'>
-          <div className='everythingElse'>
-            <div className='progressBar'>
-              <Link>
-                <img src={vectorLeft} className='vector' />
-              </Link>
-              <img src={ProgressDotFinished} className='progressDot' />
-              <img src={ProgressDotUnfinished} className='progressDot' />
-              <img src={ProgressDotUnfinished} className='progressDot' />
-              <img src={ProgressDotUnfinished} className='progressDot' />
-              <Link href='/registration-create-account'>
-                <img type='submit' src={vectorRight} className='vector' />
-              </Link>
-            </div>
+  const changeDobHandler = (e) => {
+    setDob(e.target.value);
+  };
+
+  const changeGenderFemaleHandler = (e) => {
+    setGender("female");
+  };
+
+  const changeGenderMaleHandler = (e) => {
+    setGender("male");
+  };
+
+  const changeGenderOtherHandler = (e) => {
+    setGender("other");
+  };
+
+  const submitHandler = (event) => {
+    // event.preventDefault();
+    person.firstname = firstname;
+    person.lastname = lastname;
+    person.gender = gender;
+    person.dob = dob;
+    setPerson(person);
+    console.log(person);
+  };
+
+  return (
+    <Container component='main' maxWidth='xs'>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <div className={classes.everythingElse}>
+          <div className={classes.progressBar}>
+            <Link to='/registration-personal-info'>
+              <img src={vectorLeft} className={classes.vector} alt='Back' />
+            </Link>
             <img
-              className='App-logo'
-              src={logoDrawing}
-              width='309px'
-              height='182px'
+              src={ProgressDotFinished}
+              className={classes.progressDot}
               alt=''
             />
-            <p className='text'>Tell us a little about yourself.</p>
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=''
+            />
+            <Link onClick={submitHandler} to='/registration-create-account'>
+              <img src={vectorRight} className={classes.vector} alt='Next' />
+            </Link>
+          </div>
+          <img
+            src={logoDrawing}
+            width='234px'
+            height='140px'
+            top='138px'
+            alt=''
+          />
+          <p className={classes.topPara}>Tell us a little about yourself.</p>
 
-            <form
-              className='registration-form'
-              className='form'
-              onSubmit={this.submitHandler}
-              xs={12}
-              sm={12}
-            >
-              <Grid className='FirstLine'>
-                <Grid className='questionBox' item xs={6} sm={6}>
-                  <TextField
-                    autoComplete='fname'
-                    name='firstName'
-                    variant='outlined'
-                    required
-                    id='firstName'
-                    label='First Name'
-                    autoFocus
-                    value={this.props.firstname}
-                    onChange={this.changeHandler}
-                  />
-                </Grid>
-                <Grid className='questionBox' item xs={12} sm={6}>
-                  <TextField
-                    autoComplete='lname'
-                    name='lastName'
-                    variant='outlined'
-                    required
-                    id='lastName'
-                    label='Last Name'
-                    autoFocus
-                    value={this.props.lastname}
-                    onChange={this.changeHandler}
-                  />
-                </Grid>
-              </Grid>
-              <Grid className='questionBox' item xs={12}>
+          <form className={classes.form} onSubmit={submitHandler}>
+            <Grid className={classes.nameLine}>
+              <Grid className={classes.textfield} item>
                 <TextField
-                  autoComplete='dateOfBirth'
-                  name='dob'
+                  autoComplete='fname'
+                  name='firstName'
                   variant='outlined'
                   required
-                  id='dob'
-                  label='Date Of Brith:'
+                  id='firstName'
+                  label='First Name'
                   autoFocus
-                  type='date'
-                  onChange={this.changeHandler}
+                  value={firstname}
+                  onChange={changeFirstnameHandler}
                 />
               </Grid>
+              <Grid className={classes.textfield} item>
+                <TextField
+                  autoComplete='lname'
+                  name='lastName'
+                  variant='outlined'
+                  required
+                  id='lastName'
+                  label='Last Name'
+                  autoFocus
+                  onChange={changeLastnameHandler}
+                />
+              </Grid>
+            </Grid>
+            <Grid item className={classes.dobField}>
+              <TextField
+                className={classes.dobField}
+                autoComplete='dateOfBirth'
+                name='dob'
+                variant='outlined'
+                required
+                id='dob'
+                label='Date Of Birth:'
+                autoFocus
+                type='date'
+                onChange={changeDobHandler}
+              />
+            </Grid>
+            <Grid className={classes.genderGrid}>
               <FormControl component='gender-radio'>
                 <FormLabel component='legend'>Gender</FormLabel>
                 <RadioGroup
@@ -223,52 +256,39 @@ class PersonalInfo extends Component {
                   name='gender'
                 >
                   <FormControlLabel
-                    className='radioChoice'
+                    className={classes.radioChoice}
                     value='female'
                     control={<Radio />}
                     label='Female'
-                    onChange={this.changeHandler}
+                    onChange={changeGenderFemaleHandler}
                   />
                   <FormControlLabel
-                    className='radioChoice'
+                    className={classes.radioChoice}
                     value='male'
                     control={<Radio />}
                     label='Male'
-                    onChange={this.changeHandler}
+                    onChange={changeGenderMaleHandler}
                   />
                   <FormControlLabel
-                    className='radioChoice'
+                    className={classes.radioChoice}
                     value='other'
                     control={<Radio />}
                     label='Other'
-                    onChange={this.changeHandler}
+                    onChange={changeGenderOtherHandler}
                   />
                 </RadioGroup>
               </FormControl>
-
-              <Link href='/Registration-create-account'>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  type='submit'
-                  className='button'
-                >
-                  Next
-                </Button>
-              </Link>
-            </form>
-          </div>
-          <Grid className='login'>
-            Already have an account?
-            <Link href='/'>Log in here.</Link>
-          </Grid>
+            </Grid>
+          </form>
         </div>
-      </Container>
-    );
-  }
+        <Grid className={classes.login}>
+          Already have an account?&nbsp;
+          <Link to='/'>Log in here.</Link>
+        </Grid>
+      </div>
+    </Container>
+  );
 }
-
-export default PersonalInfo;
 
 /**
  * TODOs:

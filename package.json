@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@react-native-community/geolocation": "^2.0.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -18,7 +19,8 @@
     "react-indiana-drag-scroll": "^1.6.1",
     "react-native-elements": "^2.0.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-swipeable-views": "^0.13.9"
   },
   "scripts": {
     "start": "react-scripts start",

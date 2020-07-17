@@ -1,42 +1,138 @@
-import React from "react";
+import React, { Component } from "react";
 import SignUp from "./components/SignUp";
 import StartPoll from "./components/StartPoll";
 import OptionsPoll from "./components/OptionsPoll";
-import AgesPoll from "./components/AgesPoll";
+import {
+  RegistrationProvider,
+  RegistrationContext,
+} from "./components/Registration/RegistrationContext";
 import PersonalInfo from "./components/Registration/PersonalInfo";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CreateAccount from "./components/Registration/CreateAccount";
 import ShareLocation from "./components/Registration/ShareLocation";
 import PersonalInterest from "./components/Registration/PersonalInterest";
 import Poll from "./components/Poll/Poll";
+import Me from "./components/Profile/Me";
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/" exact component={SignUp} />
-          <Route path="/StartPoll" component={StartPoll} />
-          <Route path="/OptionsPoll" component={OptionsPoll} />
-          <Route path="/AgesPoll" component={AgesPoll} />
-          <Route path="/Registration-personal-info" component={PersonalInfo} />
-          <Route
-            path="/Registration-create-account"
-            component={CreateAccount}
-          />
-          <Route
-            path="/Registration-share-location"
-            component={ShareLocation}
-          />
-          <Route
-            path="/Registration-personal-interest"
-            component={PersonalInterest}
-          />
-          <Route path="/Poll" component={Poll} />
-        </Switch>
-      </div>
-    </Router>
-  );
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: "entertainment",
+      title: "Which Wes Anderson Movie should I watch tonight?",
+      choices: {
+        choiceOne: "The Royal sth",
+        choiceTwo: "Moonrise Kingdom",
+        choiceThree: "Grand Budapest Hotel",
+        choiceFour: "",
+      },
+      comments: [
+        "If you’re fan of animation, go with Isle of Dogs",
+        "Grand Budapest Hotel has a great cast!",
+      ],
+      name: "Jane Doe",
+      location: "Atlanta, GA",
+      polls: {
+        //only need id
+        posted: [
+          {
+            category: "politics",
+            title: "Should JHU install a private police force",
+            choices: {
+              choiceOne: "yes",
+              choiceTwo: "no",
+              choiceThree: "",
+              choiceFour: "",
+            },
+            results: {
+              choiceOne: "53",
+              choiceTwo: "47",
+              choiceThree: "",
+              choiceFour: "",
+            },
+          },
+        ],
+        saved: [
+          {
+            category: "fashion",
+            title: "Which pair should I buy?",
+            choices: {
+              choiceOne: "img 1",
+              choiceTwo: "img 2",
+              choiceThree: "img 3",
+              choiceFour: "",
+            },
+            results: {
+              choiceOne: "23",
+              choiceTwo: "50",
+              choiceThree: "27",
+              choiceFour: "",
+            },
+          },
+        ],
+      },
+    };
+  }
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <RegistrationProvider>
+            <Switch>
+              <Route path="/" exact component={SignUp} />
+              <Route path="/StartPoll" component={StartPoll} />
+              <Route path="/OptionsPoll" component={OptionsPoll} />
+
+              <Route path="/registration-personal-info">
+                {/* <RegistrationProvider> */}
+                <PersonalInfo />
+                {/* </RegistrationProvider> */}
+              </Route>
+
+              <Route path="/registration-create-account">
+                {/* <RegistrationProvider> */}
+                <CreateAccount />
+                {/* </RegistrationProvider> */}
+              </Route>
+
+              <Route path="/registration-share-location">
+                {/* <RegistrationProvider> */}
+                <ShareLocation />
+                {/* </RegistrationProvider> */}
+              </Route>
+
+              <Route path="/registration-personal-interest">
+                {/* <RegistrationProvider> */}
+                <PersonalInterest />
+                {/* </RegistrationProvider> */}
+              </Route>
+
+              <Route
+                path="/Poll"
+                render={(props) => (
+                  <Poll
+                    category={this.state.category}
+                    title={this.state.title}
+                    choices={this.state.choices}
+                    comments={this.state.comments}
+                  />
+                )}
+              />
+              <Route
+                path="/Me"
+                render={(props) => (
+                  <Me
+                    polls={this.state.polls}
+                    name={this.state.name}
+                    location={this.state.location}
+                  />
+                )}
+              />
+            </Switch>
+          </RegistrationProvider>
+        </div>
+      </Router>
+    );
+  }
 }
-
-export default App;

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
+import { RegistrationContext } from "./RegistrationContext";
 import "./registration.css";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -6,8 +7,7 @@ import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logoDrawing from "./../../assets/logo-image.png";
-import Link from "@material-ui/core/Link";
-import Geolocation from "@react-native-community/geolocation";
+import { Link } from "react-router-dom";
 import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorLeft from "./../../assets/vector-left.png";
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   login: {
     position: "absolute",
-    bottom: "10px",
+    bottom: "30px",
   },
   everythingElse: {
     display: "flex",
@@ -63,33 +63,38 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "spaces-between",
   },
   progressDot: {
-    marginTop: theme.spacing(0.3),
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginTop: "4px",
+    marginLeft: "15px",
+    marginRight: "15px",
     width: "11.78px",
     height: "12px",
     left: "239px",
-    top: "101px",
   },
   vector: {
-    marginLeft: theme.spacing(4),
-    marginRight: theme.spacing(4),
+    marginLeft: "35px",
+    marginRight: "35px",
   },
 }));
 
-const getLocationHandler = () => {
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      console.log(position);
-    },
-    function (error) {
-      console.error("Error Code = " + error.code + " - " + error.message);
-    }
-  );
-};
-
-export default function ShareLocation() {
+function ShareLocation() {
+  const [person, setPerson] = useContext(RegistrationContext);
   const classes = useStyles();
+  const [location, setLocation] = useState("");
+
+  const getLocationHandler = (event) => {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        setLocation(position);
+        person.location.longitude = position.coords.longitude;
+        person.location.latitude = position.coords.latitude;
+        setPerson(person);
+        console.log(person);
+      },
+      function (error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+      }
+    );
+  };
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -97,7 +102,7 @@ export default function ShareLocation() {
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
-            <Link href='/registration-create-account'>
+            <Link to='/registration-create-account'>
               <img src={vectorLeft} className={classes.vector} alt='Back' />
             </Link>
             <img
@@ -120,7 +125,7 @@ export default function ShareLocation() {
               className={classes.progressDot}
               alt=''
             />
-            <Link href='/registration-personal-interest'>
+            <Link to='/registration-personal-interest'>
               <img
                 type='submit'
                 src={vectorRight}
@@ -150,13 +155,17 @@ export default function ShareLocation() {
             onClick={getLocationHandler}
           >
             Share my location
-            <img />
           </Button>
         </div>
         <Grid className={classes.login}>
-          Already have an account? <Link href='/'>Log in here.</Link>
+          Already have an account?&nbsp; <Link to='/'>Log in here.</Link>
         </Grid>
       </div>
     </Container>
   );
 }
+/**
+ * figure out what to do if passing location has error
+ */
+
+export default ShareLocation;
