@@ -9,6 +9,8 @@ import Container from "@material-ui/core/Container";
 import logoDrawing from "./../assets/logo-image.png";
 import logoText from "./../assets/logo.png";
 import { Link as RouterLink } from "react-router-dom";
+import { FirebaseContext } from "../Firebase";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,11 +48,25 @@ export default function SignUp() {
   console.log("This is the current state", userInfo);
 
   const OnSubmit = (event) => {
-    // setUserInfo({ [event.target.name]: event.target.value });
+    //   props.firebase
+    //     .doCreateUserWithEmailAndPassword(userInfo.email, userInfo.passwordOne)
+    //     .then((authUser) => {
+    //       setUserInfo({ ...initialUserInfo });
+    //     })
+    //     .catch((error) => {
+    //       setUserInfo({ error });
+    //     });
+    //   event.preventDefault();
   };
 
   const OnChange = (event) => {
     setUserInfo({ [event.target.name]: event.target.value });
+  };
+
+  const sendData = () => {
+    axios.post("https://reqres.in/api/register").then((response) => {
+      console.log(response);
+    });
   };
 
   const isInvalid = userInfo.passwordOne === "" || userInfo.email === "";
@@ -87,7 +103,6 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
-          {/* <RouterLink to="/StartPoll"> */}
           <Button
             disabled={isInvalid}
             type="submit"
@@ -98,7 +113,6 @@ export default function SignUp() {
           >
             Log in
           </Button>
-          {/* </RouterLink> */}
           <Grid container justify="flex-end">
             <Grid item>
               Don't have an account?{" "}
