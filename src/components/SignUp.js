@@ -9,7 +9,7 @@ import Container from "@material-ui/core/Container";
 import logoDrawing from "./../assets/logo-image.png";
 import logoText from "./../assets/logo.png";
 import { Link as RouterLink } from "react-router-dom";
-import { FirebaseContext } from "../Firebase";
+import { FirebaseContext } from "./Firebase";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
