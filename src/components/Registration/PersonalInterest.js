@@ -135,7 +135,6 @@ export default function PersonalInterest() {
       event.target.value
     ];
     setInterests(interestsDefault);
-    console.log(interests);
   };
 
   const submitHandler = (event) => {
@@ -148,7 +147,6 @@ export default function PersonalInterest() {
       }
     }
     setPerson(person);
-    console.log(person);
   };
 
   return (

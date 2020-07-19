@@ -13,7 +13,6 @@ import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorLeft from "./../../assets/vector-left.png";
 import vectorRight from "./../../assets/vector-right.png";
 
-// TODO: submit user info to console
 const useStyles = makeStyles((theme) => ({
   paper: {
     fontFamily: "Futura",

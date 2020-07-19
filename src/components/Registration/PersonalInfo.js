@@ -163,7 +163,6 @@ export default function PersonalInfo() {
     person.gender = gender;
     person.dob = dob;
     setPerson(person);
-    console.log(person);
   };
 
   return (

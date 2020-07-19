@@ -88,7 +88,6 @@ function ShareLocation() {
         person.location.longitude = position.coords.longitude;
         person.location.latitude = position.coords.latitude;
         setPerson(person);
-        console.log(person);
       },
       function (error) {
         console.error("Error Code = " + error.code + " - " + error.message);
