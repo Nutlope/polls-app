@@ -126,6 +126,7 @@ export default function PersonalInterest() {
     politics: false,
     fashion: false,
     lifestyle: false,
+    misc: true,
   };
   const [interests, setInterests] = useState(interestsDefault);
 
@@ -134,16 +135,16 @@ export default function PersonalInterest() {
       event.target.value
     ];
     setInterests(interestsDefault);
-    console.log(person.location); // state management did not work...
+    console.log(interests);
   };
 
   const submitHandler = (event) => {
     //TODO: FIX THIS
     event.preventDefault();
-    person.interests = [];
+    person.prefs = {};
     for (const [key, value] of Object.entries(interests)) {
       if (value === true) {
-        person.interests.push(key);
+        person.prefs[key] = true;
       }
     }
     setPerson(person);

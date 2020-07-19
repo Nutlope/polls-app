@@ -4,17 +4,17 @@ export const RegistrationContext = createContext();
 
 export const RegistrationProvider = (props) => {
   const [person, setPerson] = useState({
-    firstname: "",
-    lastname: "",
-    dob: ["", "", ""], // subject to change
+    fname: "", //
+    lname: "", //
+    dob: [1, 1, 2000], // subject to change
     gender: "",
     email: "",
-    password: "",
+    pword: "", //
     location: {
       longitude: "",
       latitude: "",
     },
-    interests: [],
+    prefs: {},
   });
 
   return (

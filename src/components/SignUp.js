@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -9,8 +9,6 @@ import Container from "@material-ui/core/Container";
 import logoDrawing from "./../assets/logo-image.png";
 import logoText from "./../assets/logo.png";
 import { Link as RouterLink } from "react-router-dom";
-import { FirebaseContext } from "./Firebase";
-import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -33,98 +31,59 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Signup = () => (
-  <div>
-    <FirebaseContext.Consumer>
-      {(firebase) => <SignUpInfo firebase={firebase} />}
-    </FirebaseContext.Consumer>
-  </div>
-);
-
-function SignUpInfo(props) {
+export default function SignUp() {
   const classes = useStyles();
-  const initialUserInfo = {
-    email: "",
-    passwordOne: "",
-    error: null,
-  };
-
-  const [userInfo, setUserInfo] = useState(initialUserInfo);
-
-  console.log("This is the current state", userInfo);
-
-  const OnSubmit = (event) => {
-    props.firebase
-      .doCreateUserWithEmailAndPassword(userInfo.email, userInfo.passwordOne)
-      .then((authUser) => {
-        setUserInfo({ ...initialUserInfo });
-      })
-      .catch((error) => {
-        setUserInfo({ error });
-      });
-
-    event.preventDefault();
-  };
-
-  const OnChange = (event) => {
-    setUserInfo({ ...userInfo, [event.target.name]: event.target.value });
-  };
-
-  // const sendData = () => {
-  //   axios.post("https://reqres.in/api/register").then((response) => {
-  //     console.log(response);
-  //   });
-  // };
-
-  const isInvalid = userInfo.passwordOne == "" || userInfo.email == "";
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
-        <img src={logoDrawing} width="309px" height="182px" alt="" />
-        <img src={logoText} width="309px" height="182px" alt="" />
-        <form className={classes.form} onSubmit={OnSubmit}>
+        <img src={logoDrawing} width='309px' height='182px' alt='' />
+        <img src={logoText} width='309px' height='182px' alt='' />
+        {/* <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar> */}
+        <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                name="email"
-                variant="outlined"
+                autoComplete='fname'
+                name='firstName'
+                variant='outlined'
                 required
-                id="email"
-                label="Email"
+                id='firstName'
+                label='Email'
                 autoFocus
-                value={userInfo.email}
-                onChange={OnChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                variant="outlined"
+                variant='outlined'
                 required
-                id="password"
-                label="Password"
-                name="passwordOne"
-                value={userInfo.passwordOne}
-                onChange={OnChange}
+                // fullWidth
+                id='lastName'
+                label='Password'
+                name='lastName'
+                autoComplete='lname'
               />
             </Grid>
           </Grid>
-          <Button
-            disabled={isInvalid}
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Log in
-          </Button>
-          <Grid container justify="flex-end">
+          <RouterLink to='/StartPoll'>
+            <Button
+              type='submit'
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+            >
+              Log in
+            </Button>
+          </RouterLink>
+          <Grid container justify='flex-end'>
             <Grid item>
               Don't have an account?{" "}
-              <RouterLink to="/Registration-personal-info">
-                <Link href="/StartPoll" variant="body2">
+              <RouterLink to='/Registration-personal-info'>
+                <Link href='/StartPoll' variant='body2'>
                   Register here
                 </Link>
               </RouterLink>
@@ -135,8 +94,3 @@ function SignUpInfo(props) {
     </Container>
   );
 }
-
-export default Signup;
-
-// Add error handling for form
-// Form validation

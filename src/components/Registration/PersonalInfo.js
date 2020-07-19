@@ -126,8 +126,8 @@ export default function PersonalInfo() {
 
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-  const [dob, setDob] = useState("");
-  const [gender, setGender] = useState("");
+  const [dob, setDob] = useState([1, 1, 2000]);
+  const [gender, setGender] = useState("female");
 
   const changeFirstnameHandler = (e) => {
     setFirstname(e.target.value);
@@ -138,7 +138,10 @@ export default function PersonalInfo() {
   };
 
   const changeDobHandler = (e) => {
-    setDob(e.target.value);
+    const year = parseInt(e.target.value.substring(0, 4), 10);
+    const month = parseInt(e.target.value.substring(5, 7), 10);
+    const day = parseInt(e.target.value.substring(8, 10), 10);
+    setDob([month, day, year]);
   };
 
   const changeGenderFemaleHandler = (e) => {
@@ -155,8 +158,8 @@ export default function PersonalInfo() {
 
   const submitHandler = (event) => {
     // event.preventDefault();
-    person.firstname = firstname;
-    person.lastname = lastname;
+    person.fname = firstname;
+    person.lname = lastname;
     person.gender = gender;
     person.dob = dob;
     setPerson(person);

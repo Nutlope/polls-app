@@ -120,7 +120,7 @@ export default function CreateAccount() {
 
   const submitHandler = (event) => {
     person.email = email;
-    person.password = password;
+    person.pword = password;
     setPerson(person);
   };
 
