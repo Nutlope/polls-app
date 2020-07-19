@@ -33,13 +33,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+const Signup = () => (
+  <div>
+    <FirebaseContext.Consumer>
+      {(firebase) => <SignUpInfo firebase={firebase} />}
+    </FirebaseContext.Consumer>
+  </div>
+);
+
+function SignUpInfo(props) {
   const classes = useStyles();
   const initialUserInfo = {
     email: "",
     passwordOne: "",
-    // username: "",
-    // passwordTwo: "",
     error: null,
   };
 
@@ -48,28 +54,29 @@ export default function SignUp() {
   console.log("This is the current state", userInfo);
 
   const OnSubmit = (event) => {
-    //   props.firebase
-    //     .doCreateUserWithEmailAndPassword(userInfo.email, userInfo.passwordOne)
-    //     .then((authUser) => {
-    //       setUserInfo({ ...initialUserInfo });
-    //     })
-    //     .catch((error) => {
-    //       setUserInfo({ error });
-    //     });
-    //   event.preventDefault();
+    props.firebase
+      .doCreateUserWithEmailAndPassword(userInfo.email, userInfo.passwordOne)
+      .then((authUser) => {
+        setUserInfo({ ...initialUserInfo });
+      })
+      .catch((error) => {
+        setUserInfo({ error });
+      });
+
+    event.preventDefault();
   };
 
   const OnChange = (event) => {
-    setUserInfo({ [event.target.name]: event.target.value });
+    setUserInfo({ ...userInfo, [event.target.name]: event.target.value });
   };
 
-  const sendData = () => {
-    axios.post("https://reqres.in/api/register").then((response) => {
-      console.log(response);
-    });
-  };
+  // const sendData = () => {
+  //   axios.post("https://reqres.in/api/register").then((response) => {
+  //     console.log(response);
+  //   });
+  // };
 
-  const isInvalid = userInfo.passwordOne === "" || userInfo.email === "";
+  const isInvalid = userInfo.passwordOne == "" || userInfo.email == "";
 
   return (
     <Container component="main" maxWidth="xs">
@@ -97,7 +104,7 @@ export default function SignUp() {
                 required
                 id="password"
                 label="Password"
-                name="password"
+                name="passwordOne"
                 value={userInfo.passwordOne}
                 onChange={OnChange}
               />
@@ -128,6 +135,8 @@ export default function SignUp() {
     </Container>
   );
 }
+
+export default Signup;
 
 // Add error handling for form
 // Form validation
