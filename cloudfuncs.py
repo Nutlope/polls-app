@@ -32,14 +32,22 @@ def create_user:
     JSON Example:
     {
         "email": "dj@gmail.com",
-        "password": "password",
-        "owned_polls": ,
-        "saved_polls": [0],
-        "voted_polls": [0],#i want to use a set but the only way to do that is dictionary notation
-        "preferences" : {"misc": True, "movies": False, "politics": True}
+        "lname": "Mackay"
+        "fname": David
+        "pword": "password",
+        "gender": "Male",
+        "dob": [7,19,2020],
+        "prefs" : {"misc": True, "movies": False, "politics": True}
+        "location": {"longitude": -18, "latitude": 21}
     }
     url: https://us-central1-curiocity-282815.cloudfunctions.net/create_user/.json
 
     """
     pass
     
+def vote:
+    """
+
+
+
+    """
