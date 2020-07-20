@@ -243,7 +243,7 @@ export default function PersonalInfo() {
                 variant='outlined'
                 required
                 id='dob'
-                label='Date Of Birth:'
+                helperText='Date Of Birth'
                 autoFocus
                 type='date'
                 onChange={changeDobHandler}

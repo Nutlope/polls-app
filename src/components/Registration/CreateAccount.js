@@ -179,6 +179,7 @@ export default function CreateAccount() {
               onChange={changeEmailHandler}
             />
             <TextField
+              type='password'
               required
               className={classes.textfield}
               fullWidth
