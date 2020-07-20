@@ -23,6 +23,8 @@ import sports from "./../../assets/sports.png";
 import politics from "./../../assets/politics.png";
 import fashion from "./../../assets/fashion.png";
 import lifestyle from "./../../assets/lifestyle.png";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -137,16 +139,31 @@ export default function PersonalInterest() {
     setInterests(interestsDefault);
   };
 
+  const sendData = (person) => {
+    console.log(person);
+    axios
+      .post(
+        "https://us-central1-curiocity-282815.cloudfunctions.net/function-1/.json",
+        person
+      )
+      .then((response) => {
+        console.log("it worked!", response);
+      })
+      .catch((error) => {
+        console.log("it failed", error);
+      });
+  };
+
   const submitHandler = (event) => {
-    //TODO: FIX THIS
-    event.preventDefault();
     person.prefs = {};
+    person.username = uuidv4();
     for (const [key, value] of Object.entries(interests)) {
       if (value === true) {
         person.prefs[key] = true;
       }
     }
     setPerson(person);
+    sendData(person);
   };
 
   return (

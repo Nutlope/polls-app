@@ -11,6 +11,7 @@ import PersonalInterest from "./components/Registration/PersonalInterest";
 import Poll from "./components/Poll/Poll";
 import Me from "./components/Profile/Me";
 import Comments from "./components/Poll/CommentsExpanded";
+import Trending from "./components/Trending/Trending";
 
 export default class App extends Component {
   constructor(props) {
@@ -113,6 +114,9 @@ export default class App extends Component {
                   />
                 )}
               />
+
+              <Route path='/Trending' component={Trending} />
+
               <Route
                 path='/Me'
                 render={(props) => (

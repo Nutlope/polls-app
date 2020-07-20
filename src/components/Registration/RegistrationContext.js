@@ -15,6 +15,7 @@ export const RegistrationProvider = (props) => {
       latitude: "",
     },
     prefs: {},
+    username: "",
   });
 
   return (

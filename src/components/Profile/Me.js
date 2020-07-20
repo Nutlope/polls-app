@@ -218,7 +218,6 @@ export default function Me(props) {
         <div className={classes.topBar}>
           <img src={home} />
           <img src={trending} />
-          <img src={logoSmall} className={classes.logo} width='100px' alt='' />
           <img src={addPoll} />
           <img src={profile} />
         </div>
