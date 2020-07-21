@@ -16,13 +16,7 @@ import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import { shadows } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
-import ScrollContainer from "react-indiana-drag-scroll";
-import PollGrid from "./PollGrid";
-import TabPanel from "@material-ui/lab/TabPanel";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import AppBar from "@material-ui/core/AppBar";
-import SwipeableViews from "react-swipeable-views";
+import Tabs from "./Tabs";
 
 const useStyle = makeStyles((theme) => ({
   paper: {
@@ -44,10 +38,6 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: "#EDEDED",
     alignItems: "center",
     justifyContent: "space-between",
-  },
-  logo: {
-    display: "flex",
-    width: "20px",
   },
   box: {
     borderRadius: "10px",
@@ -144,16 +134,13 @@ const useStyle = makeStyles((theme) => ({
   polls: {
     display: "flex",
     width: "90%",
-    height: "54%",
+    height: "58%",
     position: "absolute",
-    bottom: "5%",
+    bottom: "3%",
     justifyContent: "center",
   },
-  pollsScroll: {},
-  appBar: {
-    border: "1px solid pink",
-    width: "100%",
-    padding: "0",
+  name: {
+    marginBottom: "5px",
   },
 }));
 
@@ -171,42 +158,13 @@ export default function Me(props) {
       setPage("posted");
     }
   };
-
-  function a11yProps(index) {
-    return {
-      id: `${index}`,
-      "aria-controls": `tabpanel-${index}`,
-    };
-  }
-
   const displayPolls = (polls) => {
     const saved = polls.saved;
     const posted = polls.posted;
+
     return (
       <div className={classes.polls} role='tabpanel'>
-        <AppBar position='static' className={classes.appBar}>
-          <Tabs
-            onChange={changeHandler}
-            indicatorColor='white'
-            textColor='gray' //todo
-            variant='fullWidth'
-            aria-label='poll tab'
-          >
-            <Tab label='My polls' {...a11yProps(0)} />
-            <Tab label='Saved Polls' {...a11yProps(1)} />
-          </Tabs>
-        </AppBar>
-        <SwipeableViews onChangeIndex={changeHandler}>
-          {/* <TabPanel value='1' index={0}>
-            one
-          </TabPanel>
-          <TabPanel value='2' index={1}>
-            two
-            <ScrollContainer className={classes.pollsScroll}>
-              two
-            </ScrollContainer>
-          </TabPanel> */}
-        </SwipeableViews>
+        <Tabs className={classes.tab} />
       </div>
     );
   };
