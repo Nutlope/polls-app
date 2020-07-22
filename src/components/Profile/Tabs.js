@@ -24,19 +24,37 @@ const useStyles = makeStyles((theme) => ({
   appBarText: {
     fontFamily: "Futura",
   },
+  swipeableViews: {
+    //border: "1px solid green",
+  },
+  tabPanel: {
+    // border: "1px solid blue",
+    height: "355px",
+  },
   scrollSection: {
     display: "flex",
     flexDirection: "column",
     position: "absolute",
     marginBottom: "0px",
+    marginTop: "-20px",
     width: "100%",
     left: "0",
-    height: "100%",
-    overflow: "hidden",
+    height: "350px",
+    overflowY: "hidden",
     overflowY: "scroll",
   },
-  tabPanel: {
-    height: "360px",
+  scrollSectionRight: {
+    display: "flex",
+    flexDirection: "column",
+    position: "absolute",
+    marginBottom: "0px",
+    marginTop: "-20px",
+    marginLeft: "100%",
+    marginRight: "-100%",
+    left: "0",
+    height: "350px",
+    overflowY: "hidden",
+    overflowY: "scroll",
   },
 }));
 
@@ -151,7 +169,7 @@ export default function FullWidthTabs() {
     0: {
       category: "Politics",
       time: "2 hours ago",
-      question: "Should JHU install a private police force",
+      question: "So.... should JHU install a private police force",
       choices: {
         choiceOne: "yes",
         choiceTwo: "no",
@@ -256,6 +274,7 @@ export default function FullWidthTabs() {
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
+        className={classes.swipeableViews}
       >
         <TabPanel
           className={classes.tabPanel}
@@ -263,7 +282,7 @@ export default function FullWidthTabs() {
           index={0}
           dir={theme.direction}
         >
-          <ScrollContainer className={classes.scrollSection} hideScrollbars>
+          <ScrollContainer className={classes.scrollSection}>
             <Grid>
               {Object.values(postedPolls).map((poll) => {
                 return <QuestionCard poll={poll} />;
@@ -278,7 +297,7 @@ export default function FullWidthTabs() {
           index={1}
           dir={theme.direction}
         >
-          <ScrollContainer className={classes.scrollSection}>
+          <ScrollContainer className={classes.scrollSectionRight}>
             {Object.values(savedPolls).map((poll) => {
               return <QuestionCard poll={poll} />;
             })}

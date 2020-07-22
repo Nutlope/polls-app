@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, CssBaseline } from "@material-ui/core";
-import home from "./../../assets/home.png";
-import trending from "./../../assets/trending.png";
-import profile from "./../../assets/profile.png";
-import addPoll from "./../../assets/addPoll.png";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   box: {

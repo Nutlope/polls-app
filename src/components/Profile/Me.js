@@ -174,12 +174,17 @@ export default function Me(props) {
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.topBar}>
-          <img src={home} />
-          <img src={trending} />
-          <img src={addPoll} />
-          <img src={profile} />
+          <img src={home} alt='Home' />
+          <Link to='/Trending'>
+            <img src={trending} alt='Trending' />
+          </Link>
+          <Link to='/StartPoll'>
+            <img src={addPoll} alt='Add Poll' />
+          </Link>
+          <Link to='/me'>
+            <img src={profile} alt='Me' />
+          </Link>
         </div>
-
         <div className={classes.profile}>
           <Grid className={classes.avatar}>
             <img src={logoGray} class={classes.logoGray} />

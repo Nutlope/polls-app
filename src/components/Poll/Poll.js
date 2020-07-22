@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./poll.css";
-import logoSmall from "./../../assets/logoSmall.png";
+import { Link } from "react-router-dom";
 import home from "./../../assets/home.png";
 import trending from "./../../assets/trending.png";
 import profile from "./../../assets/profile.png";
 import addPoll from "./../../assets/addPoll.png";
 import saveIcon from "./../../assets/save.png";
-import vectorRight from "./../../assets/vector-right.png";
+import skipIcon from "./../../assets/skip.png";
 import Grid from "@material-ui/core/Grid";
 import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import ChoiceGrid from "./ChoiceGrid";
 import Comments from "./Comments";
 import CommentsExpanded from "./CommentsExpanded";
+import axios from "axios";
+import { RegistrationContext } from "./../Registration/RegistrationContext";
 
 const useStyle = makeStyles((theme) => ({
   paper: {
@@ -77,7 +78,7 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
   },
   skipIcon: {
-    marginRight: "10px",
+    marginRight: "15px",
     display: "flex",
   },
   form: {
@@ -115,10 +116,45 @@ const useStyle = makeStyles((theme) => ({
 
 export default function Poll(props) {
   const classes = useStyle();
+  const [person, setPerson] = useContext(RegistrationContext);
   const [commentOpen, setCommentOpen] = useState(false);
+  const [question, setQuestion] = useState(""); //todo
+
+  useEffect(() => {
+    sendDataSample();
+  }, []);
+
+  console.log(">>>person", person);
+
+  const sendDataSample = () => {
+    axios
+      .post(
+        "https://us-central1-curiocity-282815.cloudfunctions.net/load-polls-homepage",
+        {
+          userid: person.username,
+          location: person.location,
+        }
+      )
+      .then((response) => {
+        console.log("it worked!", response);
+      })
+      .catch((error) => {
+        console.log(">>>id", person.userid);
+        console.log(person.location);
+        console.log("it failed", error);
+      });
+  };
 
   const setCommentOpenHandler = (e) => {
     setCommentOpen(!commentOpen);
+  };
+
+  const saveHandler = (e) => {
+    //todo
+  };
+
+  const skipHandler = (e) => {
+    //todo
   };
 
   if (commentOpen) {
@@ -131,20 +167,31 @@ export default function Poll(props) {
       <div className={classes.paper}>
         <div className={classes.topBar}>
           <img src={home} alt='Home' />
-          <img src={trending} alt='Trending' />
-          <img src={logoSmall} className={classes.logo} width='100px' alt='' />
-          <img src={addPoll} alt='Add Poll' />
-          <img src={profile} alt='Me' />
+          <Link to='/Trending'>
+            <img src={trending} alt='Trending' />
+          </Link>
+          <Link to='/StartPoll'>
+            <img src={addPoll} alt='Add Poll' />
+          </Link>
+          <Link to='/Me'>
+            <img src={profile} alt='Me' />
+          </Link>
         </div>
         <Box container className={classes.box} boxShadow={2}>
           <Grid className={classes.boxTopBar}>
-            <img src={saveIcon} className={classes.saveIcon} alt='Save' />
-
+            <img
+              src={saveIcon}
+              className={classes.saveIcon}
+              alt='Save'
+              onClick={saveHandler}
+            />
             <div className={classes.category}>{props.category}</div>
-            <Link className={classes.skipIcon}>
-              <img src={vectorRight} className='vectorRight' alt='Next' />
-              <img src={vectorRight} className='vectorRight' alt='' />
-            </Link>
+            <img
+              className={classes.skipIcon}
+              src={skipIcon}
+              alt='Next'
+              onClick={skipHandler}
+            />
           </Grid>
           <div className={classes.question}>
             <Grid className={classes.heading}>
