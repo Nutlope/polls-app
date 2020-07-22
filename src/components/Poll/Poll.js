@@ -217,19 +217,19 @@ export default function Poll(props) {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.topBar}>
-          <img src={home} alt="Home" />
-          <Link to="/Trending">
-            <img src={trending} alt="Trending" />
+          <img src={home} alt='Home' />
+          <Link to='/Trending'>
+            <img src={trending} alt='Trending' />
           </Link>
-          <Link to="/StartPoll">
-            <img src={addPoll} alt="Add Poll" />
+          <Link to='/StartPoll'>
+            <img src={addPoll} alt='Add Poll' />
           </Link>
-          <Link to="/Me">
-            <img src={profile} alt="Me" />
+          <Link to='/Me'>
+            <img src={profile} alt='Me' />
           </Link>
         </div>
         <Box container className={classes.box} boxShadow={2}>
@@ -237,14 +237,14 @@ export default function Poll(props) {
             <img
               src={saveIcon}
               className={classes.saveIcon}
-              alt="Save"
+              alt='Save'
               onClick={saveHandler}
             />
             <div className={classes.category}>{question.category}</div>
             <img
               className={classes.skipIcon}
               src={skipIcon}
-              alt="Next"
+              alt='Next'
               onClick={skipHandler}
             />
           </Grid>
