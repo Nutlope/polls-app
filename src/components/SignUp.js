@@ -2,13 +2,12 @@ import React, { useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logoDrawing from "./../assets/logo-image.png";
 import logoText from "./../assets/logo.png";
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,26 +34,26 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
-  const sendDataSample = () => {
-    axios
-      .post(
-        "https://us-central1-curiocity-282815.cloudfunctions.net/load-polls-homepage/.json",
-        {
-          userid: "c4a3d50d-01a2-434d-9516-9333496b4732",
-          location: { latitude: 18, longitude: 77 },
-        }
-      )
-      .then((response) => {
-        console.log("it worked!", response);
-      })
-      .catch((error) => {
-        console.log("it failed", error);
-      });
-  };
+  // const sendDataSample = () => {
+  //   axios
+  //     .post(
+  //       "https://us-central1-curiocity-282815.cloudfunctions.net/load-polls-homepage/.json",
+  //       {
+  //         userid: "c4a3d50d-01a2-434d-9516-9333496b4732",
+  //         location: { latitude: 18, longitude: 77 },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log("it worked!", response);
+  //     })
+  //     .catch((error) => {
+  //       console.log("it failed", error);
+  //     });
+  // };
 
-  useEffect(() => {
-    sendDataSample();
-  }, []);
+  // useEffect(() => {
+  //   sendDataSample();
+  // }, []);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -90,7 +89,7 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
-          <RouterLink to="/StartPoll">
+          <Link to="/StartPoll">
             <Button
               type="submit"
               fullWidth
@@ -100,15 +99,11 @@ export default function SignUp() {
             >
               Log in
             </Button>
-          </RouterLink>
+          </Link>
           <Grid container justify="flex-end">
             <Grid item>
               Don't have an account?{" "}
-              <RouterLink to="/Registration-personal-info">
-                <Link href="/StartPoll" variant="body2">
-                  Register here
-                </Link>
-              </RouterLink>
+              <Link to="/Registration-personal-info">Register here</Link>
             </Grid>
           </Grid>
         </form>

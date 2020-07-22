@@ -137,11 +137,12 @@ export default function Poll(props) {
     comments: ["arielhassandavidarzuwu"],
   }); //todo
 
+  // Causes loadPoll (API call) to run once every time the page is reloaded
   useEffect(() => {
-    sendDataSample();
+    loadPoll();
   }, []);
 
-  const sendDataSample = () => {
+  const loadPoll = () => {
     axios
       .post(
         "https://us-central1-curiocity-282815.cloudfunctions.net/load-polls-homepage/.json",
@@ -151,69 +152,103 @@ export default function Poll(props) {
         }
       )
       .then((response) => {
-        console.log("it worked!", response);
-        question.category = response.data[index].category;
-        question.title = response.data[index].question;
-        question.id = response.data[index].pollid;
+        console.log("loading polls worked", response);
+        let newQuestion = {};
+        newQuestion.category = response.data[index].category;
+        newQuestion.title = response.data[index].question;
+        newQuestion.id = response.data[index].pollid;
         const num_choices = response.data[index].options.length;
         const total_votes = response.data[index].votes.reduce(function (a, b) {
           return a + b;
         }, 0);
-        if (num_choices == 2) {
-          question.choices = {
-            choiceOne: response.data[index].options[0],
-            choiceTwo: response.data[index].options[1],
-            choiceThree: "",
-            choiceFour: "",
-          };
 
-          if (total_votes != 0) {
-            question.results = {
-              choiceOne: response.data[index].votes[0] / total_votes,
-              choiceTwo: response.data[index].votes[1] / total_votes,
-              choiceThree: 0,
-              choiceFour: 0,
-            };
-          }
-        } else if (num_choices == 3) {
-          question.choices = {
-            choiceOne: response.data[index].options[0],
-            choiceTwo: response.data[index].options[1],
-            choiceThree: response.data[index].options[2],
-            choiceFour: "",
+        // Refactored version
+        newQuestion.choices = {
+          choiceOne: response.data[index].options[0],
+          choiceTwo: response.data[index].options[1],
+          choiceThree: num_choices == 3 ? response.data[index].options[2] : "",
+          choiceFour: num_choices == 4 ? response.data[index].options[3] : "",
+        };
+        if (total_votes != 0) {
+          newQuestion.results = {
+            choiceOne: response.data[index].votes[0] / total_votes,
+            choiceTwo: response.data[index].votes[1] / total_votes,
+            choiceThree:
+              num_choices == 3
+                ? response.data[index].votes[2] / total_votes
+                : 0,
+            choiceFour:
+              num_choices == 4
+                ? response.data[index].votes[3] / total_votes
+                : 0,
           };
-          if (total_votes != 0) {
-            question.results = {
-              choiceOne: response.data[index].votes[0] / total_votes,
-              choiceTwo: response.data[index].votes[1] / total_votes,
-              choiceThree: response.data[index].votes[2] / total_votes,
-              choiceFour: 0,
-            };
-          }
-        } else if (num_choices == 4) {
-          question.choices = {
-            choiceOne: response.data[index].options[0],
-            choiceTwo: response.data[index].options[1],
-            choiceThree: response.data[index].options[2],
-            choiceFour: response.data[index].options[3],
+        } else {
+          newQuestion.results = {
+            choiceOne: 0,
+            choiceTwo: 0,
+            choiceThree: 0,
+            choiceFour: 0,
           };
-          if (total_votes != 0) {
-            question.results = {
-              choiceOne: response.data[index].votes[0] / total_votes,
-              choiceTwo: response.data[index].votes[1] / total_votes,
-              choiceThree: response.data[index].votes[2] / total_votes,
-              choiceFour: response.data[index].votes[3] / total_votes,
-            };
-          }
         }
-        question.comments = response.data[index].comments;
-        question.comments.shift();
-        setQuestion(question);
+
+        // Old version
+        // if (num_choices == 2) {
+        //   newQuestion.choices = {
+        //     choiceOne: response.data[index].options[0],
+        //     choiceTwo: response.data[index].options[1],
+        //     choiceThree: "",
+        //     choiceFour: "",
+        //   };
+
+        //   if (total_votes != 0) {
+        //     newQuestion.results = {
+        //       choiceOne: response.data[index].votes[0] / total_votes,
+        //       choiceTwo: response.data[index].votes[1] / total_votes,
+        //       choiceThree: 0,
+        //       choiceFour: 0,
+        //     };
+        //   }
+        // } else if (num_choices == 3) {
+        //   newQuestion.choices = {
+        //     choiceOne: response.data[index].options[0],
+        //     choiceTwo: response.data[index].options[1],
+        //     choiceThree: response.data[index].options[2],
+        //     choiceFour: "",
+        //   };
+        //   if (total_votes != 0) {
+        //     newQuestion.results = {
+        //       choiceOne: response.data[index].votes[0] / total_votes,
+        //       choiceTwo: response.data[index].votes[1] / total_votes,
+        //       choiceThree: response.data[index].votes[2] / total_votes,
+        //       choiceFour: 0,
+        //     };
+        //   }
+        // } else if (num_choices == 4) {
+        //   newQuestion.choices = {
+        //     choiceOne: response.data[index].options[0],
+        //     choiceTwo: response.data[index].options[1],
+        //     choiceThree: response.data[index].options[2],
+        //     choiceFour: response.data[index].options[3],
+        //   };
+        //   if (total_votes != 0) {
+        //     newQuestion.results = {
+        //       choiceOne: response.data[index].votes[0] / total_votes,
+        //       choiceTwo: response.data[index].votes[1] / total_votes,
+        //       choiceThree: response.data[index].votes[2] / total_votes,
+        //       choiceFour: response.data[index].votes[3] / total_votes,
+        //     };
+        //   }
+        // }
+        newQuestion.comments = response.data[index].comments;
+        newQuestion.comments.shift();
+        setQuestion(newQuestion);
       })
       .catch((error) => {
         console.log("it failed", error);
       });
   };
+
+  console.log("questions are: ", question);
 
   const setCommentOpenHandler = (e) => {
     setCommentOpen(!commentOpen);
@@ -232,19 +267,19 @@ export default function Poll(props) {
   }
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.topBar}>
-          <img src={home} alt='Home' />
-          <Link to='/Trending'>
-            <img src={trending} alt='Trending' />
+          <img src={home} alt="Home" />
+          <Link to="/Trending">
+            <img src={trending} alt="Trending" />
           </Link>
-          <Link to='/StartPoll'>
-            <img src={addPoll} alt='Add Poll' />
+          <Link to="/StartPoll">
+            <img src={addPoll} alt="Add Poll" />
           </Link>
-          <Link to='/Me'>
-            <img src={profile} alt='Me' />
+          <Link to="/Me">
+            <img src={profile} alt="Me" />
           </Link>
         </div>
         <Box container className={classes.box} boxShadow={2}>
@@ -252,14 +287,14 @@ export default function Poll(props) {
             <img
               src={saveIcon}
               className={classes.saveIcon}
-              alt='Save'
+              alt="Save"
               onClick={saveHandler}
             />
-            <div className={classes.category}>{props.category}</div>
+            <div className={classes.category}>{question.category}</div>
             <img
               className={classes.skipIcon}
               src={skipIcon}
-              alt='Next'
+              alt="Next"
               onClick={skipHandler}
             />
           </Grid>
