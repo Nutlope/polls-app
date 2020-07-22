@@ -136,7 +136,12 @@ function OptionsPoll() {
               className={classes.progressDot}
               alt=""
             />
-            <Link href="">
+            <img
+              src={ProgressDotUnfinished}
+              className={classes.progressDot}
+              alt=""
+            />
+            <Link href="/Agespoll">
               <img
                 type="submit"
                 src={vectorRight}

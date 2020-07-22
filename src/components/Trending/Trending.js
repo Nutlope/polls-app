@@ -113,7 +113,7 @@ function ExpandableHeading(categoryText, question) {
           <img
             className={classes.expandIcon}
             src={CollapseIcon}
-            alt='expand'
+            alt="expand"
             onClick={clickOpenHandler}
           />
         </div>
@@ -138,7 +138,7 @@ function ExpandableHeading(categoryText, question) {
         <img
           className={classes.expandIcon}
           src={ExpandIcon}
-          alt='expand'
+          alt="expand"
           onClick={clickOpenHandler}
         />
       </div>
@@ -206,7 +206,7 @@ export default function Trending(props) {
   };
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.topBar}>

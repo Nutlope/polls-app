@@ -24,7 +24,7 @@ import vectorLeft from "./../assets/vector-left.png";
 import vectorRight from "./../assets/vector-right.png";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-import RangeSlider from "./Util/RangeSlider";
+import LocationSlider from "./Util/LocationSlider";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -107,9 +107,61 @@ const useStyles = makeStyles((theme) => ({
   addButton: {
     marginTop: "20px",
   },
+  submit: {
+    backgroundColor: "#2EC4B6",
+  },
+  category: {
+    display: "block",
+    border: "1px solid grey",
+    margin: "10px",
+    padding: "20px",
+    borderRadius: "20px",
+    width: "280px",
+  },
+  question: {
+    display: "block",
+    border: "1px solid grey",
+    margin: "10px",
+    padding: "20px",
+    borderRadius: "20px",
+    width: "280px",
+  },
+  greytext: {
+    fontFamily: "Futura",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: "18px",
+    lineHeight: "24px",
+    marginBottom: "10px",
+    marginTop: "20px",
+    color: "grey",
+    textAlign: "left",
+  },
+  blacktext: {
+    fontFamily: "Futura",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: "18px",
+    lineHeight: "24px",
+    marginBottom: "10px",
+    marginTop: "20px",
+    color: "black",
+    textAlign: "right",
+  },
+  options: {
+    fontFamily: "Futura",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: "12px",
+    lineHeight: "16px",
+    marginBottom: "7px",
+    marginTop: "14px",
+    color: "black",
+    alignItems: "center",
+  },
 }));
 
-function AgesPoll() {
+function LocationPoll() {
   const classes = useStyles();
 
   return (
@@ -122,20 +174,69 @@ function AgesPoll() {
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <div className={classes.progressBar}>
-            <Link href="/OptionsPoll">
+            <Link href="/LocationPoll">
               <img src={vectorLeft} className={classes.vector} />
             </Link>
             <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link href="/LocationPoll">
-              <img type="submit" src={vectorRight} className={classes.vector} />
-            </Link>
+            <img src={ProgressDotFinished} className={classes.progressDot} />
+            <img src={ProgressDotFinished} className={classes.progressDot} />
           </div>
-          <div className={classes.title}>Who do you want opinions from?</div>
-          <RangeSlider />
+          <div className={classes.title}>Ready to Post?</div>
+          <div className={classes.category}>
+            <span className={classes.greytext}>Category:</span>{" "}
+            <span className={classes.blacktext}>Politics</span>
+          </div>
+          <div className={classes.question}>
+            <span className={classes.greytext}>Question:</span>{" "}
+            <span className={classes.blacktext}>
+              Which Wes Anderson film should I watch tonight?
+            </span>
+          </div>
+          <div className={classes.options}>
+            <TextField
+              id="1"
+              label="1"
+              defaultValue="The Royal Tenenbaums"
+              variant="outlined"
+            />
+            <TextField
+              id="2"
+              label="2"
+              defaultValue="Grand Budapest Hotel"
+              variant="outlined"
+            />
+            <TextField
+              id="3"
+              label="3"
+              defaultValue="Moonrise Kingdom"
+              variant="outlined"
+            />
+            <TextField
+              id="4"
+              label="4"
+              defaultValue="Isle of Dogs"
+              variant="outlined"
+            />
+          </div>
+          <div className={classes.category}>
+            <span className={classes.greytext}>Age Range:</span>{" "}
+            <span className={classes.blacktext}>40-60 years</span>
+            <div>
+              <span className={classes.greytext}>Mile Radius:</span>{" "}
+              <span className={classes.blacktext}>20 miles</span>
+            </div>
+          </div>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            //   onClick={submitHandler}
+          >
+            Post
+          </Button>
           <img
             src={logoDrawing}
             width="234px"
@@ -150,4 +251,4 @@ function AgesPoll() {
   );
 }
 
-export default AgesPoll;
+export default LocationPoll;
