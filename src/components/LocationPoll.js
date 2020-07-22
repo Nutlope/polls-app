@@ -24,7 +24,7 @@ import vectorLeft from "./../assets/vector-left.png";
 import vectorRight from "./../assets/vector-right.png";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-import RangeSlider from "./Util/RangeSlider";
+import LocationSlider from "./Util/LocationSlider";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -122,7 +122,7 @@ function LocationPoll() {
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <div className={classes.progressBar}>
-            <Link href="/OptionsPoll">
+            <Link href="/AgesPoll">
               <img src={vectorLeft} className={classes.vector} />
             </Link>
             <img src={ProgressDotFinished} className={classes.progressDot} />
@@ -130,12 +130,12 @@ function LocationPoll() {
             <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link href="">
+            <Link href="/FinalPoll">
               <img type="submit" src={vectorRight} className={classes.vector} />
             </Link>
           </div>
-          <div className={classes.title}>Who do you want opinions from?</div>
-          <RangeSlider />
+          <div className={classes.title}>Where do you want opinions from?</div>
+          <LocationSlider />
           <img
             src={logoDrawing}
             width="234px"
