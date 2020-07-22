@@ -118,18 +118,33 @@ export default function Poll(props) {
   const classes = useStyle();
   const [person, setPerson] = useContext(RegistrationContext);
   const [commentOpen, setCommentOpen] = useState(false);
-  const [question, setQuestion] = useState(""); //todo
+  const [index, setIndex] = useState(0);
+  const [question, setQuestion] = useState({
+    category: "",
+    title: "",
+    choices: {
+      choiceOne: "",
+      choiceTwo: "",
+      choiceThree: "",
+      choiceFour: "",
+    },
+    results: {
+      choiceOne: 0,
+      choiceTwo: 0,
+      choiceThree: 0,
+      choiceFour: 0,
+    },
+    comments: ["arielhassandavidarzuwu"],
+  }); //todo
 
   useEffect(() => {
     sendDataSample();
   }, []);
 
-  console.log(">>>person", person);
-
   const sendDataSample = () => {
     axios
       .post(
-        "https://us-central1-curiocity-282815.cloudfunctions.net/load-polls-homepage",
+        "https://us-central1-curiocity-282815.cloudfunctions.net/load-polls-homepage/.json",
         {
           userid: person.username,
           location: person.location,
@@ -137,10 +152,65 @@ export default function Poll(props) {
       )
       .then((response) => {
         console.log("it worked!", response);
+        question.category = response.data[index].category;
+        question.title = response.data[index].question;
+        question.id = response.data[index].pollid;
+        const num_choices = response.data[index].options.length;
+        const total_votes = response.data[index].votes.reduce(function (a, b) {
+          return a + b;
+        }, 0);
+        if (num_choices == 2) {
+          question.choices = {
+            choiceOne: response.data[index].options[0],
+            choiceTwo: response.data[index].options[1],
+            choiceThree: "",
+            choiceFour: "",
+          };
+
+          if (total_votes != 0) {
+            question.results = {
+              choiceOne: response.data[index].votes[0] / total_votes,
+              choiceTwo: response.data[index].votes[1] / total_votes,
+              choiceThree: 0,
+              choiceFour: 0,
+            };
+          }
+        } else if (num_choices == 3) {
+          question.choices = {
+            choiceOne: response.data[index].options[0],
+            choiceTwo: response.data[index].options[1],
+            choiceThree: response.data[index].options[2],
+            choiceFour: "",
+          };
+          if (total_votes != 0) {
+            question.results = {
+              choiceOne: response.data[index].votes[0] / total_votes,
+              choiceTwo: response.data[index].votes[1] / total_votes,
+              choiceThree: response.data[index].votes[2] / total_votes,
+              choiceFour: 0,
+            };
+          }
+        } else if (num_choices == 4) {
+          question.choices = {
+            choiceOne: response.data[index].options[0],
+            choiceTwo: response.data[index].options[1],
+            choiceThree: response.data[index].options[2],
+            choiceFour: response.data[index].options[3],
+          };
+          if (total_votes != 0) {
+            question.results = {
+              choiceOne: response.data[index].votes[0] / total_votes,
+              choiceTwo: response.data[index].votes[1] / total_votes,
+              choiceThree: response.data[index].votes[2] / total_votes,
+              choiceFour: response.data[index].votes[3] / total_votes,
+            };
+          }
+        }
+        question.comments = response.data[index].comments;
+        question.comments.shift();
+        setQuestion(question);
       })
       .catch((error) => {
-        console.log(">>>id", person.userid);
-        console.log(person.location);
         console.log("it failed", error);
       });
   };
