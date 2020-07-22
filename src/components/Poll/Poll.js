@@ -31,7 +31,6 @@ const useStyle = makeStyles((theme) => ({
   topBar: {
     paddingLeft: "10%",
     paddingRight: "10%",
-    zIndex: "-1",
     display: "flex",
     width: "100%",
     height: "50px",
@@ -190,55 +189,6 @@ export default function Poll(props) {
             choiceFour: 0,
           };
         }
-
-        // Old version
-        // if (num_choices == 2) {
-        //   newQuestion.choices = {
-        //     choiceOne: response.data[index].options[0],
-        //     choiceTwo: response.data[index].options[1],
-        //     choiceThree: "",
-        //     choiceFour: "",
-        //   };
-
-        //   if (total_votes != 0) {
-        //     newQuestion.results = {
-        //       choiceOne: response.data[index].votes[0] / total_votes,
-        //       choiceTwo: response.data[index].votes[1] / total_votes,
-        //       choiceThree: 0,
-        //       choiceFour: 0,
-        //     };
-        //   }
-        // } else if (num_choices == 3) {
-        //   newQuestion.choices = {
-        //     choiceOne: response.data[index].options[0],
-        //     choiceTwo: response.data[index].options[1],
-        //     choiceThree: response.data[index].options[2],
-        //     choiceFour: "",
-        //   };
-        //   if (total_votes != 0) {
-        //     newQuestion.results = {
-        //       choiceOne: response.data[index].votes[0] / total_votes,
-        //       choiceTwo: response.data[index].votes[1] / total_votes,
-        //       choiceThree: response.data[index].votes[2] / total_votes,
-        //       choiceFour: 0,
-        //     };
-        //   }
-        // } else if (num_choices == 4) {
-        //   newQuestion.choices = {
-        //     choiceOne: response.data[index].options[0],
-        //     choiceTwo: response.data[index].options[1],
-        //     choiceThree: response.data[index].options[2],
-        //     choiceFour: response.data[index].options[3],
-        //   };
-        //   if (total_votes != 0) {
-        //     newQuestion.results = {
-        //       choiceOne: response.data[index].votes[0] / total_votes,
-        //       choiceTwo: response.data[index].votes[1] / total_votes,
-        //       choiceThree: response.data[index].votes[2] / total_votes,
-        //       choiceFour: response.data[index].votes[3] / total_votes,
-        //     };
-        //   }
-        // }
         newQuestion.comments = response.data[index].comments;
         newQuestion.comments.shift();
         setQuestion(newQuestion);
