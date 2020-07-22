@@ -209,6 +209,7 @@ export default function Poll(props) {
         question.comments = response.data[index].comments;
         question.comments.shift();
         setQuestion(question);
+        console.log(question);
       })
       .catch((error) => {
         console.log("it failed", error);

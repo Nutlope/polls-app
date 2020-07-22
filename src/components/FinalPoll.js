@@ -159,6 +159,10 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     alignItems: "center",
   },
+  questionAndChoices: {
+    display: "flex",
+    flexDirection: "row",
+  },
 }));
 
 function LocationPoll() {
@@ -171,10 +175,10 @@ function LocationPoll() {
           Start a Poll
         </Grid>
       </Grid>
-      <Container component="main" maxWidth="xs">
+      <Container component='main' maxWidth='xs'>
         <div className={classes.paper}>
           <div className={classes.progressBar}>
-            <Link href="/LocationPoll">
+            <Link href='/LocationPoll'>
               <img src={vectorLeft} className={classes.vector} />
             </Link>
             <img src={ProgressDotFinished} className={classes.progressDot} />
@@ -188,37 +192,40 @@ function LocationPoll() {
             <span className={classes.greytext}>Category:</span>{" "}
             <span className={classes.blacktext}>Politics</span>
           </div>
-          <div className={classes.question}>
-            <span className={classes.greytext}>Question:</span>{" "}
-            <span className={classes.blacktext}>
-              Which Wes Anderson film should I watch tonight?
-            </span>
-          </div>
-          <div className={classes.options}>
-            <TextField
-              id="1"
-              label="1"
-              defaultValue="The Royal Tenenbaums"
-              variant="outlined"
-            />
-            <TextField
-              id="2"
-              label="2"
-              defaultValue="Grand Budapest Hotel"
-              variant="outlined"
-            />
-            <TextField
-              id="3"
-              label="3"
-              defaultValue="Moonrise Kingdom"
-              variant="outlined"
-            />
-            <TextField
-              id="4"
-              label="4"
-              defaultValue="Isle of Dogs"
-              variant="outlined"
-            />
+
+          <div className={classes.questionAndChoices}>
+            <div className={classes.question}>
+              <span className={classes.greytext}>Question:</span>{" "}
+              <span className={classes.blacktext}>
+                Which Wes Anderson film should I watch tonight?
+              </span>
+            </div>
+            <div className={classes.options}>
+              <TextField
+                id='1'
+                label='1'
+                defaultValue='The Royal Tenenbaums'
+                variant='outlined'
+              />
+              <TextField
+                id='2'
+                label='2'
+                defaultValue='Grand Budapest Hotel'
+                variant='outlined'
+              />
+              <TextField
+                id='3'
+                label='3'
+                defaultValue='Moonrise Kingdom'
+                variant='outlined'
+              />
+              <TextField
+                id='4'
+                label='4'
+                defaultValue='Isle of Dogs'
+                variant='outlined'
+              />
+            </div>
           </div>
           <div className={classes.category}>
             <span className={classes.greytext}>Age Range:</span>{" "}
@@ -229,9 +236,9 @@ function LocationPoll() {
             </div>
           </div>
           <Button
-            type="submit"
-            variant="contained"
-            color="primary"
+            type='submit'
+            variant='contained'
+            color='primary'
             className={classes.submit}
             //   onClick={submitHandler}
           >
@@ -239,10 +246,10 @@ function LocationPoll() {
           </Button>
           <img
             src={logoDrawing}
-            width="234px"
-            height="140px"
-            top="138px"
-            alt=""
+            width='234px'
+            height='140px'
+            top='138px'
+            alt=''
             className={classes.bottom}
           />
         </div>
