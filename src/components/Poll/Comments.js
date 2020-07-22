@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./poll.css";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
 import commenter from "./../../assets/commenter.png";
+import SendIcon from "./../../assets/send.png";
+import SendActivatedIcon from "./../../assets/sendActivated.png";
 
 const useStyles = makeStyles((theme) => ({
   commentBox: {
@@ -33,6 +35,16 @@ const useStyles = makeStyles((theme) => ({
   typeComment: {
     bottom: "0px",
     borderRadius: "20px",
+    width: "84%",
+  },
+  sendIcon: {
+    height: "25px",
+  },
+  send: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 }));
 
@@ -75,16 +87,44 @@ function renderComments(comments, classes) {
 export default function Comments(props) {
   const classes = useStyles();
   const existingComments = renderComments(props.comments, classes);
+  const [activatedIcon, setActivatedIcon] = useState(false);
+
+  const inputHandler = (e) => {
+    if (e.target.value == "") {
+      setActivatedIcon(false);
+    } else {
+      setActivatedIcon(true);
+    }
+  };
+
+  const sendHandler = (e) => {
+    //todo
+  };
 
   return (
     <div className={classes.commentBox}>
       {existingComments}
-      <Link className={classes.viewAll}>View all comments &gt;</Link>
-      <TextField
-        className={classes.typeComment}
-        variant='outlined'
-        placeholder='Write a comment...'
-      />
+      <div className={classes.viewAll} onClick={props.setCommentOpen}>
+        View all comments &gt;
+      </div>
+      <div className={classes.send}>
+        <TextField
+          className={classes.typeComment}
+          variant='outlined'
+          placeholder='Write a comment...'
+          onChange={inputHandler}
+        />
+        {activatedIcon ? (
+          <img
+            className={classes.sendIcon}
+            src={SendActivatedIcon}
+            alt='send'
+            onClick={sendHandler}
+          />
+        ) : (
+          <img className={classes.sendIcon} src={SendIcon} alt='send' />
+        )}{" "}
+      </div>
     </div>
   );
 }

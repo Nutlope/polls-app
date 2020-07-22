@@ -3,10 +3,11 @@ import "./poll.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, CssBaseline } from "@material-ui/core";
 import BackIcon from "./../../assets/back.png";
-import SendIcon from "./../../assets/send.png";
 import TextField from "@material-ui/core/TextField";
 import Comment from "./Comment";
 import ScrollContainer from "react-indiana-drag-scroll";
+import SendIcon from "./../../assets/send.png";
+import SendActivatedIcon from "./../../assets/sendActivated.png";
 
 const useStyle = makeStyles((theme) => ({
   paper: {
@@ -70,6 +71,7 @@ const useStyle = makeStyles((theme) => ({
 export default function CommentsExpanded(props) {
   const classes = useStyle();
   const [comment, setComment] = useState("");
+  const [activatedIcon, setActivatedIcon] = useState(false);
 
   const commentsDict = {
     0: {
@@ -97,9 +99,16 @@ export default function CommentsExpanded(props) {
     setComment(e.target.value);
   };
 
-  const submitHandler = (e) => {
-    console.log(comment);
-    //todo: trigger backend
+  const inputHandler = (e) => {
+    if (e.target.value == "") {
+      setActivatedIcon(false);
+    } else {
+      setActivatedIcon(true);
+    }
+  };
+
+  const sendHandler = (e) => {
+    //todo
   };
 
   return (
@@ -107,7 +116,12 @@ export default function CommentsExpanded(props) {
       <CssBaseline />
       <div className={classes.paper}>
         <Container className={classes.topBar}>
-          <img className={classes.backIcon} src={BackIcon} alt='Back' />
+          <img
+            className={classes.backIcon}
+            src={BackIcon}
+            alt='Back'
+            onClick={props.setCommentOpen}
+          />
           <p>Comments</p>
         </Container>
         <ScrollContainer className={classes.commentScroll}>
@@ -120,14 +134,18 @@ export default function CommentsExpanded(props) {
             className={classes.typeComment}
             variant='outlined'
             placeholder='Write a comment...'
-            onChange={changeHandler}
+            onChange={inputHandler}
           />
-          <img
-            className={classes.sendIcon}
-            src={SendIcon}
-            alr='send'
-            onClick={submitHandler}
-          />
+          {activatedIcon ? (
+            <img
+              className={classes.sendIcon}
+              src={SendActivatedIcon}
+              alt='send'
+              onClick={sendHandler}
+            />
+          ) : (
+            <img className={classes.sendIcon} src={SendIcon} alt='send' />
+          )}{" "}
         </div>
       </div>
     </Container>

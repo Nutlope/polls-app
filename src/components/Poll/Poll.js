@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./poll.css";
 import logoSmall from "./../../assets/logoSmall.png";
 import home from "./../../assets/home.png";
@@ -15,6 +15,7 @@ import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import ChoiceGrid from "./ChoiceGrid";
 import Comments from "./Comments";
+import CommentsExpanded from "./CommentsExpanded";
 
 const useStyle = makeStyles((theme) => ({
   paper: {
@@ -114,6 +115,15 @@ const useStyle = makeStyles((theme) => ({
 
 export default function Poll(props) {
   const classes = useStyle();
+  const [commentOpen, setCommentOpen] = useState(false);
+
+  const setCommentOpenHandler = (e) => {
+    setCommentOpen(!commentOpen);
+  };
+
+  if (commentOpen) {
+    return <CommentsExpanded setCommentOpen={setCommentOpenHandler} />;
+  }
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -145,7 +155,10 @@ export default function Poll(props) {
               className={classes.choiceGrid}
               choices={props.choices}
             />
-            <Comments comments={props.comments} />
+            <Comments
+              comments={props.comments}
+              setCommentOpen={setCommentOpenHandler}
+            />
           </div>
         </Box>
         <div className={classes.comments}></div>

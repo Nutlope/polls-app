@@ -99,10 +99,6 @@ export default class App extends Component {
                 <PersonalInterest />
               </Route>
 
-              <Route path='/comments-temp'>
-                <Comments />
-              </Route>
-
               <Route
                 path='/Poll'
                 render={(props) => (
