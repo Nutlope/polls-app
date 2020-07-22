@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
 import LikeIcon from "./../../assets/like.png";
 import AvatarIcon from "./../../assets/profile.png";
+import LikeActivatedIcon from "./../../assets/likeActivated.png";
 
 const useStyles = makeStyles((theme) => ({
   commentRow: {
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "0px",
   },
   likeNumLiked: {
-    color: "red",
+    color: "#2EC4B6",
     fontSize: "9px",
     marginTop: "0px",
     textAlign: "center",
@@ -67,7 +68,7 @@ export default function Comment(props) {
         <img className={classes.avatar} src={AvatarIcon} alr='' />
         <p className={classes.text}>{comment.text}</p>
         <div className={classes.likeGroup} onClick={clickHandler}>
-          <img className={classes.likeIcon} src={LikeIcon} />
+          <img className={classes.likeIcon} src={LikeActivatedIcon} />
           <p className={classes.likeNumLiked}>{newLikes}</p>
         </div>
       </div>

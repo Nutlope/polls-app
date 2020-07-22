@@ -5,10 +5,10 @@ import home from "./../../assets/home.png";
 import trending from "./../../assets/trending.png";
 import profile from "./../../assets/profile.png";
 import addPoll from "./../../assets/addPoll.png";
-import BackIcon from "./../../assets/back.png";
-import SendIcon from "./../../assets/send.png";
-import TextField from "@material-ui/core/TextField";
+import ExpandIcon from "./../../assets/expand.png";
+import CollapseIcon from "./../../assets/collapse.png";
 import ScrollContainer from "react-indiana-drag-scroll";
+import ChoiceGrid from "./ChoiceGrid";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,64 +31,179 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  scrollableSection: {
+    position: "absolute",
+    bottom: "0px",
+    height: "79%",
+    width: "100%",
+  },
   heading: {
     textAlign: "left",
     width: "90%",
     fontWeight: "bold",
     fontSize: "36px",
   },
-  commentScroll: {
-    height: "80%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "90%",
-    position: "absolute",
-    bottom: "70px",
-  },
-  commentBar: {
-    width: "100%",
-    height: "60px",
-    display: "flex",
-    position: "absolute",
-    bottom: "0px",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  typeComment: {
-    bottom: "0px",
-    borderRadius: "20px",
-    width: "80%",
-    marginLeft: "15px",
-    marginRight: "20px",
-  },
   category: {
-    height: "50px",
+    height: "35px",
     fontWeight: "bold",
     fontSize: "16px",
     width: "100%",
+    backgroundColor: "#8CD8D1",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: "0px",
+  },
+  categoryText: {
+    leftMargin: "20px",
+  },
+  expandIcon: {
+    display: "flex",
+    position: "absolute",
+    right: "20px",
+  },
+  expandedCategory: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    marginBottom: "30px",
+  },
+  collapsedCategory: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    marginBottom: "30px",
+  },
+  questionCard: {
+    marginBottom: "100px",
+    marginTop: "50px",
   },
 }));
 
-const clickOpenHandler = (click, setClicked) => {
-  setClicked(!click);
-};
+function ExpandableHeading(categoryText, question) {
+  const classes = useStyles();
+  const [clicked, setClicked] = useState(false);
 
-const expandableHeading = (classes) => {
-  // const [clicked, setClicked] = useState(false);
+  console.log(question);
+  console.log(question.choices);
+
+  const clickOpenHandler = () => {
+    setClicked(!clicked);
+  };
+
+  const bgDict = {
+    Politics: "#8CD8D1",
+    Lifestyle: "rgba(255, 159, 28, 0.56)",
+    Entertainment: "rgba(231, 29, 54, 0.47)",
+    Music: "rgba(128, 147, 241, 0.55)",
+    Fasion: "rgba(78, 139, 67, 0.56)",
+    Sports: "rgba(158, 158, 158, 0.56)",
+    Miscelleneous: "#EEE0CB",
+    "In Your City": "rgba(158, 158, 158, 0.56)",
+  };
+
+  if (clicked) {
+    return (
+      <div className={classes.expandedCategory}>
+        <div
+          className={classes.category}
+          style={{ backgroundColor: bgDict[categoryText] }}
+        >
+          <p className={classes.categoryText}>{categoryText}</p>
+          <img
+            className={classes.expandIcon}
+            src={CollapseIcon}
+            alt="expand"
+            onClick={clickOpenHandler}
+          />
+        </div>
+        <ChoiceGrid
+          category={question.category}
+          title={question.title}
+          choices={question.choices}
+          comments={question.comments}
+        />
+        <ChoiceGrid className={classes.questionCard} />
+      </div>
+    );
+  }
 
   return (
-    <div className={classes.category}>
-      <div className={classes.categoryHeader}>Politics</div>
+    <div className={classes.collapsedCategory}>
+      <div
+        className={classes.category}
+        style={{ backgroundColor: bgDict[categoryText] }}
+      >
+        <p className={classes.categoryText}>{categoryText}</p>
+        <img
+          className={classes.expandIcon}
+          src={ExpandIcon}
+          alt="expand"
+          onClick={clickOpenHandler}
+        />
+      </div>
     </div>
   );
-};
+}
 
 export default function Trending(props) {
   const classes = useStyles();
 
-  const questions = {};
+  const question = {
+    category: "entertainment",
+    title: "Which Wes Anderson Movie should I watch tonight?",
+    choices: {
+      choiceOne: "The Royal sth",
+      choiceTwo: "Moonrise Kingdom",
+      choiceThree: "Grand Budapest Hotel",
+      choiceFour: "",
+    },
+    comments: [
+      "If you’re fan of animation, go with Isle of Dogs",
+      "Grand Budapest Hotel has a great cast!",
+    ],
+    name: "Jane Doe",
+    location: "Atlanta, GA",
+    polls: {
+      //only need id
+      posted: [
+        {
+          category: "politics",
+          title: "Should JHU install a private police force",
+          choices: {
+            choiceOne: "yes",
+            choiceTwo: "no",
+            choiceThree: "",
+            choiceFour: "",
+          },
+          results: {
+            choiceOne: "53",
+            choiceTwo: "47",
+            choiceThree: "",
+            choiceFour: "",
+          },
+        },
+      ],
+      saved: [
+        {
+          category: "fashion",
+          title: "Which pair should I buy?",
+          choices: {
+            choiceOne: "img 1",
+            choiceTwo: "img 2",
+            choiceThree: "img 3",
+            choiceFour: "",
+          },
+          results: {
+            choiceOne: "23",
+            choiceTwo: "50",
+            choiceThree: "27",
+            choiceFour: "",
+          },
+        },
+      ],
+    },
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -103,7 +218,16 @@ export default function Trending(props) {
 
         <h1 className={classes.heading}>Trending</h1>
 
-        {expandableHeading(classes)}
+        <ScrollContainer className={classes.scrollableSection}>
+          {ExpandableHeading("Politics", question)}
+          {ExpandableHeading("Lifestyle", question)}
+          {ExpandableHeading("Entertainment", question)}
+          {ExpandableHeading("Music", question)}
+          {ExpandableHeading("Sports", question)}
+          {ExpandableHeading("Fashion", question)}
+          {ExpandableHeading("Miscelleneous", question)}
+          {ExpandableHeading("In Your City", question)}
+        </ScrollContainer>
       </div>
     </Container>
   );

@@ -26,6 +26,12 @@ export default class App extends Component {
         choiceThree: "Grand Budapest Hotel",
         choiceFour: "",
       },
+      results: {
+        choiceOne: 234,
+        choiceTwo: 1,
+        choiceThree: 3434,
+        choiceFour: 0,
+      },
       comments: [
         "If you’re fan of animation, go with Isle of Dogs",
         "Grand Budapest Hotel has a great cast!",
@@ -99,10 +105,6 @@ export default class App extends Component {
 
               <Route path="/registration-personal-interest">
                 <PersonalInterest />
-              </Route>
-
-              <Route path="/comments-temp">
-                <Comments />
               </Route>
 
               <Route

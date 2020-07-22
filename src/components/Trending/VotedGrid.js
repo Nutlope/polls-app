@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import "./trending.css";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import selected from "./../../assets/selected.png";
 import nextIcon from "./../../assets/vector-right.png";
 import ChoiceGrid from "./ChoiceGrid";
-import "./poll.css";
 
 const useStyle = makeStyles((theme) => ({
   formRow: {
