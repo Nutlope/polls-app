@@ -76,10 +76,7 @@ const clickOpenHandler = (click, setClicked) => {
 };
 
 const expandableHeading = (classes) => {
-  const [clicked, setClicked] = useState(false);
-
-  if (clicked) {
-  }
+  // const [clicked, setClicked] = useState(false);
 
   return (
     <div className={classes.category}>
@@ -94,7 +91,7 @@ export default function Trending(props) {
   const questions = {};
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.topBar}>

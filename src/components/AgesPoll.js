@@ -129,6 +129,7 @@ function AgesPoll() {
             <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotUnfinished} className={classes.progressDot} />
+            <img src={ProgressDotUnfinished} className={classes.progressDot} />
             <Link href="">
               <img type="submit" src={vectorRight} className={classes.vector} />
             </Link>

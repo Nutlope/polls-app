@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SignUp from "./components/SignUp";
 import StartPoll from "./components/StartPoll";
+import AgesPoll from "./components/AgesPoll";
 import OptionsPoll from "./components/OptionsPoll";
 import { RegistrationProvider } from "./components/Registration/RegistrationContext";
 import PersonalInfo from "./components/Registration/PersonalInfo";
@@ -79,32 +80,33 @@ export default class App extends Component {
         <div>
           <RegistrationProvider>
             <Switch>
-              <Route path='/' exact component={SignUp} />
-              <Route path='/StartPoll' component={StartPoll} />
-              <Route path='/OptionsPoll' component={OptionsPoll} />
+              <Route path="/" exact component={SignUp} />
+              <Route path="/StartPoll" component={StartPoll} />
+              <Route path="/OptionsPoll" component={OptionsPoll} />
+              <Route path="/AgesPoll" component={AgesPoll} />
 
-              <Route path='/registration-personal-info'>
+              <Route path="/registration-personal-info">
                 <PersonalInfo />
               </Route>
 
-              <Route path='/registration-create-account'>
+              <Route path="/registration-create-account">
                 <CreateAccount />
               </Route>
 
-              <Route path='/registration-share-location'>
+              <Route path="/registration-share-location">
                 <ShareLocation />
               </Route>
 
-              <Route path='/registration-personal-interest'>
+              <Route path="/registration-personal-interest">
                 <PersonalInterest />
               </Route>
 
-              <Route path='/comments-temp'>
+              <Route path="/comments-temp">
                 <Comments />
               </Route>
 
               <Route
-                path='/Poll'
+                path="/Poll"
                 render={(props) => (
                   <Poll
                     category={this.state.category}
@@ -114,11 +116,9 @@ export default class App extends Component {
                   />
                 )}
               />
-
-              <Route path='/Trending' component={Trending} />
-
+              <Route path="/Trending" component={Trending} />
               <Route
-                path='/Me'
+                path="/Me"
                 render={(props) => (
                   <Me
                     polls={this.state.polls}
