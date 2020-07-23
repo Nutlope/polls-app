@@ -32,7 +32,6 @@ const useStyle = makeStyles((theme) => ({
   topBar: {
     paddingLeft: "10%",
     paddingRight: "10%",
-    zIndex: "-1",
     display: "flex",
     width: "100%",
     height: "50px",

@@ -13,7 +13,7 @@ import Grid from "@material-ui/core/Grid";
 import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import { shadows } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
 import Tabs from "./Tabs";
@@ -31,7 +31,6 @@ const useStyle = makeStyles((theme) => ({
   topBar: {
     paddingLeft: "10%",
     paddingRight: "10%",
-    zIndex: "-1",
     display: "flex",
     width: "100%",
     height: "50px",
@@ -163,27 +162,27 @@ export default function Me(props) {
     const posted = polls.posted;
 
     return (
-      <div className={classes.polls} role='tabpanel'>
+      <div className={classes.polls} role="tabpanel">
         <Tabs className={classes.tab} />
       </div>
     );
   };
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.topBar}>
-          <img src={home} alt='Home' />
-          <Link to='/Trending'>
-            <img src={trending} alt='Trending' />
+          <Link to="/Poll">
+            <img src={home} alt="Home" />
           </Link>
-          <Link to='/StartPoll'>
-            <img src={addPoll} alt='Add Poll' />
+          <Link to="/Trending">
+            <img src={trending} alt="Trending" />
           </Link>
-          <Link to='/me'>
-            <img src={profile} alt='Me' />
+          <Link to="/StartPoll">
+            <img src={addPoll} alt="Add Poll" />
           </Link>
+          <img src={profile} alt="Me" />
         </div>
         <div className={classes.profile}>
           <Grid className={classes.avatar}>

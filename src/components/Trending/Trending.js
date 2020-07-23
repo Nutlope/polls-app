@@ -10,6 +10,7 @@ import CollapseIcon from "./../../assets/collapse.png";
 import ScrollContainer from "react-indiana-drag-scroll";
 import QuestionCard from "./QuestionCard";
 import logo from "./../../assets/logo-image.png";
+import Link from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -24,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
   topBar: {
     paddingLeft: "10%",
     paddingRight: "10%",
-    zIndex: "-1",
     display: "flex",
     width: "100%",
     height: "50px",
@@ -226,10 +226,16 @@ export default function Trending(props) {
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.topBar}>
-          <img src={home} />
-          <img src={trending} />
-          <img src={addPoll} />
-          <img src={profile} />
+          <Link to='/Poll'>
+            <img src={home} alt='Home' />
+          </Link>
+          <img src={trending} alt='Trending' />
+          <Link to='/StartPoll'>
+            <img src={addPoll} alt='Add Poll' />
+          </Link>
+          <Link to='/Me'>
+            <img src={profile} alt='Me' />
+          </Link>
         </div>
 
         <h1 className={classes.heading}>Trending</h1>
