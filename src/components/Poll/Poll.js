@@ -29,6 +29,17 @@ const useStyle = makeStyles((theme) => ({
     position: "relative",
     height: "700px", //TODO: set hight to be phone height
   },
+  paperNew: {
+    fontFamily: "Futura",
+    border: "1px solid black",
+    display: "flex",
+    flexDirection: "column",
+
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
+    height: "700px", //TODO: set hight to be phone height
+  },
   topBar: {
     paddingLeft: "10%",
     paddingRight: "10%",
@@ -112,6 +123,9 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     position: "absolute",
   },
+  wordsSheet: {
+    width: "90%",
+  },
 }));
 
 export default function Poll(props) {
@@ -120,6 +134,8 @@ export default function Poll(props) {
   const [saved, setSaved] = useState(false);
   const [commentOpen, setCommentOpen] = useState(false);
   const [index, setIndex] = useState(0);
+  // const [numQ, setNumQ] = useState(0);
+  // const [passedAllQ, setPassedAllQ] = useState(false);
   const [question, setQuestion] = useState({
     category: "",
     title: "",
@@ -155,6 +171,7 @@ export default function Poll(props) {
       .then((response) => {
         console.log("loading polls worked", response);
         let newQuestion = {};
+        // setNumQ = response.data.length;
         newQuestion.category = response.data[index].category;
         newQuestion.title = response.data[index].question;
         newQuestion.id = response.data[index].pollid;
@@ -211,8 +228,36 @@ export default function Poll(props) {
 
   const skipHandler = (e) => {
     //todo
-    setIndex(index + 1);
+    // setIndex(index + 1);
+    // if (index === numQ) {
+    //   setPassedAllQ(true);
+    // }
   };
+
+  // if (passedAllQ) {
+  //   return (
+  //     <Container component='main' maxWidth='xs'>
+  //       <CssBaseline />
+  //       <div className={classes.paper}>
+  //         <div className={classes.topBar}>
+  //           <img src={home} alt='Home' />
+  //           <Link to='/Trending'>
+  //             <img src={trending} alt='Trending' />
+  //           </Link>
+  //           <Link to='/StartPoll'>
+  //             <img src={addPoll} alt='Add Poll' />
+  //           </Link>
+  //           <Link to='/Me'>
+  //             <img src={profile} alt='Me' />
+  //           </Link>
+  //         </div>
+  //         <div className={classes.wordsSheet}>
+  //           <h2>You've voted on all questions! Please come back later.</h2>
+  //         </div>
+  //       </div>
+  //     </Container>
+  //   );
+  // }
 
   if (commentOpen) {
     return (
@@ -276,6 +321,8 @@ export default function Poll(props) {
             <ChoiceGrid
               className={classes.choiceGrid}
               choices={question.choices}
+              index={index}
+              setIndex={setIndex}
             />
             <Comments
               comments={question.comments}

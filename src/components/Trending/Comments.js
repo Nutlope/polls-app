@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./trending.css";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import Link from "@material-ui/core/Link";
 import commenter from "./../../assets/commenter.png";
 import SendIcon from "./../../assets/send.png";
 import SendActivatedIcon from "./../../assets/sendActivated.png";
@@ -13,8 +12,7 @@ const useStyles = makeStyles((theme) => ({
     width: "90%",
     display: "flex",
     flexDirection: "column",
-    position: "absolute",
-    bottom: "10px",
+    marginBottom: "10px",
   },
   comment: {
     display: "flex",
@@ -56,12 +54,12 @@ function renderComments(comments, classes, props, len) {
   }
 
   // one comment occupies two lines, only display one
-  else if (len === 1 || comments[0].length >= "50") {
+  else if (len === 1 || comments[0].text.length >= "50") {
     return (
       <div>
         <div className={classes.comment}>
           <img src={commenter} className={classes.commenter} alt='' />
-          <p>{comments[0]}</p>
+          <p>{comments[0].text}</p>
         </div>
         <div className={classes.viewAll} onClick={props.setCommentOpen}>
           View all comments &gt;
@@ -70,7 +68,7 @@ function renderComments(comments, classes, props, len) {
     );
   }
   // one comment occupies two lines, only display one
-  else if (comments[1].length >= "50") {
+  else if (comments[1].text.length >= "50") {
     return (
       <div>
         <div className={classes.comment}>
@@ -88,11 +86,11 @@ function renderComments(comments, classes, props, len) {
     <div>
       <div className={classes.comment}>
         <img src={commenter} className={classes.commenter} />
-        <p>{comments[0]}</p>
+        <p>{comments[0].text}</p>
       </div>
       <div className={classes.comment}>
         <img src={commenter} className={classes.commenter} alt='' />
-        <p>{comments[1]}</p>
+        <p>{comments[1].text}</p>
       </div>
       <div className={classes.viewAll} onClick={props.setCommentOpen}>
         View all comments &gt;
@@ -102,13 +100,12 @@ function renderComments(comments, classes, props, len) {
 }
 
 export default function Comments(props) {
-  console.log("comments props", props);
-
   const classes = useStyles();
   const [activatedIcon, setActivatedIcon] = useState(false);
   const [len, setLen] = useState(props.comments.length);
   const [newComment, setNewComment] = useState("");
   const [comments, setComments] = useState(props.comments);
+  const [openComments, setOpenComments] = useState(false);
   const existingComments = renderComments(comments, classes, props, len);
 
   const inputHandler = (e) => {

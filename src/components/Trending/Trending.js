@@ -94,9 +94,6 @@ function ExpandableHeading(categoryText, question) {
   const classes = useStyles();
   const [clicked, setClicked] = useState(false);
 
-  console.log(question);
-  console.log(question.choices);
-
   const clickOpenHandler = () => {
     setClicked(!clicked);
   };

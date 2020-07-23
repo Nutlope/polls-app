@@ -113,6 +113,7 @@ const useStyle = makeStyles((theme) => ({
   },
   colorBand: {
     width: "100%", //todo
+    borderRadius: "0 0 4px 4px",
     display: "flex",
     position: "relative",
     marginBottom: "0px",
@@ -122,7 +123,21 @@ const useStyle = makeStyles((theme) => ({
     position: "relative",
     marginBottom: "5px",
     marginRight: "5px",
+    height: "20px",
+    width: "20px",
+    top: "75px",
+    left: "5px",
   }, //todo
+  selectedLong: {
+    display: "flex",
+    position: "relative",
+    marginBottom: "5px",
+    marginRight: "5px",
+    height: "15px",
+    width: "15px",
+    top: "-5px",
+    left: "-21px",
+  },
   nextIcon: {
     display: "flex",
     position: "absolute",
@@ -146,13 +161,14 @@ export default function VotedGrid(props) {
   //helper functions
 
   const nextHandler = () => {
-    //todo
-    //props.refreshHadnler(props.curQ + 1);
+    props.setIndex(props.index + 1);
   };
 
   const blackBlock = (choice, result, backgroundColor) => {
     const height = (105 / 100) * result;
     const heightStr = height + "px";
+    const topHeight = 115 - height;
+    const topHeightStr = topHeight + "px";
     return (
       <Container variant='outlined' className={classes.choiceBlack}>
         <Container className={classes.topBar}>
@@ -163,7 +179,11 @@ export default function VotedGrid(props) {
         <Container
           variant='outlined'
           className={classes.colorBand}
-          style={{ height: heightStr, backgroundColor: backgroundColor }}
+          style={{
+            height: heightStr,
+            backgroundColor: backgroundColor,
+            top: topHeightStr,
+          }}
         ></Container>
         <img src={selected} className={classes.selected} />
       </Container>
@@ -173,6 +193,8 @@ export default function VotedGrid(props) {
   const grayBlock = (choice, result, backgroundColor) => {
     const height = (105 / 100) * result;
     const heightStr = height + "px";
+    const topHeight = 115 - height;
+    const topHeightStr = topHeight + "px";
     return (
       <Container variant='outlined' className={classes.choiceGray}>
         <Container className={classes.topBar}>
@@ -183,7 +205,11 @@ export default function VotedGrid(props) {
         <Container
           variant='outlined'
           className={classes.colorBand}
-          style={{ height: heightStr, backgroundColor: backgroundColor }}
+          style={{
+            height: heightStr,
+            backgroundColor: backgroundColor,
+            top: topHeightStr,
+          }}
         ></Container>
       </Container>
     );
@@ -192,6 +218,8 @@ export default function VotedGrid(props) {
   const blackBlockLong = (choice, result, backgroundColor) => {
     const height = ((105 * 2) / 100) * result;
     const heightStr = height + "px";
+    const topHeight = 235 - height;
+    const topHeightStr = topHeight + "px";
     return (
       <Container variant='outlined' className={classes.choiceBlackLong}>
         <Container className={classes.topBar}>
@@ -202,9 +230,13 @@ export default function VotedGrid(props) {
         <Container
           variant='outlined'
           className={classes.colorBand}
-          style={{ height: heightStr, backgroundColor: backgroundColor }}
+          style={{
+            height: heightStr,
+            backgroundColor: backgroundColor,
+            top: topHeightStr,
+          }}
         >
-          <img src={selected} className={classes.selected} />
+          <img src={selected} className={classes.selectedLong} />
         </Container>
       </Container>
     );
@@ -213,6 +245,8 @@ export default function VotedGrid(props) {
   const grayBlockLong = (choice, result, backgroundColor) => {
     const height = ((105 * 2) / 100) * result;
     const heightStr = height + "px";
+    const topHeight = 235 - height;
+    const topHeightStr = topHeight + "px";
     return (
       <Container variant='outlined' className={classes.choiceGrayLong}>
         <Container className={classes.topBar}>
@@ -223,7 +257,11 @@ export default function VotedGrid(props) {
         <Container
           variant='outlined'
           className={classes.colorBand}
-          style={{ height: heightStr, backgroundColor: backgroundColor }}
+          style={{
+            height: heightStr,
+            backgroundColor: backgroundColor,
+            top: topHeightStr,
+          }}
         ></Container>
       </Container>
     );
