@@ -23,14 +23,21 @@ import ProgressDotFinished from "./../assets/progress-dot-finished.png";
 import vectorLeft from "./../assets/vector-left.png";
 import vectorRight from "./../assets/vector-right.png";
 import { Link } from "react-router-dom";
+import home from "./../assets/home.png";
+import trending from "./../assets/trending.png";
+import profile from "./../assets/profile.png";
+import addPoll from "./../assets/addPoll.png";
+import { CssBaseline } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(1),
+    fontFamily: "Futura",
+    border: "1px solid black",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     position: "relative",
+    height: "700px", //TODO: set hight to be phone height
   },
   avatar: {
     margin: theme.spacing(1),
@@ -61,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px",
   },
   top: {
-    marginTop: "35px",
     textAlign: "center",
     padding: "10px",
     fontFamily: "Futura",
@@ -95,6 +101,16 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(4),
     marginRight: theme.spacing(4),
   },
+  topBar: {
+    paddingLeft: "10%",
+    paddingRight: "10%",
+    display: "flex",
+    width: "100%",
+    height: "50px",
+    backgroundColor: "#EDEDED",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 }));
 
 function StartPoll() {
@@ -122,76 +138,87 @@ function StartPoll() {
   console.log("This is the global poll: ", poll);
 
   return (
-    <>
-      <Grid container className={classes.top}>
-        <Grid item xs={12}>
-          Start a Poll
-        </Grid>
-      </Grid>
-      <Container component="main" maxWidth="xs">
-        <div className={classes.paper}>
-          <div className={classes.progressBar}>
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link to="/OptionsPoll" onClick={submitHandler}>
-              <img type="submit" src={vectorRight} className={classes.vector} />
-            </Link>
-          </div>
-          <div className={classes.title}>What's on your mind?</div>
-          <form className={classes.form} noValidate>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="question"
-                  name="question"
-                  variant="outlined"
-                  fullWidth
-                  required
-                  id="question"
-                  label="Enter your question here"
-                  value={question}
-                  onChange={questionHandler}
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-label">
-                    What category does it fall under?
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    fullWidth
-                    id="demo-simple-select"
-                    value={category}
-                    onChange={categoryHandler}
-                  >
-                    <MenuItem value="Music">Music</MenuItem>
-                    <MenuItem value="Entertainment">Entertainment</MenuItem>
-                    <MenuItem value="Sports">Sports</MenuItem>
-                    <MenuItem value="Politics">Politics</MenuItem>
-                    <MenuItem value="Fashion">Fashion</MenuItem>
-                    <MenuItem value="Lifestyle">Lifestyle</MenuItem>
-                    <MenuItem value="Not Applicable">Not Applicable</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-            </Grid>
-          </form>
-          <img
-            src={logoDrawing}
-            width="234px"
-            height="140px"
-            top="138px"
-            alt=""
-            className={classes.bottom}
-          />
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <div className={classes.topBar}>
+          <img src={home} alt="Home" />
+          <Link to="/Trending">
+            <img src={trending} alt="Trending" />
+          </Link>
+          <Link to="/StartPoll">
+            <img src={addPoll} alt="Add Poll" />
+          </Link>
+          <Link to="/Me">
+            <img src={profile} alt="Me" />
+          </Link>
         </div>
-      </Container>
-    </>
+        <Grid container className={classes.top}>
+          <Grid item xs={12}>
+            Start a Poll
+          </Grid>
+        </Grid>
+        <div className={classes.progressBar}>
+          <img src={ProgressDotFinished} className={classes.progressDot} />
+          <img src={ProgressDotUnfinished} className={classes.progressDot} />
+          <img src={ProgressDotUnfinished} className={classes.progressDot} />
+          <img src={ProgressDotUnfinished} className={classes.progressDot} />
+          <img src={ProgressDotUnfinished} className={classes.progressDot} />
+          <Link to="/OptionsPoll" onClick={submitHandler}>
+            <img type="submit" src={vectorRight} className={classes.vector} />
+          </Link>
+        </div>
+        <div className={classes.title}>What's on your mind?</div>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="question"
+                name="question"
+                variant="outlined"
+                fullWidth
+                required
+                id="question"
+                label="Enter your question here"
+                value={question}
+                onChange={questionHandler}
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">
+                  What category does it fall under?
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  fullWidth
+                  id="demo-simple-select"
+                  value={category}
+                  onChange={categoryHandler}
+                >
+                  <MenuItem value="Music">Music</MenuItem>
+                  <MenuItem value="Entertainment">Entertainment</MenuItem>
+                  <MenuItem value="Sports">Sports</MenuItem>
+                  <MenuItem value="Politics">Politics</MenuItem>
+                  <MenuItem value="Fashion">Fashion</MenuItem>
+                  <MenuItem value="Lifestyle">Lifestyle</MenuItem>
+                  <MenuItem value="Not Applicable">Not Applicable</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+        </form>
+        <img
+          src={logoDrawing}
+          width="234px"
+          height="140px"
+          top="138px"
+          alt=""
+          className={classes.bottom}
+        />
+      </div>
+    </Container>
   );
 }
 

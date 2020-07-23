@@ -27,14 +27,31 @@ import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import LocationSlider from "./Util/LocationSlider";
 import axios from "axios";
+import home from "./../assets/home.png";
+import trending from "./../assets/trending.png";
+import profile from "./../assets/profile.png";
+import addPoll from "./../assets/addPoll.png";
+import { CssBaseline } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(1),
+    fontFamily: "Futura",
+    border: "1px solid black",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     position: "relative",
+    height: "700px", //TODO: set hight to be phone height
+  },
+  topBar: {
+    paddingLeft: "10%",
+    paddingRight: "10%",
+    display: "flex",
+    width: "100%",
+    height: "50px",
+    backgroundColor: "#EDEDED",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -65,7 +82,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px",
   },
   top: {
-    marginTop: "35px",
     textAlign: "center",
     padding: "10px",
     fontFamily: "Futura",
@@ -191,100 +207,112 @@ function LocationPoll() {
     sendPoll();
   };
 
-  // delete
+  // delete this after the button starts working
   useEffect(() => {
-    console.log("The poll is: ", poll);
     sendPoll();
   }, []);
 
   return (
-    <>
-      <Grid container className={classes.top}>
-        <Grid item xs={12}>
-          Start a Poll
-        </Grid>
-      </Grid>
-      <Container component="main" maxWidth="xs">
-        <div className={classes.paper}>
-          <div className={classes.progressBar}>
-            <Link to="/LocationPoll">
-              <img src={vectorLeft} className={classes.vector} />
-            </Link>
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-          </div>
-          <div className={classes.title}>Ready to Post?</div>
-          <div className={classes.category}>
-            <span className={classes.greytext}>Category:</span>{" "}
-            <span className={classes.blacktext}>{poll.category}</span>
-          </div>
-
-          <div className={classes.questionAndChoices}>
-            <div className={classes.question}>
-              <span className={classes.greytext}>Question:</span>{" "}
-              <span className={classes.blacktext}>{poll.question}</span>
-            </div>
-            <div className={classes.options}>
-              <TextField
-                classes={{ root: classes.options }}
-                id="1"
-                label="1"
-                value={poll.options[0]}
-                variant="outlined"
-              />
-              <TextField
-                id="2"
-                label="2"
-                value={poll.options[1]}
-                variant="outlined"
-              />
-              <TextField
-                id="3"
-                label="3"
-                value={poll.options[2] ? poll.options[2] : ""}
-                variant="outlined"
-              />
-              <TextField
-                id="4"
-                label="4"
-                value={poll.options[3] ? poll.options[3] : ""}
-                variant="outlined"
-              />
-            </div>
-          </div>
-          <div className={classes.category}>
-            <span className={classes.greytext}>Age Range:</span>{" "}
-            <span className={classes.blacktext}>
-              {poll.age_range[0]} - {poll.age_range[1]} years
-            </span>
-            <div>
-              <span className={classes.greytext}>Mile Radius:</span>{" "}
-              <span className={classes.blacktext}>{poll.radius} miles</span>
-            </div>
-          </div>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onSubmit={submitHandler}
-          >
-            Post
-          </Button>
-          <img
-            src={logoDrawing}
-            width="234px"
-            height="140px"
-            top="138px"
-            alt=""
-            className={classes.bottom}
-          />
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <div className={classes.topBar}>
+          <Link to="/Poll">
+            <img src={home} alt="Home" />
+          </Link>
+          <Link to="/Trending">
+            <img src={trending} alt="Trending" />
+          </Link>
+          <Link to="/StartPoll">
+            <img src={addPoll} alt="Add Poll" />
+          </Link>
+          <Link to="/Me">
+            <img src={profile} alt="Me" />
+          </Link>
         </div>
-      </Container>
-    </>
+        <Grid container className={classes.top}>
+          <Grid item xs={12}>
+            Start a Poll
+          </Grid>
+        </Grid>
+        <div className={classes.progressBar}>
+          <Link to="/LocationPoll">
+            <img src={vectorLeft} className={classes.vector} />
+          </Link>
+          <img src={ProgressDotFinished} className={classes.progressDot} />
+          <img src={ProgressDotFinished} className={classes.progressDot} />
+          <img src={ProgressDotFinished} className={classes.progressDot} />
+          <img src={ProgressDotFinished} className={classes.progressDot} />
+          <img src={ProgressDotFinished} className={classes.progressDot} />
+        </div>
+        <div className={classes.title}>Ready to Post?</div>
+        <div className={classes.category}>
+          <span className={classes.greytext}>Category:</span>{" "}
+          <span className={classes.blacktext}>{poll.category}</span>
+        </div>
+
+        <div className={classes.questionAndChoices}>
+          <div className={classes.question}>
+            <span className={classes.greytext}>Question:</span>{" "}
+            <span className={classes.blacktext}>{poll.question}</span>
+          </div>
+          <div className={classes.options}>
+            <TextField
+              classes={{ root: classes.options }}
+              id="1"
+              label="1"
+              value={poll.options[0]}
+              variant="outlined"
+            />
+            <TextField
+              id="2"
+              label="2"
+              value={poll.options[1]}
+              variant="outlined"
+            />
+            <TextField
+              id="3"
+              label="3"
+              value={poll.options[2] ? poll.options[2] : ""}
+              variant="outlined"
+            />
+            <TextField
+              id="4"
+              label="4"
+              value={poll.options[3] ? poll.options[3] : ""}
+              variant="outlined"
+            />
+          </div>
+        </div>
+        <div className={classes.category}>
+          <span className={classes.greytext}>Age Range:</span>{" "}
+          <span className={classes.blacktext}>
+            {poll.age_range[0]} - {poll.age_range[1]} years
+          </span>
+          <div>
+            <span className={classes.greytext}>Mile Radius:</span>{" "}
+            <span className={classes.blacktext}>{poll.radius} miles</span>
+          </div>
+        </div>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          onSubmit={submitHandler}
+        >
+          Post
+        </Button>
+        <img
+          src={logoDrawing}
+          width="234px"
+          height="140px"
+          top="138px"
+          alt=""
+          className={classes.bottom}
+        />
+      </div>
+    </Container>
   );
 }
 

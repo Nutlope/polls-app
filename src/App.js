@@ -86,26 +86,26 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <RegistrationProvider>
-            <Switch>
-              <Route path="/" exact component={SignUp} />
-              <PollProvider>
-                <Route path="/StartPoll">
-                  <StartPoll />
-                </Route>
-                <Route path="/OptionsPoll">
-                  <OptionsPoll />
-                </Route>
-                <Route path="/AgesPoll">
-                  <AgesPoll />
-                </Route>
-                <Route path="/LocationPoll">
-                  <LocationPoll />
-                </Route>
-                <Route path="/FinalPoll">
-                  <FinalPoll />
-                </Route>
-              </PollProvider>
+          <Switch>
+            <Route path="/" exact component={SignUp} />
+            <PollProvider>
+              <Route path="/StartPoll">
+                <StartPoll />
+              </Route>
+              <Route path="/OptionsPoll">
+                <OptionsPoll />
+              </Route>
+              <Route path="/AgesPoll">
+                <AgesPoll />
+              </Route>
+              <Route path="/LocationPoll">
+                <LocationPoll />
+              </Route>
+              <Route path="/FinalPoll">
+                <FinalPoll />
+              </Route>
+            </PollProvider>
+            <RegistrationProvider>
               <Route
                 path="/registration-personal-info"
                 component={PersonalInfo}
@@ -141,8 +141,8 @@ export default class App extends Component {
                   />
                 )}
               />
-            </Switch>
-          </RegistrationProvider>
+            </RegistrationProvider>
+          </Switch>
         </div>
       </Router>
     );

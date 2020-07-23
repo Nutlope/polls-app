@@ -27,14 +27,31 @@ import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import LocationSlider from "./Util/LocationSlider";
 import { v4 as uuidv4 } from "uuid";
+import home from "./../assets/home.png";
+import trending from "./../assets/trending.png";
+import profile from "./../assets/profile.png";
+import addPoll from "./../assets/addPoll.png";
+import { CssBaseline } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(1),
+    fontFamily: "Futura",
+    border: "1px solid black",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     position: "relative",
+    height: "700px", //TODO: set hight to be phone height
+  },
+  topBar: {
+    paddingLeft: "10%",
+    paddingRight: "10%",
+    display: "flex",
+    width: "100%",
+    height: "50px",
+    backgroundColor: "#EDEDED",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -65,7 +82,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px",
   },
   top: {
-    marginTop: "35px",
     textAlign: "center",
     padding: "10px",
     fontFamily: "Futura",
@@ -134,43 +150,53 @@ function LocationPoll() {
   console.log("This is the global poll in 4th screen: ", poll);
 
   return (
-    <>
-      <Grid container className={classes.top}>
-        <Grid item xs={12}>
-          Start a Poll
-        </Grid>
-      </Grid>
-      <Container component="main" maxWidth="xs">
-        <div className={classes.paper}>
-          <div className={classes.progressBar}>
-            <Link to="/AgesPoll">
-              <img src={vectorLeft} className={classes.vector} />
-            </Link>
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotFinished} className={classes.progressDot} />
-            <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link to="/FinalPoll" onClick={submitHandler}>
-              <img type="submit" src={vectorRight} className={classes.vector} />
-            </Link>
-          </div>
-          <div className={classes.title}>Where do you want opinions from?</div>
-          <LocationSlider
-            changeHandler={changeHandler}
-            mileRadius={mileRadius}
-          />
-          <img
-            src={logoDrawing}
-            width="234px"
-            height="140px"
-            top="138px"
-            alt=""
-            className={classes.bottom}
-          />
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <div className={classes.topBar}>
+          <Link to="/Poll">
+            <img src={home} alt="Home" />
+          </Link>
+          <Link to="/Trending">
+            <img src={trending} alt="Trending" />
+          </Link>
+          <Link to="/StartPoll">
+            <img src={addPoll} alt="Add Poll" />
+          </Link>
+          <Link to="/Me">
+            <img src={profile} alt="Me" />
+          </Link>
         </div>
-      </Container>
-    </>
+        <Grid container className={classes.top}>
+          <Grid item xs={12}>
+            Start a Poll
+          </Grid>
+        </Grid>
+        <div className={classes.progressBar}>
+          <Link to="/AgesPoll">
+            <img src={vectorLeft} className={classes.vector} />
+          </Link>
+          <img src={ProgressDotFinished} className={classes.progressDot} />
+          <img src={ProgressDotFinished} className={classes.progressDot} />
+          <img src={ProgressDotFinished} className={classes.progressDot} />
+          <img src={ProgressDotFinished} className={classes.progressDot} />
+          <img src={ProgressDotUnfinished} className={classes.progressDot} />
+          <Link to="/FinalPoll" onClick={submitHandler}>
+            <img type="submit" src={vectorRight} className={classes.vector} />
+          </Link>
+        </div>
+        <div className={classes.title}>Where do you want opinions from?</div>
+        <LocationSlider changeHandler={changeHandler} mileRadius={mileRadius} />
+        <img
+          src={logoDrawing}
+          width="234px"
+          height="140px"
+          top="138px"
+          alt=""
+          className={classes.bottom}
+        />
+      </div>
+    </Container>
   );
 }
 
