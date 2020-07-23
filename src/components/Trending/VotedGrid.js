@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import selected from "./../../assets/selected.png";
-import nextIcon from "./../../assets/vector-right.png";
 import ChoiceGrid from "./ChoiceGrid";
 
 const useStyle = makeStyles((theme) => ({
@@ -19,7 +18,7 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "6px",
     width: "150px",
     marginLeft: "0px", //todo
-    height: "150px",
+    height: "100px",
     marginBottom: "5px",
   },
   choiceBlack: {
@@ -28,7 +27,7 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "6px",
     width: "150px",
     marginLeft: "0px", //todo
-    height: "150px",
+    height: "100px",
     marginBottom: "5px",
   },
   choiceBlank: {
@@ -37,7 +36,7 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "6px",
     width: "150px",
     marginLeft: "0px", //todo
-    height: "150px",
+    height: "100px",
     marginBottom: "5px",
   },
   choiceGrayLong: {
@@ -46,7 +45,7 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "6px",
     width: "150px",
     marginLeft: "0px", //todo
-    height: "300px",
+    height: "200px",
     marginBottom: "5px",
   },
   choiceBlackLong: {
@@ -55,7 +54,7 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: "6px",
     width: "150px",
     marginLeft: "0px", //todo
-    height: "300px",
+    height: "200px",
     marginBottom: "5px",
   },
   topBar: {
@@ -116,6 +115,7 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     position: "relative",
     marginBottom: "0px",
+    borderRadius: "0 0 4px 4px",
   },
   selected: {
     display: "flex",
@@ -123,13 +123,6 @@ const useStyle = makeStyles((theme) => ({
     marginBottom: "5px",
     marginRight: "5px",
   }, //todo
-  nextIcon: {
-    display: "flex",
-    position: "absolute",
-    height: "30px",
-    right: "24px",
-    top: "57%",
-  },
 }));
 
 export default function VotedGrid(props) {
@@ -151,8 +144,10 @@ export default function VotedGrid(props) {
   };
 
   const blackBlock = (choice, result, backgroundColor) => {
-    const height = (105 / 100) * result;
+    const height = result;
     const heightStr = height + "px";
+    const topHeight = 75 - height;
+    const topHeightStr = topHeight + "px";
     return (
       <Container variant='outlined' className={classes.choiceBlack}>
         <Container className={classes.topBar}>
@@ -163,7 +158,11 @@ export default function VotedGrid(props) {
         <Container
           variant='outlined'
           className={classes.colorBand}
-          style={{ height: heightStr, backgroundColor: backgroundColor }}
+          style={{
+            height: heightStr,
+            backgroundColor: backgroundColor,
+            top: topHeightStr,
+          }}
         ></Container>
         <img src={selected} className={classes.selected} />
       </Container>
@@ -173,6 +172,8 @@ export default function VotedGrid(props) {
   const grayBlock = (choice, result, backgroundColor) => {
     const height = (105 / 100) * result;
     const heightStr = height + "px";
+    const topHeight = 75 - height;
+    const topHeightStr = topHeight + "px";
     return (
       <Container variant='outlined' className={classes.choiceGray}>
         <Container className={classes.topBar}>
@@ -183,15 +184,21 @@ export default function VotedGrid(props) {
         <Container
           variant='outlined'
           className={classes.colorBand}
-          style={{ height: heightStr, backgroundColor: backgroundColor }}
+          style={{
+            height: heightStr,
+            backgroundColor: backgroundColor,
+            top: topHeightStr,
+          }}
         ></Container>
       </Container>
     );
   };
 
   const blackBlockLong = (choice, result, backgroundColor) => {
-    const height = ((105 * 2) / 100) * result;
+    const height = ((100 * 2) / 100) * result;
     const heightStr = height + "px";
+    const topHeight = 155 - height;
+    const topHeightStr = topHeight + "px";
     return (
       <Container variant='outlined' className={classes.choiceBlackLong}>
         <Container className={classes.topBar}>
@@ -202,7 +209,11 @@ export default function VotedGrid(props) {
         <Container
           variant='outlined'
           className={classes.colorBand}
-          style={{ height: heightStr, backgroundColor: backgroundColor }}
+          style={{
+            height: heightStr,
+            backgroundColor: backgroundColor,
+            top: topHeightStr,
+          }}
         >
           <img src={selected} className={classes.selected} />
         </Container>
@@ -213,6 +224,8 @@ export default function VotedGrid(props) {
   const grayBlockLong = (choice, result, backgroundColor) => {
     const height = ((105 * 2) / 100) * result;
     const heightStr = height + "px";
+    const topHeight = 155 - height;
+    const topHeightStr = topHeight + "px";
     return (
       <Container variant='outlined' className={classes.choiceGrayLong}>
         <Container className={classes.topBar}>
@@ -223,7 +236,11 @@ export default function VotedGrid(props) {
         <Container
           variant='outlined'
           className={classes.colorBand}
-          style={{ height: heightStr, backgroundColor: backgroundColor }}
+          style={{
+            height: heightStr,
+            backgroundColor: backgroundColor,
+            top: topHeightStr,
+          }}
         ></Container>
       </Container>
     );
@@ -286,12 +303,6 @@ export default function VotedGrid(props) {
             "#2EC4B6"
           )}
         </Grid>
-        <img
-          src={nextIcon}
-          className={classes.nextIcon}
-          alt='next'
-          onClick={nextHandler}
-        />
       </div>
     );
   }
@@ -312,12 +323,6 @@ export default function VotedGrid(props) {
           )}
           {blankGrid()}
         </Grid>
-        <img
-          src={nextIcon}
-          className={classes.nextIcon}
-          alt='next'
-          onClick={nextHandler}
-        />
       </div>
     );
   }
@@ -337,12 +342,6 @@ export default function VotedGrid(props) {
         )}
         {blockFour(props.choices.choiceFour, percentages.choiceFour, "#8093F1")}
       </Grid>
-      <img
-        src={nextIcon}
-        className={classes.nextIcon}
-        alt='next'
-        onClick={nextHandler}
-      />
     </div>
   );
 }

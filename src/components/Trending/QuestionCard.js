@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "20px",
     borderRadius: "10px",
     width: "90%",
-    height: "87%",
+    // height: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -69,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    height: "100%",
   },
   heading: {
     width: "80%",
@@ -108,7 +109,7 @@ export default function QuestionCard(props) {
         text: "dummy",
         likes: 10,
       },
-      0: {
+      1: {
         text: "doubledummy",
         likes: 20,
       },
@@ -174,12 +175,11 @@ export default function QuestionCard(props) {
           <br />
         </Grid>
         <ChoiceGrid className={classes.choiceGrid} choices={question.choices} />
-
-        {/* <Comments
-          comments={question.comments}
-          setCommentOpen={setCommentOpenHandler}
-        /> */}
       </div>
+      <Comments
+        comments={question.comments}
+        setCommentOpen={setCommentOpenHandler}
+      />
     </Box>
   );
 }

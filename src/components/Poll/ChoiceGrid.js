@@ -221,7 +221,8 @@ export default function ChoiceGrid(props) {
         results={props.results}
         voted={voted}
         setVoted={setVoted}
-        //refreshHandler={refreshHandler}
+        index={props.index}
+        setIndex={props.setIndex}
       />
     );
   }

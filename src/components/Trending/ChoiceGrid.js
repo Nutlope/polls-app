@@ -15,7 +15,7 @@ const useStyle = makeStyles((theme) => ({
   choice: {
     border: "0px",
     width: "150px",
-    height: "150px",
+    height: "100px",
     marginBottom: "5px",
     justifyContent: "center",
     color: "black",
@@ -23,7 +23,7 @@ const useStyle = makeStyles((theme) => ({
   choiceLong: {
     border: "0px",
     width: "150px",
-    height: "300px",
+    height: "200px",
     marginBottom: "5px",
     justifyContent: "center",
     color: "black",

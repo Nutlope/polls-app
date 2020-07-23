@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./poll.css";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import Link from "@material-ui/core/Link";
 import commenter from "./../../assets/commenter.png";
 import SendIcon from "./../../assets/send.png";
 import SendActivatedIcon from "./../../assets/sendActivated.png";
@@ -127,6 +126,7 @@ export default function Comments(props) {
 
     copyComments.push(newComment); //todo
     setComments(copyComments);
+    setNewComment("");
   };
 
   return (
@@ -139,6 +139,7 @@ export default function Comments(props) {
           variant='outlined'
           placeholder='Write a comment...'
           onChange={inputHandler}
+          value={newComment}
         />
         {activatedIcon ? (
           <img

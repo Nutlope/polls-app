@@ -10,7 +10,7 @@ import CollapseIcon from "./../../assets/collapse.png";
 import ScrollContainer from "react-indiana-drag-scroll";
 import QuestionCard from "./QuestionCard";
 import logo from "./../../assets/logo-image.png";
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -93,9 +93,6 @@ const useStyles = makeStyles((theme) => ({
 function ExpandableHeading(categoryText, question) {
   const classes = useStyles();
   const [clicked, setClicked] = useState(false);
-
-  console.log(question);
-  console.log(question.choices);
 
   const clickOpenHandler = () => {
     setClicked(!clicked);
