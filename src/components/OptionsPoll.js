@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { PollContext } from "./PollContext";
+import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import "./general.css";
 import logoDrawing from "./../assets/logo-image.png";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import ProgressDotUnfinished from "./../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../assets/progress-dot-finished.png";
 import vectorLeft from "./../assets/vector-left.png";
@@ -97,11 +99,35 @@ const useStyles = makeStyles((theme) => ({
 
 function OptionsPoll() {
   const classes = useStyles();
-  const [value, setValue] = useState("recents");
+  const [poll, setPoll] = useContext(PollContext);
+  const [option1, setOption1] = useState("");
+  const [option2, setOption2] = useState("");
+  const [option3, setOption3] = useState("");
+  const [option4, setOption4] = useState("");
+  const [isAdded, setIsAdded] = useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleOptions = (event) => {
+    if (event.target.name == "option1") {
+      setOption1(event.target.value);
+    } else if (event.target.name == "option2") {
+      setOption2(event.target.value);
+    } else if (event.target.name == "option3") {
+      setOption3(event.target.value);
+    } else if (event.target.name == "option4") {
+      setOption4(event.target.value);
+    }
   };
+
+  const clickHandler = () => {
+    setIsAdded(isAdded + 1);
+  };
+
+  const submitHandler = () => {
+    poll.options = [option1, option2, option3, option4];
+    setPoll(poll);
+  };
+
+  console.log("This is the global poll in 2nd screen: ", poll);
 
   return (
     <>
@@ -113,7 +139,7 @@ function OptionsPoll() {
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <div className={classes.progressBar}>
-            <Link href="/StartPoll">
+            <Link to="/StartPoll">
               <img src={vectorLeft} className={classes.vector} alt="Back" />
             </Link>
             <img
@@ -141,7 +167,7 @@ function OptionsPoll() {
               className={classes.progressDot}
               alt=""
             />
-            <Link href="/Agespoll">
+            <Link to="/Agespoll" onClick={submitHandler}>
               <img
                 type="submit"
                 src={vectorRight}
@@ -151,13 +177,69 @@ function OptionsPoll() {
             </Link>
           </div>
           <div className={classes.title}>What do they have to choose from?</div>
-          <Button variant="contained" fullWidth className={classes.button}>
-            Yes
-          </Button>
-          <Button variant="contained" fullWidth className={classes.button}>
-            No
-          </Button>
-          <Link href="">
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="option"
+                name="option1"
+                variant="outlined"
+                fullWidth
+                required
+                id="option"
+                label="Enter Option 1 here"
+                value={option1}
+                onChange={handleOptions}
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="option"
+                name="option2"
+                variant="outlined"
+                fullWidth
+                required
+                id="option"
+                label="Enter Option 2 here"
+                value={option2}
+                onChange={handleOptions}
+                autoFocus
+              />
+            </Grid>
+            {isAdded >= 1 && (
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="option"
+                  name="option3"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  id="option"
+                  label="Enter Option 3 here"
+                  value={option3}
+                  onChange={handleOptions}
+                  autoFocus
+                />
+              </Grid>
+            )}
+            {isAdded >= 2 && (
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="option"
+                  name="option4"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  id="option"
+                  label="Enter Option 4 here"
+                  value={option4}
+                  onChange={handleOptions}
+                  autoFocus
+                />
+              </Grid>
+            )}
+          </Grid>
+          <Button onClick={clickHandler}>
             <Icon
               className={classes.addButton}
               color="primary"
@@ -165,7 +247,7 @@ function OptionsPoll() {
             >
               add_circle
             </Icon>
-          </Link>
+          </Button>
           <img
             src={logoDrawing}
             width="234px"

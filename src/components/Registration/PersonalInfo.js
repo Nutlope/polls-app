@@ -157,7 +157,6 @@ export default function PersonalInfo() {
   };
 
   const submitHandler = (event) => {
-    // event.preventDefault();
     person.fname = firstname;
     person.lname = lastname;
     person.gender = gender;
@@ -166,44 +165,44 @@ export default function PersonalInfo() {
   };
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
-            <Link to='/registration-personal-info'>
-              <img src={vectorLeft} className={classes.vector} alt='Back' />
+            <Link to="/registration-personal-info">
+              <img src={vectorLeft} className={classes.vector} alt="Back" />
             </Link>
             <img
               src={ProgressDotFinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
             <img
               src={ProgressDotUnfinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
             <img
               src={ProgressDotUnfinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
             <img
               src={ProgressDotUnfinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
-            <Link onClick={submitHandler} to='/registration-create-account'>
-              <img src={vectorRight} className={classes.vector} alt='Next' />
+            <Link onClick={submitHandler} to="/registration-create-account">
+              <img src={vectorRight} className={classes.vector} alt="Next" />
             </Link>
           </div>
           <img
             src={logoDrawing}
-            width='234px'
-            height='140px'
-            top='138px'
-            alt=''
+            width="234px"
+            height="140px"
+            top="138px"
+            alt=""
           />
           <p className={classes.topPara}>Tell us a little about yourself.</p>
 
@@ -211,12 +210,12 @@ export default function PersonalInfo() {
             <Grid className={classes.nameLine}>
               <Grid className={classes.textfield} item>
                 <TextField
-                  autoComplete='fname'
-                  name='firstName'
-                  variant='outlined'
+                  autoComplete="fname"
+                  name="firstName"
+                  variant="outlined"
                   required
-                  id='firstName'
-                  label='First Name'
+                  id="firstName"
+                  label="First Name"
                   autoFocus
                   value={firstname}
                   onChange={changeFirstnameHandler}
@@ -224,12 +223,12 @@ export default function PersonalInfo() {
               </Grid>
               <Grid className={classes.textfield} item>
                 <TextField
-                  autoComplete='lname'
-                  name='lastName'
-                  variant='outlined'
+                  autoComplete="lname"
+                  name="lastName"
+                  variant="outlined"
                   required
-                  id='lastName'
-                  label='Last Name'
+                  id="lastName"
+                  label="Last Name"
                   autoFocus
                   onChange={changeLastnameHandler}
                 />
@@ -238,44 +237,44 @@ export default function PersonalInfo() {
             <Grid item className={classes.dobField}>
               <TextField
                 className={classes.dobField}
-                autoComplete='dateOfBirth'
-                name='dob'
-                variant='outlined'
+                autoComplete="dateOfBirth"
+                name="dob"
+                variant="outlined"
                 required
-                id='dob'
-                helperText='Date Of Birth'
+                id="dob"
+                helperText="Date Of Birth"
                 autoFocus
-                type='date'
+                type="date"
                 onChange={changeDobHandler}
               />
             </Grid>
             <Grid className={classes.genderGrid}>
-              <FormControl component='gender-radio'>
-                <FormLabel component='legend'>Gender</FormLabel>
+              <FormControl component="gender-radio">
+                <FormLabel component="legend">Gender</FormLabel>
                 <RadioGroup
-                  defaultValue='female'
-                  aria-label='gender'
-                  name='gender'
+                  defaultValue="female"
+                  aria-label="gender"
+                  name="gender"
                 >
                   <FormControlLabel
                     className={classes.radioChoice}
-                    value='female'
+                    value="female"
                     control={<Radio />}
-                    label='Female'
+                    label="Female"
                     onChange={changeGenderFemaleHandler}
                   />
                   <FormControlLabel
                     className={classes.radioChoice}
-                    value='male'
+                    value="male"
                     control={<Radio />}
-                    label='Male'
+                    label="Male"
                     onChange={changeGenderMaleHandler}
                   />
                   <FormControlLabel
                     className={classes.radioChoice}
-                    value='other'
+                    value="other"
                     control={<Radio />}
-                    label='Other'
+                    label="Other"
                     onChange={changeGenderOtherHandler}
                   />
                 </RadioGroup>
@@ -285,7 +284,7 @@ export default function PersonalInfo() {
         </div>
         <Grid className={classes.login}>
           Already have an account?&nbsp;
-          <Link to='/'>Log in here.</Link>
+          <Link to="/">Log in here.</Link>
         </Grid>
       </div>
     </Container>
