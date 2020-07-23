@@ -1,17 +1,12 @@
-Polling app that users can vote on based on location.
-
 # Description
 
-This is a polling app similar to polls on twitter. We will have users create accounts and have the ability to create polls with multiple options, which poll creators can limit to a certain location or a demographic.
+curioCity is a Polling app that allows users to vote and create polls anonymously as well as target a specific location and demographic.
 
-# Features for V0
+# Demo
+Our early figma prototype can be found here --> https://www.figma.com/proto/C0h9V3e7IuBgrfGJK1toxZ/BEMMM?node-id=30%3A21&scaling=scale-down
+Visit https://bemm-app.web.app/ for a demo of the app. It's still a work in progress!
 
-- User authentication through having users login and signup
-- Need to fill out certain questions to register
-- Ability to create a simple poll with multiple questions
-
-# Features for V1
-
-- Limit polls by locations / demographic
-- Notifications for users including emails
-- Allow comments on polls
+# Upcoming Features
+- Email / text notifications
+- Profile pages
+- ML algorithm to best match interests to polls
