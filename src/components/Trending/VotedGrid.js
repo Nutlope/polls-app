@@ -127,8 +127,8 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     position: "absolute",
     height: "30px",
-    right: "0px",
-    top: "43%",
+    right: "24px",
+    top: "57%",
   },
 }));
 

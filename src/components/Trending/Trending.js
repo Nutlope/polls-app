@@ -8,7 +8,8 @@ import addPoll from "./../../assets/addPoll.png";
 import ExpandIcon from "./../../assets/expand.png";
 import CollapseIcon from "./../../assets/collapse.png";
 import ScrollContainer from "react-indiana-drag-scroll";
-import ChoiceGrid from "./ChoiceGrid";
+import QuestionCard from "./QuestionCard";
+import logo from "./../../assets/logo-image.png";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -67,16 +68,25 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     width: "100%",
     marginBottom: "30px",
+    justifyContent: "center",
+    alignItems: "center",
   },
   collapsedCategory: {
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    marginBottom: "30px",
+    marginBottom: "20px",
   },
   questionCard: {
     marginBottom: "100px",
     marginTop: "50px",
+  },
+  logo: {
+    display: "flex",
+    position: "absolute",
+    top: "4.5%",
+    right: "0",
+    height: "12%",
   },
 }));
 
@@ -113,17 +123,17 @@ function ExpandableHeading(categoryText, question) {
           <img
             className={classes.expandIcon}
             src={CollapseIcon}
-            alt="expand"
+            alt='expand'
             onClick={clickOpenHandler}
           />
         </div>
-        <ChoiceGrid
+        <QuestionCard
           category={question.category}
           title={question.title}
           choices={question.choices}
+          results={question.results}
           comments={question.comments}
         />
-        <ChoiceGrid className={classes.questionCard} />
       </div>
     );
   }
@@ -138,7 +148,7 @@ function ExpandableHeading(categoryText, question) {
         <img
           className={classes.expandIcon}
           src={ExpandIcon}
-          alt="expand"
+          alt='expand'
           onClick={clickOpenHandler}
         />
       </div>
@@ -157,6 +167,12 @@ export default function Trending(props) {
       choiceTwo: "Moonrise Kingdom",
       choiceThree: "Grand Budapest Hotel",
       choiceFour: "",
+    },
+    results: {
+      choiceOne: 80,
+      choiceTwo: 10,
+      choiceThree: 10,
+      choiceFour: 0,
     },
     comments: [
       "If you’re fan of animation, go with Isle of Dogs",
@@ -206,7 +222,7 @@ export default function Trending(props) {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.topBar}>
@@ -228,6 +244,7 @@ export default function Trending(props) {
           {ExpandableHeading("Miscelleneous", question)}
           {ExpandableHeading("In Your City", question)}
         </ScrollContainer>
+        <img className={classes.logo} src={logo} alt='' />
       </div>
     </Container>
   );

@@ -13,7 +13,6 @@ import ShareLocation from "./components/Registration/ShareLocation";
 import PersonalInterest from "./components/Registration/PersonalInterest";
 import Poll from "./components/Poll/Poll";
 import Me from "./components/Profile/Me";
-import Comments from "./components/Poll/CommentsExpanded";
 import Trending from "./components/Trending/Trending";
 
 export default class App extends Component {
@@ -88,29 +87,29 @@ export default class App extends Component {
         <div>
           <RegistrationProvider>
             <Switch>
-              <Route path="/" exact component={SignUp} />
-              <Route path="/StartPoll" component={StartPoll} />
-              <Route path="/OptionsPoll" component={OptionsPoll} />
-              <Route path="/AgesPoll" component={AgesPoll} />
-              <Route path="/LocationPoll" component={LocationPoll} />
-              <Route path="/FinalPoll" component={FinalPoll} />
+              <Route path='/' exact component={SignUp} />
+              <Route path='/StartPoll' component={StartPoll} />
+              <Route path='/OptionsPoll' component={OptionsPoll} />
+              <Route path='/AgesPoll' component={AgesPoll} />
+              <Route path='/LocationPoll' component={LocationPoll} />
+              <Route path='/FinalPoll' component={FinalPoll} />
 
               <Route
-                path="/registration-personal-info"
+                path='/registration-personal-info'
                 component={PersonalInfo}
               />
-              <Route path="/registration-create-account">
+              <Route path='/registration-create-account'>
                 <CreateAccount />
               </Route>
-              <Route path="/registration-share-location">
+              <Route path='/registration-share-location'>
                 <ShareLocation />
               </Route>
-              <Route path="/registration-personal-interest">
+              <Route path='/registration-personal-interest'>
                 <PersonalInterest />
               </Route>
 
               <Route
-                path="/Poll"
+                path='/Poll'
                 render={(props) => (
                   <Poll
                     category={this.state.category}
@@ -120,9 +119,9 @@ export default class App extends Component {
                   />
                 )}
               />
-              <Route path="/Trending" component={Trending} />
+              <Route path='/Trending' component={Trending} />
               <Route
-                path="/Me"
+                path='/Me'
                 component={() => (
                   <Me
                     polls={this.state.polls}

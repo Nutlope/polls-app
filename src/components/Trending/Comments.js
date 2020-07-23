@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./poll.css";
+import "./trending.css";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
@@ -102,6 +102,8 @@ function renderComments(comments, classes, props, len) {
 }
 
 export default function Comments(props) {
+  console.log("comments props", props);
+
   const classes = useStyles();
   const [activatedIcon, setActivatedIcon] = useState(false);
   const [len, setLen] = useState(props.comments.length);
