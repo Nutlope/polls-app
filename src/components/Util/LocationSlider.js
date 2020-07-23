@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
@@ -52,7 +52,7 @@ function valuetext(value) {
   return `${value} miles`;
 }
 
-export default function DiscreteSlider() {
+export default function DiscreteSlider(props) {
   const classes = useStyles();
 
   return (
@@ -61,8 +61,10 @@ export default function DiscreteSlider() {
         Mile Radius:
       </Typography>
       <Slider
+        onChange={props.changeHandler}
+        value={props.mileRadius}
         className={classes.slider}
-        defaultValue={80}
+        defaultValue={50}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-always"
         step={10}

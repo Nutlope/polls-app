@@ -30,13 +30,8 @@ function valuetext(value) {
   return value;
 }
 
-export default function RangeSlider() {
+export default function RangeSlider(props) {
   const classes = useStyles();
-  const [value, setValue] = useState([20, 37]);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <div className={classes.root}>
@@ -44,9 +39,11 @@ export default function RangeSlider() {
         Age Range:
       </Typography>
       <Slider
+        min={18}
+        max={90}
+        onChange={props.changeHandler}
+        value={props.ageRange}
         className={classes.slider}
-        value={value}
-        onChange={handleChange}
         valueLabelDisplay="on"
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}

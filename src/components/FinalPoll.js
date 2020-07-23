@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { PollContext } from "./PollContext";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -17,7 +18,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Divider from "@material-ui/core/Divider";
 import "./general.css";
 import logoDrawing from "./../assets/logo-image.png";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import ProgressDotUnfinished from "./../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../assets/progress-dot-finished.png";
 import vectorLeft from "./../assets/vector-left.png";
@@ -25,6 +26,7 @@ import vectorRight from "./../assets/vector-right.png";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import LocationSlider from "./Util/LocationSlider";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
     backgroundColor: "#2EC4B6",
+    marginTop: "40px",
   },
   formControl: {
     margin: theme.spacing(1),
@@ -77,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bottom: {
     position: "relative",
-    bottom: "-50px",
+    bottom: "30px",
   },
   progressBar: {
     marginTop: "23px",
@@ -167,6 +169,33 @@ const useStyles = makeStyles((theme) => ({
 
 function LocationPoll() {
   const classes = useStyles();
+  const [poll, setPoll] = useContext(PollContext);
+
+  const sendPoll = () => {
+    axios
+      .post(
+        "https://us-central1-curiocity-282815.cloudfunctions.net/create_poll/.json",
+        poll
+      )
+      .then((response) => {
+        console.log("it worked!", response);
+      })
+      .catch((error) => {
+        console.log("it failed", error);
+      });
+  };
+
+  console.log("This is the poll on the last page", poll);
+
+  const submitHandler = () => {
+    sendPoll();
+  };
+
+  // delete
+  useEffect(() => {
+    console.log("The poll is: ", poll);
+    sendPoll();
+  }, []);
 
   return (
     <>
@@ -175,10 +204,10 @@ function LocationPoll() {
           Start a Poll
         </Grid>
       </Grid>
-      <Container component='main' maxWidth='xs'>
+      <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <div className={classes.progressBar}>
-            <Link href='/LocationPoll'>
+            <Link to="/LocationPoll">
               <img src={vectorLeft} className={classes.vector} />
             </Link>
             <img src={ProgressDotFinished} className={classes.progressDot} />
@@ -190,66 +219,67 @@ function LocationPoll() {
           <div className={classes.title}>Ready to Post?</div>
           <div className={classes.category}>
             <span className={classes.greytext}>Category:</span>{" "}
-            <span className={classes.blacktext}>Politics</span>
+            <span className={classes.blacktext}>{poll.category}</span>
           </div>
 
           <div className={classes.questionAndChoices}>
             <div className={classes.question}>
               <span className={classes.greytext}>Question:</span>{" "}
-              <span className={classes.blacktext}>
-                Which Wes Anderson film should I watch tonight?
-              </span>
+              <span className={classes.blacktext}>{poll.question}</span>
             </div>
             <div className={classes.options}>
               <TextField
-                id='1'
-                label='1'
-                defaultValue='The Royal Tenenbaums'
-                variant='outlined'
+                classes={{ root: classes.options }}
+                id="1"
+                label="1"
+                value={poll.options[0]}
+                variant="outlined"
               />
               <TextField
-                id='2'
-                label='2'
-                defaultValue='Grand Budapest Hotel'
-                variant='outlined'
+                id="2"
+                label="2"
+                value={poll.options[1]}
+                variant="outlined"
               />
               <TextField
-                id='3'
-                label='3'
-                defaultValue='Moonrise Kingdom'
-                variant='outlined'
+                id="3"
+                label="3"
+                value={poll.options[2] ? poll.options[2] : ""}
+                variant="outlined"
               />
               <TextField
-                id='4'
-                label='4'
-                defaultValue='Isle of Dogs'
-                variant='outlined'
+                id="4"
+                label="4"
+                value={poll.options[3] ? poll.options[3] : ""}
+                variant="outlined"
               />
             </div>
           </div>
           <div className={classes.category}>
             <span className={classes.greytext}>Age Range:</span>{" "}
-            <span className={classes.blacktext}>40-60 years</span>
+            <span className={classes.blacktext}>
+              {poll.age_range[0]} - {poll.age_range[1]} years
+            </span>
             <div>
               <span className={classes.greytext}>Mile Radius:</span>{" "}
-              <span className={classes.blacktext}>20 miles</span>
+              <span className={classes.blacktext}>{poll.radius} miles</span>
             </div>
           </div>
           <Button
-            type='submit'
-            variant='contained'
-            color='primary'
+            type="submit"
+            variant="contained"
+            color="primary"
             className={classes.submit}
-            //   onClick={submitHandler}
+            onSubmit={submitHandler}
           >
             Post
           </Button>
           <img
             src={logoDrawing}
-            width='234px'
-            height='140px'
-            top='138px'
-            alt=''
+            width="234px"
+            height="140px"
+            top="138px"
+            alt=""
             className={classes.bottom}
           />
         </div>

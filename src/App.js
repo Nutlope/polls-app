@@ -6,6 +6,7 @@ import OptionsPoll from "./components/OptionsPoll";
 import LocationPoll from "./components/LocationPoll";
 import FinalPoll from "./components/FinalPoll";
 import { RegistrationProvider } from "./components/Registration/RegistrationContext";
+import { PollProvider } from "./components/PollContext";
 import PersonalInfo from "./components/Registration/PersonalInfo";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CreateAccount from "./components/Registration/CreateAccount";
@@ -89,12 +90,23 @@ export default class App extends Component {
           <RegistrationProvider>
             <Switch>
               <Route path="/" exact component={SignUp} />
-              <Route path="/StartPoll" component={StartPoll} />
-              <Route path="/OptionsPoll" component={OptionsPoll} />
-              <Route path="/AgesPoll" component={AgesPoll} />
-              <Route path="/LocationPoll" component={LocationPoll} />
-              <Route path="/FinalPoll" component={FinalPoll} />
-
+              <PollProvider>
+                <Route path="/StartPoll">
+                  <StartPoll />
+                </Route>
+                <Route path="/OptionsPoll">
+                  <OptionsPoll />
+                </Route>
+                <Route path="/AgesPoll">
+                  <AgesPoll />
+                </Route>
+                <Route path="/LocationPoll">
+                  <LocationPoll />
+                </Route>
+                <Route path="/FinalPoll">
+                  <FinalPoll />
+                </Route>
+              </PollProvider>
               <Route
                 path="/registration-personal-info"
                 component={PersonalInfo}
@@ -108,7 +120,6 @@ export default class App extends Component {
               <Route path="/registration-personal-interest">
                 <PersonalInterest />
               </Route>
-
               <Route
                 path="/Poll"
                 render={(props) => (

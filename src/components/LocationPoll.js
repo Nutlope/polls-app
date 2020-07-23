@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { PollContext } from "./PollContext";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -17,7 +18,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Divider from "@material-ui/core/Divider";
 import "./general.css";
 import logoDrawing from "./../assets/logo-image.png";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import ProgressDotUnfinished from "./../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../assets/progress-dot-finished.png";
 import vectorLeft from "./../assets/vector-left.png";
@@ -25,6 +26,7 @@ import vectorRight from "./../assets/vector-right.png";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import LocationSlider from "./Util/LocationSlider";
+import { v4 as uuidv4 } from "uuid";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -111,6 +113,25 @@ const useStyles = makeStyles((theme) => ({
 
 function LocationPoll() {
   const classes = useStyles();
+  const [poll, setPoll] = useContext(PollContext);
+  const [mileRadius, setMileRadius] = useState(0);
+  const [pollid, setPollid] = useState();
+
+  const submitHandler = () => {
+    poll.radius = mileRadius;
+    poll.pollid = pollid;
+    setPoll(poll);
+  };
+
+  const changeHandler = (e, val) => {
+    setMileRadius(val);
+  };
+
+  useEffect(() => {
+    setPollid(uuidv4());
+  }, []);
+
+  console.log("This is the global poll in 4th screen: ", poll);
 
   return (
     <>
@@ -122,7 +143,7 @@ function LocationPoll() {
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <div className={classes.progressBar}>
-            <Link href="/AgesPoll">
+            <Link to="/AgesPoll">
               <img src={vectorLeft} className={classes.vector} />
             </Link>
             <img src={ProgressDotFinished} className={classes.progressDot} />
@@ -130,12 +151,15 @@ function LocationPoll() {
             <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link href="/FinalPoll">
+            <Link to="/FinalPoll" onClick={submitHandler}>
               <img type="submit" src={vectorRight} className={classes.vector} />
             </Link>
           </div>
           <div className={classes.title}>Where do you want opinions from?</div>
-          <LocationSlider />
+          <LocationSlider
+            changeHandler={changeHandler}
+            mileRadius={mileRadius}
+          />
           <img
             src={logoDrawing}
             width="234px"

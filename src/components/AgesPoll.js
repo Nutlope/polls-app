@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { PollContext } from "./PollContext";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -17,7 +18,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Divider from "@material-ui/core/Divider";
 import "./general.css";
 import logoDrawing from "./../assets/logo-image.png";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import ProgressDotUnfinished from "./../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../assets/progress-dot-finished.png";
 import vectorLeft from "./../assets/vector-left.png";
@@ -77,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bottom: {
     position: "relative",
-    bottom: "-50px",
+    bottom: "30px",
   },
   progressBar: {
     marginTop: "23px",
@@ -104,6 +105,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "grey",
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 320,
+  },
   addButton: {
     marginTop: "20px",
   },
@@ -111,6 +116,25 @@ const useStyles = makeStyles((theme) => ({
 
 function AgesPoll() {
   const classes = useStyles();
+  const [poll, setPoll] = useContext(PollContext);
+  const [ageRange, setAgeRange] = useState([20, 35]);
+  const [gender, setGender] = useState("");
+
+  const submitHandler = () => {
+    poll.age_range = ageRange;
+    poll.gender = gender;
+    setPoll(poll);
+  };
+
+  const genderHandler = (e) => {
+    setGender(e.target.value);
+  };
+
+  const changeHandler = (e, val) => {
+    setAgeRange(val);
+  };
+
+  console.log("This is the global poll in 3rd screen: ", poll);
 
   return (
     <>
@@ -122,7 +146,7 @@ function AgesPoll() {
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <div className={classes.progressBar}>
-            <Link href="/OptionsPoll">
+            <Link to="/OptionsPoll">
               <img src={vectorLeft} className={classes.vector} />
             </Link>
             <img src={ProgressDotFinished} className={classes.progressDot} />
@@ -130,12 +154,31 @@ function AgesPoll() {
             <img src={ProgressDotFinished} className={classes.progressDot} />
             <img src={ProgressDotUnfinished} className={classes.progressDot} />
             <img src={ProgressDotUnfinished} className={classes.progressDot} />
-            <Link href="/LocationPoll">
+            <Link to="/LocationPoll" onClick={submitHandler}>
               <img type="submit" src={vectorRight} className={classes.vector} />
             </Link>
           </div>
           <div className={classes.title}>Who do you want opinions from?</div>
-          <RangeSlider />
+          <RangeSlider changeHandler={changeHandler} ageRange={ageRange} />
+          <Grid item xs={12}>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">
+                Target Gender
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                fullWidth
+                id="demo-simple-select"
+                value={gender}
+                onChange={genderHandler}
+              >
+                <MenuItem value="Any">Any</MenuItem>
+                <MenuItem value="Male">Male</MenuItem>
+                <MenuItem value="Female">Female</MenuItem>
+                <MenuItem value="Non-Binary">Non-Binary</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
           <img
             src={logoDrawing}
             width="234px"
