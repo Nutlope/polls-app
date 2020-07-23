@@ -17,6 +17,7 @@ import Comments from "./Comments";
 import CommentsExpanded from "./CommentsExpanded";
 import axios from "axios";
 import { RegistrationContext } from "./../Registration/RegistrationContext";
+import savedIcon from "./../../assets/saved.png";
 
 const useStyle = makeStyles((theme) => ({
   paper: {
@@ -116,6 +117,7 @@ const useStyle = makeStyles((theme) => ({
 export default function Poll(props) {
   const classes = useStyle();
   const [person, setPerson] = useContext(RegistrationContext);
+  const [saved, setSaved] = useState(false);
   const [commentOpen, setCommentOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const [question, setQuestion] = useState({
@@ -133,7 +135,7 @@ export default function Poll(props) {
       choiceThree: 0,
       choiceFour: 0,
     },
-    comments: ["arielhassandavidarzuwu"],
+    comments: [],
   }); //todo
 
   // Causes loadPoll (API call) to run once every time the page is reloaded
@@ -165,19 +167,19 @@ export default function Poll(props) {
         newQuestion.choices = {
           choiceOne: response.data[index].options[0],
           choiceTwo: response.data[index].options[1],
-          choiceThree: num_choices == 3 ? response.data[index].options[2] : "",
-          choiceFour: num_choices == 4 ? response.data[index].options[3] : "",
+          choiceThree: num_choices === 3 ? response.data[index].options[2] : "",
+          choiceFour: num_choices === 4 ? response.data[index].options[3] : "",
         };
-        if (total_votes != 0) {
+        if (total_votes !== 0) {
           newQuestion.results = {
             choiceOne: response.data[index].votes[0] / total_votes,
             choiceTwo: response.data[index].votes[1] / total_votes,
             choiceThree:
-              num_choices == 3
+              num_choices === 3
                 ? response.data[index].votes[2] / total_votes
                 : 0,
             choiceFour:
-              num_choices == 4
+              num_choices === 4
                 ? response.data[index].votes[3] / total_votes
                 : 0,
           };
@@ -191,6 +193,7 @@ export default function Poll(props) {
         }
         newQuestion.comments = response.data[index].comments;
         newQuestion.comments.shift();
+
         setQuestion(newQuestion);
       })
       .catch((error) => {
@@ -198,22 +201,26 @@ export default function Poll(props) {
       });
   };
 
-  console.log("questions are: ", question);
-
   const setCommentOpenHandler = (e) => {
     setCommentOpen(!commentOpen);
   };
 
   const saveHandler = (e) => {
-    //todo
+    setSaved(!saved);
   };
 
   const skipHandler = (e) => {
     //todo
+    setIndex(index + 1);
   };
 
   if (commentOpen) {
-    return <CommentsExpanded setCommentOpen={setCommentOpenHandler} />;
+    return (
+      <CommentsExpanded
+        setCommentOpen={setCommentOpenHandler}
+        comments={question.comments}
+      />
+    );
   }
 
   return (
@@ -234,13 +241,26 @@ export default function Poll(props) {
         </div>
         <Box container className={classes.box} boxShadow={2}>
           <Grid className={classes.boxTopBar}>
-            <img
-              src={saveIcon}
-              className={classes.saveIcon}
-              alt='Save'
-              onClick={saveHandler}
-            />
-            <div className={classes.category}>{question.category}</div>
+            {saved ? (
+              <img
+                src={savedIcon}
+                className={classes.saveIcon}
+                alt='Save'
+                onClick={saveHandler}
+              />
+            ) : (
+              <img
+                src={saveIcon}
+                className={classes.saveIcon}
+                alt='Save'
+                onClick={saveHandler}
+              />
+            )}
+            <div className={classes.category}>
+              {question.category === "misc"
+                ? "Miscelleneous"
+                : question.category}
+            </div>
             <img
               className={classes.skipIcon}
               src={skipIcon}
@@ -250,15 +270,15 @@ export default function Poll(props) {
           </Grid>
           <div className={classes.question}>
             <Grid className={classes.heading}>
-              <h2 className={classes.title}>{props.title}</h2>
+              <h2 className={classes.title}>{question.title}</h2>
               <br />
             </Grid>
             <ChoiceGrid
               className={classes.choiceGrid}
-              choices={props.choices}
+              choices={question.choices}
             />
             <Comments
-              comments={props.comments}
+              comments={question.comments}
               setCommentOpen={setCommentOpenHandler}
             />
           </div>

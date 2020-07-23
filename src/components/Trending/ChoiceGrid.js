@@ -42,6 +42,28 @@ export default function ChoiceGrid(props) {
   const [voted, setVoted] = useState("");
   const [dummy, setDummy] = useState(0);
 
+  const question = {
+    category: "entertainment",
+    title: "Which Wes Anderson Movie should I watch tonight?",
+    time: "2 hours ago",
+    choices: {
+      choiceOne: "The Royal sth",
+      choiceTwo: "Moonrise Kingdom",
+      choiceThree: "Grand Budapest Hotel",
+      choiceFour: "",
+    },
+    results: {
+      choiceOne: 234,
+      choiceTwo: 1,
+      choiceThree: 3434,
+      choiceFour: 0,
+    },
+    comments: [
+      "If you’re fan of animation, go with Isle of Dogs",
+      "Grand Budapest Hotel has a great cast!",
+    ],
+  };
+
   const refreshHandler = (qnNum) => {
     // use if statement to check if qnNum matches with this.qnNum
     // API
@@ -65,18 +87,18 @@ export default function ChoiceGrid(props) {
   };
 
   if (voted === "") {
-    if (props.choices.choiceThree === "") {
+    if (question.choices.choiceThree === "") {
       return (
         <div>
           <Grid className={classes.formRow}>
             <Chip
               label={
                 <Typography className={classes.choiceWords}>
-                  {props.choices.choiceOne}
+                  {question.choices.choiceOne}
                 </Typography>
               }
               value='choiceOne'
-              clickable={props.choices.choiceOne !== ""}
+              clickable={question.choices.choiceOne !== ""}
               onClick={clickChoiceOneHandler}
               variant='outlined'
               className={classes.choiceLong}
@@ -85,10 +107,10 @@ export default function ChoiceGrid(props) {
             <Chip
               label={
                 <Typography className={classes.choiceWords}>
-                  {props.choices.choiceTwo}
+                  {question.choices.choiceTwo}
                 </Typography>
               }
-              clickable={props.choices.choiceTwo !== ""}
+              clickable={question.choices.choiceTwo !== ""}
               value='choiceTwo'
               onClick={clickChoiceTwoHandler}
               variant='outlined'
@@ -100,14 +122,14 @@ export default function ChoiceGrid(props) {
       );
     }
 
-    if (props.choices.choiceFour === "") {
+    if (question.choices.choiceFour === "") {
       return (
         <div>
           <Grid className={classes.formRow}>
             <Chip
               label={
                 <Typography className={classes.choiceWords}>
-                  {props.choices.choiceOne}
+                  {question.choices.choiceOne}
                 </Typography>
               }
               clickable
@@ -120,7 +142,7 @@ export default function ChoiceGrid(props) {
             <Chip
               label={
                 <Typography className={classes.choiceWords}>
-                  {props.choices.choiceTwo}
+                  {question.choices.choiceTwo}
                 </Typography>
               }
               clickable
@@ -134,7 +156,7 @@ export default function ChoiceGrid(props) {
             <Chip
               label={
                 <Typography className={classes.choiceWords}>
-                  {props.choices.choiceThree}
+                  {question.choices.choiceThree}
                 </Typography>
               }
               clickable
@@ -146,7 +168,7 @@ export default function ChoiceGrid(props) {
             <Chip
               label={
                 <Typography className={classes.choiceWords}>
-                  {props.choices.choiceFour}
+                  {question.choices.choiceFour}
                 </Typography>
               }
               variant='outlined'
@@ -163,10 +185,10 @@ export default function ChoiceGrid(props) {
           <Chip
             label={
               <Typography className={classes.choiceWords}>
-                {props.choices.choiceOne}
+                {question.choices.choiceOne}
               </Typography>
             }
-            clickable={props.choices.choiceOne !== ""}
+            clickable={question.choices.choiceOne !== ""}
             onClick={clickChoiceOneHandler}
             value='choiceOne'
             variant='outlined'
@@ -176,10 +198,10 @@ export default function ChoiceGrid(props) {
           <Chip
             label={
               <Typography className={classes.choiceWords}>
-                {props.choices.choiceTwo}
+                {question.choices.choiceTwo}
               </Typography>
             }
-            clickable={props.choices.choiceTwo !== ""}
+            clickable={question.choices.choiceTwo !== ""}
             onClick={clickChoiceTwoHandler}
             variant='outlined'
             className={classes.choice}
@@ -190,10 +212,10 @@ export default function ChoiceGrid(props) {
           <Chip
             label={
               <Typography className={classes.choiceWords}>
-                {props.choices.choiceThree}
+                {question.choices.choiceThree}
               </Typography>
             }
-            clickable={props.choices.choiceThree !== ""}
+            clickable={question.choices.choiceThree !== ""}
             onClick={clickChoiceThreeHandler}
             variant='outlined'
             className={classes.choice}
@@ -202,10 +224,10 @@ export default function ChoiceGrid(props) {
           <Chip
             label={
               <Typography className={classes.choiceWords}>
-                {props.choices.choiceFour}
+                {question.choices.choiceFour}
               </Typography>
             }
-            clickable={props.choices.choiceFour !== ""}
+            clickable={question.choices.choiceFour !== ""}
             onClick={clickChoiceFourHandler} //todo: 3 choices but still clickable
             variant='outlined'
             className={classes.choice}
@@ -217,8 +239,8 @@ export default function ChoiceGrid(props) {
   } else {
     return (
       <VotedGrid
-        choices={props.choices}
-        results={props.results}
+        choices={question.choices}
+        results={question.results}
         voted={voted}
         setVoted={setVoted}
         //refreshHandler={refreshHandler}

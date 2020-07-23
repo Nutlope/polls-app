@@ -415,7 +415,3 @@ export default function PersonalInterest() {
     </Container>
   );
 }
-
-/**
- * todo: remove the right vector
- */

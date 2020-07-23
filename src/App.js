@@ -14,7 +14,6 @@ import ShareLocation from "./components/Registration/ShareLocation";
 import PersonalInterest from "./components/Registration/PersonalInterest";
 import Poll from "./components/Poll/Poll";
 import Me from "./components/Profile/Me";
-import Comments from "./components/Poll/CommentsExpanded";
 import Trending from "./components/Trending/Trending";
 
 export default class App extends Component {
