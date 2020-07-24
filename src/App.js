@@ -86,63 +86,61 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <Switch>
-            <Route path="/" exact component={SignUp} />
-            <PollProvider>
-              <Route path="/StartPoll">
-                <StartPoll />
-              </Route>
-              <Route path="/OptionsPoll">
-                <OptionsPoll />
-              </Route>
-              <Route path="/AgesPoll">
-                <AgesPoll />
-              </Route>
-              <Route path="/LocationPoll">
-                <LocationPoll />
-              </Route>
-              <Route path="/FinalPoll">
-                <FinalPoll />
-              </Route>
-            </PollProvider>
-            <RegistrationProvider>
-              <Route
-                path="/registration-personal-info"
-                component={PersonalInfo}
-              />
-              <Route path="/registration-create-account">
-                <CreateAccount />
-              </Route>
-              <Route path="/registration-share-location">
-                <ShareLocation />
-              </Route>
-              <Route path="/registration-personal-interest">
-                <PersonalInterest />
-              </Route>
-              <Route
-                path="/Poll"
-                render={(props) => (
-                  <Poll
-                    category={this.state.category}
-                    title={this.state.title}
-                    choices={this.state.choices}
-                    comments={this.state.comments}
-                  />
-                )}
-              />
-              <Route path="/Trending" component={Trending} />
-              <Route
-                path="/Me"
-                component={() => (
-                  <Me
-                    polls={this.state.polls}
-                    name={this.state.name}
-                    location={this.state.location}
-                  />
-                )}
-              />
-            </RegistrationProvider>
-          </Switch>
+          <Route path="/" exact component={SignUp} />
+          <PollProvider>
+            <Route path="/StartPoll">
+              <StartPoll />
+            </Route>
+            <Route path="/OptionsPoll">
+              <OptionsPoll />
+            </Route>
+            <Route path="/AgesPoll">
+              <AgesPoll />
+            </Route>
+            <Route path="/LocationPoll">
+              <LocationPoll />
+            </Route>
+            <Route path="/FinalPoll">
+              <FinalPoll />
+            </Route>
+          </PollProvider>
+          <RegistrationProvider>
+            <Route
+              path="/registration-personal-info"
+              component={PersonalInfo}
+            />
+            <Route path="/registration-create-account">
+              <CreateAccount />
+            </Route>
+            <Route path="/registration-share-location">
+              <ShareLocation />
+            </Route>
+            <Route path="/registration-personal-interest">
+              <PersonalInterest />
+            </Route>
+            <Route
+              path="/Poll"
+              render={(props) => (
+                <Poll
+                  category={this.state.category}
+                  title={this.state.title}
+                  choices={this.state.choices}
+                  comments={this.state.comments}
+                />
+              )}
+            />
+            <Route path="/Trending" component={Trending} />
+            <Route
+              path="/Me"
+              component={() => (
+                <Me
+                  polls={this.state.polls}
+                  name={this.state.name}
+                  location={this.state.location}
+                />
+              )}
+            />
+          </RegistrationProvider>
         </div>
       </Router>
     );
