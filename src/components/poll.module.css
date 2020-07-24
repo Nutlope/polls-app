@@ -1,0 +1,110 @@
+body {
+  background-color: #ededed;
+}
+
+.paper {
+  font-family: Futura;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 700px;
+}
+
+.topBar {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  background-color: #ededed;
+  align-items: center;
+  justify-content: "space-between";
+}
+
+.navIcon {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.avatar {
+  margin: 8px;
+  background-color: #dc004e;
+}
+
+.form {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.submit {
+  margin: 24px 0px 16px;
+  background-color: #2ec4b6;
+}
+
+.formControl {
+  margin: 8px;
+  min-width: 320;
+}
+
+.root {
+  width: 500;
+}
+
+.title {
+  margin-top: 30px;
+  font-family: Futura;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+.top {
+  text-align: center;
+  padding: 10px;
+  font-family: Futura;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  background-color: #e3e3e3;
+  border-bottom: 0.6px solid grey;
+  border-top: 0.5px solid grey;
+}
+
+.bottom {
+  position: relative;
+  bottom: -50px;
+}
+
+.progressBar {
+  margin-top: 23px;
+  display: flex;
+  justify-content: spaces-between;
+}
+
+.progressDot {
+  margin: 2.5px 16px 0px 16px;
+  width: 11.78px;
+  height: 12px;
+  left: 239px;
+  top: 101px;
+}
+
+.vector {
+  margin-left: 32px;
+  margin-right: 32px;
+}
+
+.button {
+  margin: 12px;
+  font-weight: bold;
+  font-family: Futura;
+  text-align: left;
+  color: grey;
+}
+
+.addButton {
+  margin-top: 20px;
+}
