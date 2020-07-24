@@ -29,7 +29,6 @@ const useStyle = makeStyles((theme) => ({
     alignItems: "center",
     position: "relative",
     marginBottom: "20px",
-    position: "relative",
   },
   backIcon: {
     position: "absolute",
@@ -79,7 +78,7 @@ export default function CommentsExpanded(props) {
   };
 
   const inputHandler = (e) => {
-    if (e.target.value == "") {
+    if (e.target.value === "") {
       setActivatedIcon(false);
     } else {
       setActivatedIcon(true);
@@ -95,14 +94,14 @@ export default function CommentsExpanded(props) {
   };
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Container className={classes.topBar}>
           <img
             className={classes.backIcon}
             src={BackIcon}
-            alt='Back'
+            alt="Back"
             onClick={props.setCommentOpen}
           />
           <p>Comments</p>
@@ -115,19 +114,19 @@ export default function CommentsExpanded(props) {
         <div className={classes.commentBar}>
           <TextField
             className={classes.typeComment}
-            variant='outlined'
-            placeholder='Write a comment...'
+            variant="outlined"
+            placeholder="Write a comment..."
             onChange={inputHandler}
           />
           {activatedIcon ? (
             <img
               className={classes.sendIcon}
               src={SendActivatedIcon}
-              alt='send'
+              alt="send"
               onClick={sendHandler}
             />
           ) : (
-            <img className={classes.sendIcon} src={SendIcon} alt='send' />
+            <img className={classes.sendIcon} src={SendIcon} alt="send" />
           )}{" "}
         </div>
       </div>

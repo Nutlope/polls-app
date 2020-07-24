@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./poll.css";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container } from "@material-ui/core";
 import LikeIcon from "./../../assets/like.png";
 import AvatarIcon from "./../../assets/profile.png";
 import LikeActivatedIcon from "./../../assets/likeActivated.png";
@@ -61,14 +60,14 @@ export default function Comment(props) {
   };
 
   // this handles when the user likes
-  if (likesChanged == true) {
+  if (likesChanged === true) {
     const newLikes = comment.likes + 1;
     return (
       <div className={classes.commentRow}>
-        <img className={classes.avatar} src={AvatarIcon} alr='' />
+        <img className={classes.avatar} src={AvatarIcon} alt="" />
         <p className={classes.text}>{comment.text}</p>
         <div className={classes.likeGroup} onClick={clickHandler}>
-          <img className={classes.likeIcon} src={LikeActivatedIcon} />
+          <img className={classes.likeIcon} src={LikeActivatedIcon} alt="" />
           <p className={classes.likeNumLiked}>{newLikes}</p>
         </div>
       </div>
@@ -78,11 +77,11 @@ export default function Comment(props) {
   // this handles when the user likes and unlikes or just hasnt liked
   return (
     <div className={classes.commentRow}>
-      <img className={classes.avatar} src={AvatarIcon} alr='' />
+      <img className={classes.avatar} src={AvatarIcon} alt="" />
       <p className={classes.text}>{comment.text}</p>
       <div className={classes.likeGroup} onClick={clickHandler}>
-        <img className={classes.likeIcon} src={LikeIcon} />
-        <p className={classes.likeNum} id='numLikes'>
+        <img className={classes.likeIcon} src={LikeIcon} alt="" />
+        <p className={classes.likeNum} id="numLikes">
           {comment.likes}
         </p>
       </div>

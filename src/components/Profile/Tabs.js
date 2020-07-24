@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     left: "0",
     height: "350px",
-    overflowY: "hidden",
+    // overflowY: "hidden",
     overflowY: "scroll",
   },
   scrollSectionRight: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "-100%",
     left: "0",
     height: "350px",
-    overflowY: "hidden",
+    // overflowY: "hidden",
     overflowY: "scroll",
   },
 }));
@@ -63,7 +63,7 @@ function TabPanel(props) {
 
   return (
     <div
-      role='tabpanel'
+      role="tabpanel"
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
@@ -251,22 +251,22 @@ export default function FullWidthTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static' color='default'>
+      <AppBar position="static" color="default">
         <Tabs
           value={value}
           onChange={handleChange}
-          indicatorColor='primary'
-          textColor='#505050'
-          variant='fullWidth'
-          aria-label='full width tabs example'
+          indicatorColor="primary"
+          textColor="#505050"
+          variant="fullWidth"
+          aria-label="full width tabs example"
         >
           <Tab
-            label='Posted Polls'
+            label="Posted Polls"
             {...a11yProps(0)}
             className={classes.appBarText}
           />
           <Tab
-            label='Saved Polls'
+            label="Saved Polls"
             {...a11yProps(1)}
             className={classes.appBarText}
           />

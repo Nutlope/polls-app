@@ -13,6 +13,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "firebase": "^7.16.1",
+    "lint-staged": "^10.2.11",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
@@ -22,6 +23,11 @@
     "react-scripts": "3.4.1",
     "react-swipeable-views": "^0.13.9",
     "uuid": "^8.2.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "husky": "^4.2.5",
     "prettier": "2.0.5"
   }
 }

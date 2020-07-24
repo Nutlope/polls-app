@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { RegistrationContext } from "./RegistrationContext";
 import "./registration.css";
 import Button from "@material-ui/core/Button";
@@ -79,12 +79,10 @@ const useStyles = makeStyles((theme) => ({
 function ShareLocation() {
   const [person, setPerson] = useContext(RegistrationContext);
   const classes = useStyles();
-  const [location, setLocation] = useState("");
 
   const getLocationHandler = (event) => {
     navigator.geolocation.getCurrentPosition(
       function (position) {
-        setLocation(position);
         person.location.longitude = position.coords.longitude;
         person.location.latitude = position.coords.latitude;
         setPerson(person);
@@ -96,49 +94,49 @@ function ShareLocation() {
   };
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
-            <Link to='/registration-create-account'>
-              <img src={vectorLeft} className={classes.vector} alt='Back' />
+            <Link to="/registration-create-account">
+              <img src={vectorLeft} className={classes.vector} alt="Back" />
             </Link>
             <img
               src={ProgressDotFinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
             <img
               src={ProgressDotFinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
             <img
               src={ProgressDotFinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
             <img
               src={ProgressDotUnfinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
-            <Link to='/registration-personal-interest'>
+            <Link to="/registration-personal-interest">
               <img
-                type='submit'
+                type="submit"
                 src={vectorRight}
                 className={classes.vector}
-                alt='Next'
+                alt="Next"
               />
             </Link>
           </div>
           <img
             src={logoDrawing}
-            width='234px'
-            height='140px'
-            top='138px'
-            alt=''
+            width="234px"
+            height="140px"
+            top="138px"
+            alt=""
           />
 
           <p className={classes.topPara}>
@@ -146,10 +144,10 @@ function ShareLocation() {
           </p>
 
           <Button
-            type='submit'
+            type="submit"
             fullWidth
-            variant='contained'
-            color='primary'
+            variant="contained"
+            color="primary"
             className={classes.share}
             onClick={getLocationHandler}
           >
@@ -157,7 +155,7 @@ function ShareLocation() {
           </Button>
         </div>
         <Grid className={classes.login}>
-          Already have an account?&nbsp; <Link to='/'>Log in here.</Link>
+          Already have an account?&nbsp; <Link to="/">Log in here.</Link>
         </Grid>
       </div>
     </Container>

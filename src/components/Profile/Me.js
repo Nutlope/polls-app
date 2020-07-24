@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import logoSmall from "./../../assets/logoSmall.png";
 import home from "./../../assets/home.png";
 import trending from "./../../assets/trending.png";
 import profile from "./../../assets/profile.png";
 import addPoll from "./../../assets/addPoll.png";
-import saveIcon from "./../../assets/save.png";
-import vectorRight from "./../../assets/vector-right.png";
 import logoGray from "./../../assets/logoGray.png";
 import locationPin from "./../../assets/locationPin.png";
 import avatar from "./../../assets/avatar.png";
@@ -14,8 +11,6 @@ import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
-import { shadows } from "@material-ui/system";
-import Box from "@material-ui/core/Box";
 import Tabs from "./Tabs";
 
 const useStyle = makeStyles((theme) => ({
@@ -186,12 +181,12 @@ export default function Me(props) {
         </div>
         <div className={classes.profile}>
           <Grid className={classes.avatar}>
-            <img src={logoGray} class={classes.logoGray} />
-            <img src={avatar} class={classes.avatarIcon} />
+            <img src={logoGray} class={classes.logoGray} alt="" />
+            <img src={avatar} class={classes.avatarIcon} alt="" />
           </Grid>
           <h2 className={classes.name}>{props.name}</h2>
           <Grid className={classes.location}>
-            <img src={locationPin} className={classes.locationPin} />
+            <img src={locationPin} className={classes.locationPin} alt="" />
             <p>{props.location}</p>
           </Grid>
         </div>

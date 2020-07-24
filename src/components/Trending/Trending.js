@@ -120,7 +120,7 @@ function ExpandableHeading(categoryText, question) {
           <img
             className={classes.expandIcon}
             src={CollapseIcon}
-            alt='expand'
+            alt="expand"
             onClick={clickOpenHandler}
           />
         </div>
@@ -145,7 +145,7 @@ function ExpandableHeading(categoryText, question) {
         <img
           className={classes.expandIcon}
           src={ExpandIcon}
-          alt='expand'
+          alt="expand"
           onClick={clickOpenHandler}
         />
       </div>
@@ -219,19 +219,19 @@ export default function Trending(props) {
   };
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.topBar}>
-          <Link to='/Poll'>
-            <img src={home} alt='Home' />
+          <Link to="/Poll">
+            <img src={home} alt="Home" />
           </Link>
-          <img src={trending} alt='Trending' />
-          <Link to='/StartPoll'>
-            <img src={addPoll} alt='Add Poll' />
+          <img src={trending} alt="Trending" />
+          <Link to="/StartPoll">
+            <img src={addPoll} alt="Add Poll" />
           </Link>
-          <Link to='/Me'>
-            <img src={profile} alt='Me' />
+          <Link to="/Me">
+            <img src={profile} alt="Me" />
           </Link>
         </div>
 
@@ -247,7 +247,7 @@ export default function Trending(props) {
           {ExpandableHeading("Miscelleneous", question)}
           {ExpandableHeading("In Your City", question)}
         </ScrollContainer>
-        <img className={classes.logo} src={logo} alt='' />
+        <img className={classes.logo} src={logo} alt="" />
       </div>
     </Container>
   );

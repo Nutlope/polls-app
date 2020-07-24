@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -8,7 +8,6 @@ import Container from "@material-ui/core/Container";
 import logoDrawing from "./../assets/logo-image.png";
 import logoText from "./../assets/logo.png";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

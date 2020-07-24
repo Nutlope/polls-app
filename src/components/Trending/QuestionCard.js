@@ -1,22 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, CssBaseline } from "@material-ui/core";
-import home from "./../../assets/home.png";
-import trending from "./../../assets/trending.png";
-import profile from "./../../assets/profile.png";
-import addPoll from "./../../assets/addPoll.png";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 import ChoiceGrid from "./ChoiceGrid";
 import "./trending.css";
-import { Link } from "react-router-dom";
 import saveIcon from "./../../assets/save.png";
 import skipIcon from "./../../assets/skip.png";
 import Comments from "./Comments";
-import CommentsExpanded from "./CommentsExpanded";
-import axios from "axios";
-import { RegistrationContext } from "./../Registration/RegistrationContext";
 import savedIcon from "./../../assets/saved.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -120,6 +110,7 @@ export default function QuestionCard(props) {
   let highestChoice = question.choices.choiceOne;
   let highestPercentage = 0;
 
+  // What is this code doing? -HE
   Object.keys(question.results).map((key) => {
     if (question.results[key] > highestPercentage) {
       highestPercentage = question.results[key];
@@ -148,14 +139,14 @@ export default function QuestionCard(props) {
           <img
             src={savedIcon}
             className={classes.saveIcon}
-            alt='Save'
+            alt="Save"
             onClick={saveHandler}
           />
         ) : (
           <img
             src={saveIcon}
             className={classes.saveIcon}
-            alt='Save'
+            alt="Save"
             onClick={saveHandler}
           />
         )}
@@ -165,7 +156,7 @@ export default function QuestionCard(props) {
         <img
           className={classes.skipIcon}
           src={skipIcon}
-          alt='Next'
+          alt="Next"
           onClick={skipHandler}
         />
       </Grid>
