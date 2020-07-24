@@ -162,27 +162,27 @@ export default function Me(props) {
     const posted = polls.posted;
 
     return (
-      <div className={classes.polls} role="tabpanel">
+      <div className={classes.polls} role='tabpanel'>
         <Tabs className={classes.tab} />
       </div>
     );
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.topBar}>
-          <Link to="/Poll">
-            <img src={home} alt="Home" />
+          <Link to='/Poll'>
+            <img src={home} alt='Home' />
           </Link>
-          <Link to="/Trending">
-            <img src={trending} alt="Trending" />
+          <Link to='/Trending'>
+            <img src={trending} alt='Trending' />
           </Link>
-          <Link to="/StartPoll">
-            <img src={addPoll} alt="Add Poll" />
+          <Link to='/StartPoll'>
+            <img src={addPoll} alt='Add Poll' />
           </Link>
-          <img src={profile} alt="Me" />
+          <img src={profile} alt='Me' />
         </div>
         <div className={classes.profile}>
           <Grid className={classes.avatar}>

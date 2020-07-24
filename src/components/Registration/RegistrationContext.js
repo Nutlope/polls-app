@@ -14,7 +14,7 @@ export const RegistrationProvider = (props) => {
       longitude: "-76.6083072",
       latitude: "39.318323199999995",
     },
-    prefs: { music: true, misc: true },
+    prefs: { music: true, misc: true, lifestyle: true },
     username: "597e4b02-369b-4993-8a77-4cdb50d4dfd1",
   });
 

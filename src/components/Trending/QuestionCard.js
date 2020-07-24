@@ -89,11 +89,11 @@ export default function QuestionCard(props) {
   const [saved, setSaved] = useState(false);
 
   const question = {
-    title: "Do you think Hopkins should install a new police force?",
-    category: "politics",
+    title: "Which Ves Anderson Movie should I watch",
+    category: "enterntainment",
     time: "2 hours ago",
     choices: {
-      choiceOne: "yes",
+      choiceOne: "the Royal",
       choiceTwo: "no",
       choiceThree: "",
       choiceFour: "",
@@ -106,11 +106,11 @@ export default function QuestionCard(props) {
     },
     comments: {
       0: {
-        text: "dummy",
+        text: "I highly recommend Royal",
         likes: 10,
       },
       1: {
-        text: "doubledummy",
+        text: "None is good tbh",
         likes: 20,
       },
     },
