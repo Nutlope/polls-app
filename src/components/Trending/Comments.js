@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import commenter from "./../../assets/commenter.png";
 import SendIcon from "./../../assets/send.png";
 import SendActivatedIcon from "./../../assets/sendActivated.png";
-import Comment from "./Comment";
 
 const useStyles = makeStyles((theme) => ({
   commentBox: {
@@ -58,7 +57,7 @@ function renderComments(comments, classes, props, len) {
     return (
       <div>
         <div className={classes.comment}>
-          <img src={commenter} className={classes.commenter} alt='' />
+          <img src={commenter} className={classes.commenter} alt="" />
           <p>{comments[0].text}</p>
         </div>
         <div className={classes.viewAll} onClick={props.setCommentOpen}>
@@ -72,7 +71,7 @@ function renderComments(comments, classes, props, len) {
     return (
       <div>
         <div className={classes.comment}>
-          <img src={commenter} className={classes.commenter} alt='' />
+          <img src={commenter} className={classes.commenter} alt="" />
           <p>{comments[1]}</p>
         </div>
         <div className={classes.viewAll} onClick={props.setCommentOpen}>
@@ -85,11 +84,11 @@ function renderComments(comments, classes, props, len) {
   return (
     <div>
       <div className={classes.comment}>
-        <img src={commenter} className={classes.commenter} />
+        <img src={commenter} className={classes.commenter} alt="" />
         <p>{comments[0].text}</p>
       </div>
       <div className={classes.comment}>
-        <img src={commenter} className={classes.commenter} alt='' />
+        <img src={commenter} className={classes.commenter} alt="" />
         <p>{comments[1].text}</p>
       </div>
       <div className={classes.viewAll} onClick={props.setCommentOpen}>
@@ -109,7 +108,7 @@ export default function Comments(props) {
   const existingComments = renderComments(comments, classes, props, len);
 
   const inputHandler = (e) => {
-    if (e.target.value == "") {
+    if (e.target.value === "") {
       setActivatedIcon(false);
       setNewComment(e.target.value);
     } else {
@@ -135,20 +134,20 @@ export default function Comments(props) {
       <form className={classes.send}>
         <TextField
           className={classes.typeComment}
-          variant='outlined'
-          placeholder='Write a comment...'
+          variant="outlined"
+          placeholder="Write a comment..."
           onChange={inputHandler}
         />
         {activatedIcon ? (
           <img
             className={classes.sendIcon}
             src={SendActivatedIcon}
-            alt='send'
-            type='submit'
+            alt="send"
+            type="submit"
             onClick={sendHandler}
           />
         ) : (
-          <img className={classes.sendIcon} src={SendIcon} alt='send' />
+          <img className={classes.sendIcon} src={SendIcon} alt="send" />
         )}{" "}
       </form>
     </div>

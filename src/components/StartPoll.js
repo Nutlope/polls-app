@@ -4,23 +4,14 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import FolderIcon from "@material-ui/icons/Folder";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-import Divider from "@material-ui/core/Divider";
 import "./general.css";
 import logoDrawing from "./../assets/logo-image.png";
 import ProgressDotUnfinished from "./../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../assets/progress-dot-finished.png";
-import vectorLeft from "./../assets/vector-left.png";
 import vectorRight from "./../assets/vector-right.png";
 import { Link } from "react-router-dom";
 import home from "./../assets/home.png";
@@ -159,13 +150,38 @@ function StartPoll() {
           </Grid>
         </Grid>
         <div className={classes.progressBar}>
-          <img src={ProgressDotFinished} className={classes.progressDot} />
-          <img src={ProgressDotUnfinished} className={classes.progressDot} />
-          <img src={ProgressDotUnfinished} className={classes.progressDot} />
-          <img src={ProgressDotUnfinished} className={classes.progressDot} />
-          <img src={ProgressDotUnfinished} className={classes.progressDot} />
+          <img
+            src={ProgressDotFinished}
+            className={classes.progressDot}
+            alt=""
+          />
+          <img
+            src={ProgressDotUnfinished}
+            className={classes.progressDot}
+            alt=""
+          />
+          <img
+            src={ProgressDotUnfinished}
+            className={classes.progressDot}
+            alt=""
+          />
+          <img
+            src={ProgressDotUnfinished}
+            className={classes.progressDot}
+            alt=""
+          />
+          <img
+            src={ProgressDotUnfinished}
+            className={classes.progressDot}
+            alt=""
+          />
           <Link to="/OptionsPoll" onClick={submitHandler}>
-            <img type="submit" src={vectorRight} className={classes.vector} />
+            <img
+              type="submit"
+              src={vectorRight}
+              className={classes.vector}
+              alt=""
+            />
           </Link>
         </div>
         <div className={classes.title}>What's on your mind?</div>

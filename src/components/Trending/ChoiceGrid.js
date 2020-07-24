@@ -40,7 +40,6 @@ const useStyle = makeStyles((theme) => ({
 export default function ChoiceGrid(props) {
   const classes = useStyle();
   const [voted, setVoted] = useState("");
-  const [dummy, setDummy] = useState(0);
 
   const question = {
     category: "entertainment",
@@ -97,10 +96,10 @@ export default function ChoiceGrid(props) {
                   {question.choices.choiceOne}
                 </Typography>
               }
-              value='choiceOne'
+              value="choiceOne"
               clickable={question.choices.choiceOne !== ""}
               onClick={clickChoiceOneHandler}
-              variant='outlined'
+              variant="outlined"
               className={classes.choiceLong}
               style={{ backgroundColor: "#FF9F1C" }}
             />
@@ -111,9 +110,9 @@ export default function ChoiceGrid(props) {
                 </Typography>
               }
               clickable={question.choices.choiceTwo !== ""}
-              value='choiceTwo'
+              value="choiceTwo"
               onClick={clickChoiceTwoHandler}
-              variant='outlined'
+              variant="outlined"
               className={classes.choiceLong}
               style={{ backgroundColor: "#2EC4B6" }}
             />
@@ -134,8 +133,8 @@ export default function ChoiceGrid(props) {
               }
               clickable
               onClick={clickChoiceOneHandler}
-              value='choiceOne'
-              variant='outlined'
+              value="choiceOne"
+              variant="outlined"
               className={classes.choice}
               style={{ backgroundColor: "#FF9F1C" }}
             />
@@ -147,7 +146,7 @@ export default function ChoiceGrid(props) {
               }
               clickable
               onClick={clickChoiceTwoHandler}
-              variant='outlined'
+              variant="outlined"
               className={classes.choice}
               style={{ backgroundColor: "#2EC4B6" }}
             />
@@ -161,7 +160,7 @@ export default function ChoiceGrid(props) {
               }
               clickable
               onClick={clickChoiceThreeHandler}
-              variant='outlined'
+              variant="outlined"
               className={classes.choice}
               style={{ backgroundColor: "#E71D36" }}
             />
@@ -171,7 +170,7 @@ export default function ChoiceGrid(props) {
                   {question.choices.choiceFour}
                 </Typography>
               }
-              variant='outlined'
+              variant="outlined"
               className={classes.choice}
               style={{ backgroundColor: "#8093F1" }}
             />
@@ -190,8 +189,8 @@ export default function ChoiceGrid(props) {
             }
             clickable={question.choices.choiceOne !== ""}
             onClick={clickChoiceOneHandler}
-            value='choiceOne'
-            variant='outlined'
+            value="choiceOne"
+            variant="outlined"
             className={classes.choice}
             style={{ backgroundColor: "#FF9F1C" }}
           />
@@ -203,7 +202,7 @@ export default function ChoiceGrid(props) {
             }
             clickable={question.choices.choiceTwo !== ""}
             onClick={clickChoiceTwoHandler}
-            variant='outlined'
+            variant="outlined"
             className={classes.choice}
             style={{ backgroundColor: "#2EC4B6" }}
           />
@@ -217,7 +216,7 @@ export default function ChoiceGrid(props) {
             }
             clickable={question.choices.choiceThree !== ""}
             onClick={clickChoiceThreeHandler}
-            variant='outlined'
+            variant="outlined"
             className={classes.choice}
             style={{ backgroundColor: "#E71D36" }}
           />
@@ -229,7 +228,7 @@ export default function ChoiceGrid(props) {
             }
             clickable={question.choices.choiceFour !== ""}
             onClick={clickChoiceFourHandler} //todo: 3 choices but still clickable
-            variant='outlined'
+            variant="outlined"
             className={classes.choice}
             style={{ backgroundColor: "#8093F1" }}
           />

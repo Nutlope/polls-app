@@ -123,13 +123,13 @@ function OptionsPoll() {
   const [isAdded, setIsAdded] = useState(0);
 
   const handleOptions = (event) => {
-    if (event.target.name == "option1") {
+    if (event.target.name === "option1") {
       setOption1(event.target.value);
-    } else if (event.target.name == "option2") {
+    } else if (event.target.name === "option2") {
       setOption2(event.target.value);
-    } else if (event.target.name == "option3") {
+    } else if (event.target.name === "option3") {
       setOption3(event.target.value);
-    } else if (event.target.name == "option4") {
+    } else if (event.target.name === "option4") {
       setOption4(event.target.value);
     }
   };

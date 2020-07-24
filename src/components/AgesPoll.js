@@ -1,21 +1,12 @@
 import React, { useState, useContext } from "react";
 import { PollContext } from "./PollContext";
-import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import FolderIcon from "@material-ui/icons/Folder";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-import Divider from "@material-ui/core/Divider";
 import "./general.css";
 import logoDrawing from "./../assets/logo-image.png";
 import { Link } from "react-router-dom";
@@ -23,8 +14,6 @@ import ProgressDotUnfinished from "./../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../assets/progress-dot-finished.png";
 import vectorLeft from "./../assets/vector-left.png";
 import vectorRight from "./../assets/vector-right.png";
-import Button from "@material-ui/core/Button";
-import Icon from "@material-ui/core/Icon";
 import RangeSlider from "./Util/RangeSlider";
 import home from "./../assets/home.png";
 import trending from "./../assets/trending.png";
@@ -64,10 +53,6 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     backgroundColor: "#2EC4B6",
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 320,
   },
   root: {
     width: 500,
@@ -178,15 +163,40 @@ function AgesPoll() {
         </Grid>
         <div className={classes.progressBar}>
           <Link to="/OptionsPoll">
-            <img src={vectorLeft} className={classes.vector} />
+            <img src={vectorLeft} className={classes.vector} alt="" />
           </Link>
-          <img src={ProgressDotFinished} className={classes.progressDot} />
-          <img src={ProgressDotFinished} className={classes.progressDot} />
-          <img src={ProgressDotFinished} className={classes.progressDot} />
-          <img src={ProgressDotUnfinished} className={classes.progressDot} />
-          <img src={ProgressDotUnfinished} className={classes.progressDot} />
+          <img
+            src={ProgressDotFinished}
+            className={classes.progressDot}
+            alt=""
+          />
+          <img
+            src={ProgressDotFinished}
+            className={classes.progressDot}
+            alt=""
+          />
+          <img
+            src={ProgressDotFinished}
+            className={classes.progressDot}
+            alt=""
+          />
+          <img
+            src={ProgressDotUnfinished}
+            className={classes.progressDot}
+            alt=""
+          />
+          <img
+            src={ProgressDotUnfinished}
+            className={classes.progressDot}
+            alt=""
+          />
           <Link to="/LocationPoll" onClick={submitHandler}>
-            <img type="submit" src={vectorRight} className={classes.vector} />
+            <img
+              type="submit"
+              src={vectorRight}
+              className={classes.vector}
+              alt=""
+            />
           </Link>
         </div>
         <div className={classes.title}>Who do you want opinions from?</div>

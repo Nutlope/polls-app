@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import selected from "./../../assets/selected.png";
 import nextIcon from "./../../assets/vector-right.png";
-import ChoiceGrid from "./ChoiceGrid";
 import "./poll.css";
 
 const useStyle = makeStyles((theme) => ({
@@ -170,14 +169,14 @@ export default function VotedGrid(props) {
     const topHeight = 115 - height;
     const topHeightStr = topHeight + "px";
     return (
-      <Container variant='outlined' className={classes.choiceBlack}>
+      <Container variant="outlined" className={classes.choiceBlack}>
         <Container className={classes.topBar}>
           <Container className={classes.choiceWordsBlack}>{choice}</Container>
           <Container className={classes.percentageBlack}>{result}%</Container>
         </Container>
 
         <Container
-          variant='outlined'
+          variant="outlined"
           className={classes.colorBand}
           style={{
             height: heightStr,
@@ -185,7 +184,7 @@ export default function VotedGrid(props) {
             top: topHeightStr,
           }}
         ></Container>
-        <img src={selected} className={classes.selected} />
+        <img src={selected} className={classes.selected} alt="" />
       </Container>
     );
   };
@@ -196,14 +195,14 @@ export default function VotedGrid(props) {
     const topHeight = 115 - height;
     const topHeightStr = topHeight + "px";
     return (
-      <Container variant='outlined' className={classes.choiceGray}>
+      <Container variant="outlined" className={classes.choiceGray}>
         <Container className={classes.topBar}>
           <Container className={classes.choiceWordsGray}>{choice}</Container>
           <Container className={classes.percentageGray}>{result}%</Container>
         </Container>
 
         <Container
-          variant='outlined'
+          variant="outlined"
           className={classes.colorBand}
           style={{
             height: heightStr,
@@ -221,14 +220,14 @@ export default function VotedGrid(props) {
     const topHeight = 235 - height;
     const topHeightStr = topHeight + "px";
     return (
-      <Container variant='outlined' className={classes.choiceBlackLong}>
+      <Container variant="outlined" className={classes.choiceBlackLong}>
         <Container className={classes.topBar}>
           <Container className={classes.choiceWordsBlack}>{choice}</Container>
           <Container className={classes.percentageBlack}>{result}%</Container>
         </Container>
 
         <Container
-          variant='outlined'
+          variant="outlined"
           className={classes.colorBand}
           style={{
             height: heightStr,
@@ -236,7 +235,7 @@ export default function VotedGrid(props) {
             top: topHeightStr,
           }}
         >
-          <img src={selected} className={classes.selectedLong} />
+          <img src={selected} className={classes.selectedLong} alt="" />
         </Container>
       </Container>
     );
@@ -248,14 +247,14 @@ export default function VotedGrid(props) {
     const topHeight = 235 - height;
     const topHeightStr = topHeight + "px";
     return (
-      <Container variant='outlined' className={classes.choiceGrayLong}>
+      <Container variant="outlined" className={classes.choiceGrayLong}>
         <Container className={classes.topBar}>
           <Container className={classes.choiceWordsGray}>{choice}</Container>
           <Container className={classes.percentageGray}>{result}%</Container>
         </Container>
 
         <Container
-          variant='outlined'
+          variant="outlined"
           className={classes.colorBand}
           style={{
             height: heightStr,
@@ -292,7 +291,7 @@ export default function VotedGrid(props) {
   };
 
   const blankGrid = () => {
-    return <Container variant='outlined' className={classes.choiceBlank} />;
+    return <Container variant="outlined" className={classes.choiceBlank} />;
   };
 
   const blockOneLong = (choiceOne, resultOne, backgroundColor) => {
@@ -327,7 +326,7 @@ export default function VotedGrid(props) {
         <img
           src={nextIcon}
           className={classes.nextIcon}
-          alt='next'
+          alt="next"
           onClick={nextHandler}
         />
       </div>
@@ -353,7 +352,7 @@ export default function VotedGrid(props) {
         <img
           src={nextIcon}
           className={classes.nextIcon}
-          alt='next'
+          alt="next"
           onClick={nextHandler}
         />
       </div>
@@ -378,7 +377,7 @@ export default function VotedGrid(props) {
       <img
         src={nextIcon}
         className={classes.nextIcon}
-        alt='next'
+        alt="next"
         onClick={nextHandler}
       />
     </div>
