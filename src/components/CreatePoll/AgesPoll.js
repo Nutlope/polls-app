@@ -6,18 +6,19 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import styles from "./poll.module.css";
-import logoDrawing from "./../assets/logo-image.png";
+import logoDrawing from "./../../assets/logo-image.png";
 import { Link } from "react-router-dom";
-import ProgressDotUnfinished from "./../assets/progress-dot-unfinished.png";
-import ProgressDotFinished from "./../assets/progress-dot-finished.png";
-import vectorLeft from "./../assets/vector-left.png";
-import vectorRight from "./../assets/vector-right.png";
-import RangeSlider from "./Util/RangeSlider";
-import home from "./../assets/home.png";
-import trending from "./../assets/trending.png";
-import profile from "./../assets/profile.png";
-import addPoll from "./../assets/addPoll.png";
+import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png";
+import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
+import vectorLeft from "./../../assets/vector-left.png";
+import vectorRight from "./../../assets/vector-right.png";
+import RangeSlider from "./../Util/RangeSlider";
+import home from "./../../assets/home.png";
+import trending from "./../../assets/trending.png";
+import profile from "./../../assets/profile.png";
+import addPoll from "./../../assets/addPoll.png";
 import { CssBaseline } from "@material-ui/core";
 
 function AgesPoll() {
@@ -102,23 +103,20 @@ function AgesPoll() {
         </div>
         <div className={styles.title}>Who do you want opinions from?</div>
         <RangeSlider changeHandler={changeHandler} ageRange={ageRange} />
-        <Grid item xs={12}>
-          {/* TODO: Fix FormControl not showing wide enough */}
-          <FormControl className={styles.formControl}>
-            <InputLabel id="demo-simple-select-label">Target Gender</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              fullWidth
-              id="demo-simple-select"
-              value={gender}
-              onChange={genderHandler}
-            >
-              <MenuItem value="Any">Any</MenuItem>
-              <MenuItem value="Male">Male</MenuItem>
-              <MenuItem value="Female">Female</MenuItem>
-              <MenuItem value="Non-Binary">Non-Binary</MenuItem>
-            </Select>
-          </FormControl>
+        <Grid item xs={12} className={styles.form}>
+          <Select
+            labelId="demo-simple-select-label"
+            fullWidth
+            id="demo-simple-select"
+            value={gender}
+            onChange={genderHandler}
+          >
+            <MenuItem value="Any">Any</MenuItem>
+            <MenuItem value="Male">Male</MenuItem>
+            <MenuItem value="Female">Female</MenuItem>
+            <MenuItem value="Non-Binary">Non-Binary</MenuItem>
+          </Select>
+          <FormHelperText>Target Gender</FormHelperText>
         </Grid>
         <img
           src={logoDrawing}

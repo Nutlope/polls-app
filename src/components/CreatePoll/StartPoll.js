@@ -7,20 +7,21 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import styles from "./poll.module.css";
-import logoDrawing from "./../assets/logo-image.png";
-import ProgressDotUnfinished from "./../assets/progress-dot-unfinished.png";
-import ProgressDotFinished from "./../assets/progress-dot-finished.png";
-import vectorRight from "./../assets/vector-right.png";
+import logoDrawing from "./../../assets/logo-image.png";
+import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png";
+import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
+import vectorRight from "./../../assets/vector-right.png";
 import { Link } from "react-router-dom";
-import home from "./../assets/home.png";
-import trending from "./../assets/trending.png";
-import profile from "./../assets/profile.png";
-import addPoll from "./../assets/addPoll.png";
+import home from "./../../assets/home.png";
+import trending from "./../../assets/trending.png";
+import profile from "./../../assets/profile.png";
+import addPoll from "./../../assets/addPoll.png";
 import { CssBaseline } from "@material-ui/core";
 
 function StartPoll() {
-  const [question, setQuestion] = useState();
+  const [question, setQuestion] = useState("");
   const [category, setCategory] = useState("");
   const [poll, setPoll] = useContext(PollContext);
 
@@ -99,12 +100,10 @@ function StartPoll() {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <TextField
-                autoComplete="question"
                 name="question"
                 variant="outlined"
                 fullWidth
                 required
-                id="question"
                 label="Enter your question here"
                 value={question}
                 onChange={questionHandler}
@@ -112,27 +111,22 @@ function StartPoll() {
               />
             </Grid>
             <Grid item xs={12}>
-              {/* TODO: Fix FormControl not showing wide enough */}
-              <FormControl className={styles.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  What category does it fall under?
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  fullWidth
-                  id="demo-simple-select"
-                  value={category}
-                  onChange={categoryHandler}
-                >
-                  <MenuItem value="Music">Music</MenuItem>
-                  <MenuItem value="Entertainment">Entertainment</MenuItem>
-                  <MenuItem value="Sports">Sports</MenuItem>
-                  <MenuItem value="Politics">Politics</MenuItem>
-                  <MenuItem value="Fashion">Fashion</MenuItem>
-                  <MenuItem value="Lifestyle">Lifestyle</MenuItem>
-                  <MenuItem value="Not Applicable">Not Applicable</MenuItem>
-                </Select>
-              </FormControl>
+              <Select
+                labelId="demo-simple-select-label"
+                fullWidth
+                id="demo-simple-select"
+                value={category}
+                onChange={categoryHandler}
+              >
+                <MenuItem value="Music">Music</MenuItem>
+                <MenuItem value="Entertainment">Entertainment</MenuItem>
+                <MenuItem value="Sports">Sports</MenuItem>
+                <MenuItem value="Politics">Politics</MenuItem>
+                <MenuItem value="Fashion">Fashion</MenuItem>
+                <MenuItem value="Lifestyle">Lifestyle</MenuItem>
+                <MenuItem value="Not Applicable">Not Applicable</MenuItem>
+              </Select>
+              <FormHelperText>What category does it fall under?</FormHelperText>
             </Grid>
           </Grid>
         </form>

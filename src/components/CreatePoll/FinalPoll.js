@@ -5,16 +5,16 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "./poll.module.css";
-import logoDrawing from "./../assets/logo-image.png";
+import logoDrawing from "./../../assets/logo-image.png";
 import { Link } from "react-router-dom";
-import ProgressDotFinished from "./../assets/progress-dot-finished.png";
-import vectorLeft from "./../assets/vector-left.png";
+import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
+import vectorLeft from "./../../assets/vector-left.png";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import home from "./../assets/home.png";
-import trending from "./../assets/trending.png";
-import profile from "./../assets/profile.png";
-import addPoll from "./../assets/addPoll.png";
+import home from "./../../assets/home.png";
+import trending from "./../../assets/trending.png";
+import profile from "./../../assets/profile.png";
+import addPoll from "./../../assets/addPoll.png";
 import { CssBaseline } from "@material-ui/core";
 
 // TODO: Port these styles over to CSS modules
@@ -206,15 +206,6 @@ function LocationPoll() {
         >
           Post
         </Button>
-        {/* TODO: Need to make this image not relative and included in border, for all components */}
-        <img
-          src={logoDrawing}
-          width="234px"
-          height="140px"
-          top="138px"
-          alt=""
-          className={styles.bottom}
-        />
       </div>
     </Container>
   );

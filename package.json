@@ -22,6 +22,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-swipeable-views": "^0.13.9",
+    "typescript": "^3.9.7",
     "uuid": "^8.2.0"
   },
   "lint-staged": {
