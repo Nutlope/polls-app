@@ -134,7 +134,6 @@ export default function Poll(props) {
   const [saved, setSaved] = useState(false);
   const [commentOpen, setCommentOpen] = useState(false);
   const [index, setIndex] = useState(0);
-  const [skip, setSkip] = useState(false);
   const [data, setData] = useState([]);
   const [question, setQuestion] = useState({
     category: "",
@@ -160,63 +159,87 @@ export default function Poll(props) {
   }, []);
 
   const loadPoll = () => {
-    axios
-      .post(
-        "https://us-central1-curiocity-282815.cloudfunctions.net/load-polls-homepage/.json",
-        {
-          userid: person.username,
-          location: person.location,
-        }
-      )
-      .then((response) => {
-        console.log("loading polls worked", response);
-        let newQuestion = {};
-        setData(response.data);
-        // setNumQ = response.data.length;
-        newQuestion.category = response.data[index].category;
-        newQuestion.title = response.data[index].question;
-        newQuestion.id = response.data[index].pollid;
-        const num_choices = response.data[index].options.length;
-        const total_votes = response.data[index].votes.reduce(function (a, b) {
-          return a + b;
-        }, 0);
+    const response = {
+      data: {
+        0: {
+          category: "cat1",
+          title: "title1",
+          options: ["1-1", "1-2"],
+          votes: [40, 60],
+          comments: [],
+        },
+        1: {
+          category: "cat2",
+          title: "title2",
+          options: ["2-1", "2-2", "2-3", "2-4"],
+          votes: [20, 50, 5, 25],
+          comments: [],
+        },
+        2: {
+          category: "cat3",
+          title: "title3",
+          options: ["3-1", "3-2", "3-3"],
+          votes: [20, 50, 30],
+          comments: [],
+        },
+      },
+    };
+    // axios
+    //   .post(
+    //     "https://us-central1-curiocity-282815.cloudfunctions.net/load-polls-homepage/.json",
+    //     {
+    //       userid: person.username,
+    //       location: person.location,
+    //     }
+    //   )
+    //   .then((tobereplaced) => {
+    //     console.log("loading polls worked", tobereplaced);
+    let newQuestion = {};
+    setData(response.data);
+    // setNumQ = response.data.length;
+    newQuestion.category = response.data[index].category;
+    newQuestion.title = response.data[index].question;
+    newQuestion.id = response.data[index].pollid;
+    const num_choices = response.data[index].options.length;
+    const total_votes = response.data[index].votes.reduce(function (a, b) {
+      return a + b;
+    }, 0);
 
-        // Refactored version
-        newQuestion.choices = {
-          choiceOne: response.data[index].options[0],
-          choiceTwo: response.data[index].options[1],
-          choiceThree: num_choices === 3 ? response.data[index].options[2] : "",
-          choiceFour: num_choices === 4 ? response.data[index].options[3] : "",
-        };
-        if (total_votes !== 0) {
-          newQuestion.results = {
-            choiceOne: response.data[index].votes[0] / total_votes,
-            choiceTwo: response.data[index].votes[1] / total_votes,
-            choiceThree:
-              num_choices === 3
-                ? response.data[index].votes[2] / total_votes
-                : 0,
-            choiceFour:
-              num_choices === 4
-                ? response.data[index].votes[3] / total_votes
-                : 0,
-          };
-        } else {
-          newQuestion.results = {
-            choiceOne: 0,
-            choiceTwo: 0,
-            choiceThree: 0,
-            choiceFour: 0,
-          };
-        }
-        newQuestion.comments = response.data[index].comments;
-        newQuestion.comments.shift();
+    // Refactored version
+    newQuestion.choices = {
+      choiceOne: response.data[index].options[0],
+      choiceTwo: response.data[index].options[1],
+      choiceThree:
+        num_choices === (3 || 4) ? response.data[index].options[2] : "",
+      choiceFour: num_choices === 4 ? response.data[index].options[3] : "",
+    };
+    if (total_votes !== 0) {
+      newQuestion.results = {
+        choiceOne: response.data[index].votes[0] / total_votes,
+        choiceTwo: response.data[index].votes[1] / total_votes,
+        choiceThree:
+          num_choices === (3 || 4)
+            ? response.data[index].votes[2] / total_votes
+            : 0,
+        choiceFour:
+          num_choices === 4 ? response.data[index].votes[3] / total_votes : 0,
+      };
+    } else {
+      newQuestion.results = {
+        choiceOne: 0,
+        choiceTwo: 0,
+        choiceThree: 0,
+        choiceFour: 0,
+      };
+    }
+    newQuestion.comments = response.data[index].comments;
+    newQuestion.comments.shift();
 
-        setQuestion(newQuestion);
-      })
-      .catch((error) => {
-        console.log("it failed", error);
-      });
+    setQuestion(newQuestion);
+    // })
+    // .catch((error) => {
+    //   console.log("it failed", error);
+    // });
   };
 
   const setCommentOpenHandler = (e) => {
@@ -256,221 +279,200 @@ export default function Poll(props) {
     //   .catch((error) => {
     //     console.log("it failed", error);
     //   });
-    setSkip(true);
-    console.log(index);
+
     let newIndex = index + 1;
     setIndex(newIndex);
-    console.log(newIndex);
-    let newQuestion = {};
 
-    newQuestion.category = data[newIndex].category;
-    console.log("new question >>>>", newQuestion.category);
-    newQuestion.title = data[newIndex].question;
-    newQuestion.id = data[newIndex].pollid;
-    const num_choices = data[newIndex].options.length;
-    const total_votes = data[newIndex].votes.reduce(function (a, b) {
-      return a + b;
-    }, 0);
+    if (newIndex < Object.keys(data).length) {
+      let newQuestion = {};
 
-    // Refactored version
-    newQuestion.choices = {
-      choiceOne: data[newIndex].options[0],
-      choiceTwo: data[newIndex].options[1],
-      choiceThree: num_choices === 3 ? data[newIndex].options[2] : "",
-      choiceFour: num_choices === 4 ? data[newIndex].options[3] : "",
-    };
-    if (total_votes !== 0) {
-      newQuestion.results = {
-        choiceOne: data[newIndex].votes[0] / total_votes,
-        choiceTwo: data[newIndex].votes[1] / total_votes,
-        choiceThree:
-          num_choices === 3 ? data[newIndex].votes[2] / total_votes : 0,
-        choiceFour:
-          num_choices === 4 ? data[newIndex].votes[3] / total_votes : 0,
+      newQuestion.category = data[newIndex].category;
+      newQuestion.title = data[newIndex].question;
+      newQuestion.id = data[newIndex].pollid;
+      const num_choices = data[newIndex].options.length;
+      const total_votes = data[newIndex].votes.reduce(function (a, b) {
+        return a + b;
+      }, 0);
+
+      // Refactored version
+      newQuestion.choices = {
+        choiceOne: data[newIndex].options[0],
+        choiceTwo: data[newIndex].options[1],
+        choiceThree: num_choices === (3 || 4) ? data[newIndex].options[2] : "",
+        choiceFour: num_choices === 4 ? data[newIndex].options[3] : "",
       };
-    } else {
-      newQuestion.results = {
-        choiceOne: 0,
-        choiceTwo: 0,
-        choiceThree: 0,
-        choiceFour: 0,
-      };
+      num_choices === 4 ? console.log("3 or 4") : console.log("not 3 or 4");
+      console.log("choices input are", newQuestion.choices);
+      if (total_votes !== 0) {
+        newQuestion.results = {
+          choiceOne: data[newIndex].votes[0] / total_votes,
+          choiceTwo: data[newIndex].votes[1] / total_votes,
+          choiceThree:
+            num_choices === (3 || 4)
+              ? data[newIndex].votes[2] / total_votes
+              : 0,
+          choiceFour:
+            num_choices === 4 ? data[newIndex].votes[3] / total_votes : 0,
+        };
+      } else {
+        newQuestion.results = {
+          choiceOne: 0,
+          choiceTwo: 0,
+          choiceThree: 0,
+          choiceFour: 0,
+        };
+      }
+      newQuestion.comments = data[newIndex].comments;
+      newQuestion.comments.shift();
+
+      setQuestion(newQuestion);
+      setSaved(false);
     }
-    newQuestion.comments = data[newIndex].comments;
-    newQuestion.comments.shift();
-
-    setQuestion(newQuestion);
   };
 
-  // if (passedAllQ) {
-  //   return (
-  //     <Container component='main' maxWidth='xs'>
-  //       <CssBaseline />
-  //       <div className={classes.paper}>
-  //         <div className={classes.topBar}>
-  //           <img src={home} alt='Home' />
-  //           <Link to='/Trending'>
-  //             <img src={trending} alt='Trending' />
-  //           </Link>
-  //           <Link to='/StartPoll'>
-  //             <img src={addPoll} alt='Add Poll' />
-  //           </Link>
-  //           <Link to='/Me'>
-  //             <img src={profile} alt='Me' />
-  //           </Link>
-  //         </div>
-  //         <div className={classes.wordsSheet}>
-  //           <h2>You've voted on all questions! Please come back later.</h2>
-  //         </div>
-  //       </div>
-  //     </Container>
-  //   );
-  // }
+  // to do this is not entirely fixed
+  const nextHandler = () => {
+    let newIndex = index + 1;
+    setIndex(newIndex);
 
-  // if (skip) {
-  //   setIndex(index + 1);
+    if (newIndex < Object.keys(data).length) {
+      let newQuestion = {};
 
-  //   return (
-  //     <Container component='main' maxWidth='xs'>
-  //       <CssBaseline />
-  //       <div className={classes.paper}>
-  //         <div className={classes.topBar}>
-  //           <img src={home} alt='Home' />
-  //           <Link to='/Trending'>
-  //             <img src={trending} alt='Trending' />
-  //           </Link>
-  //           <Link to='/StartPoll'>
-  //             <img src={addPoll} alt='Add Poll' />
-  //           </Link>
-  //           <Link to='/Me'>
-  //             <img src={profile} alt='Me' />
-  //           </Link>
-  //         </div>
-  //         <Box container className={classes.box} boxShadow={2}>
-  //           <Grid className={classes.boxTopBar}>
-  //             {saved ? (
-  //               <img
-  //                 src={savedIcon}
-  //                 className={classes.saveIcon}
-  //                 alt='Save'
-  //                 onClick={saveHandler}
-  //               />
-  //             ) : (
-  //               <img
-  //                 src={saveIcon}
-  //                 className={classes.saveIcon}
-  //                 alt='Save'
-  //                 onClick={saveHandler}
-  //               />
-  //             )}
-  //             <div className={classes.category}>
-  //               {question.category === "misc"
-  //                 ? "Miscelleneous"
-  //                 : question.category}
-  //             </div>
-  //             <img
-  //               className={classes.skipIcon}
-  //               src={skipIcon}
-  //               alt='Next'
-  //               onClick={skipHandler}
-  //             />
-  //           </Grid>
-  //           <div className={classes.question}>
-  //             <Grid className={classes.heading}>
-  //               <h2 className={classes.title}>{question.title}</h2>
-  //               <br />
-  //             </Grid>
-  //             <ChoiceGrid
-  //               className={classes.choiceGrid}
-  //               choices={question.choices}
-  //               index={index}
-  //               setIndex={setIndex}
-  //             />
-  //             <Comments
-  //               comments={question.comments}
-  //               setCommentOpen={setCommentOpenHandler}
-  //             />
-  //           </div>
-  //         </Box>
-  //         <div className={classes.comments}></div>
-  //       </div>
-  //     </Container>
-  //   );
-  // }
+      newQuestion.category = data[newIndex].category;
+      newQuestion.title = data[newIndex].question;
+      newQuestion.id = data[newIndex].pollid;
+      const num_choices = data[newIndex].options.length;
+      const total_votes = data[newIndex].votes.reduce(function (a, b) {
+        return a + b;
+      }, 0);
 
-  if (commentOpen) {
+      // Refactored version
+      newQuestion.choices = {
+        choiceOne: data[newIndex].options[0],
+        choiceTwo: data[newIndex].options[1],
+        choiceThree: num_choices === (3 || 4) ? data[newIndex].options[2] : "",
+        choiceFour: num_choices === 4 ? data[newIndex].options[3] : "",
+      };
+      num_choices === 4 ? console.log("3 or 4") : console.log("not 3 or 4");
+      console.log("choices input are", newQuestion.choices);
+      if (total_votes !== 0) {
+        newQuestion.results = {
+          choiceOne: data[newIndex].votes[0] / total_votes,
+          choiceTwo: data[newIndex].votes[1] / total_votes,
+          choiceThree:
+            num_choices === (3 || 4)
+              ? data[newIndex].votes[2] / total_votes
+              : 0,
+          choiceFour:
+            num_choices === 4 ? data[newIndex].votes[3] / total_votes : 0,
+        };
+      } else {
+        newQuestion.results = {
+          choiceOne: 0,
+          choiceTwo: 0,
+          choiceThree: 0,
+          choiceFour: 0,
+        };
+      }
+      newQuestion.comments = data[newIndex].comments;
+      newQuestion.comments.shift();
+
+      setQuestion(newQuestion);
+      setSaved(false);
+    }
+  };
+
+  if (index === Object.keys(data).length) {
     return (
-      <CommentsExpanded
-        setCommentOpen={setCommentOpenHandler}
-        comments={question.comments}
-      />
+      <Container component='main' maxWidth='xs'>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <div className={classes.topBar}>
+            <img src={home} alt='Home' />
+            <Link to='/Trending'>
+              <img src={trending} alt='Trending' />
+            </Link>
+            <Link to='/StartPoll'>
+              <img src={addPoll} alt='Add Poll' />
+            </Link>
+            <Link to='/Me'>
+              <img src={profile} alt='Me' />
+            </Link>
+          </div>
+          <div className={classes.wordsSheet}>
+            <h2>You've voted on all questions! Please come back later.</h2>
+          </div>
+        </div>
+      </Container>
+    );
+  } else {
+    return (
+      <Container component='main' maxWidth='xs'>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <div className={classes.topBar}>
+            <img src={home} alt='Home' />
+            <Link to='/Trending'>
+              <img src={trending} alt='Trending' />
+            </Link>
+            <Link to='/StartPoll'>
+              <img src={addPoll} alt='Add Poll' />
+            </Link>
+            <Link to='/Me'>
+              <img src={profile} alt='Me' />
+            </Link>
+          </div>
+          <Box container className={classes.box} boxShadow={2}>
+            <Grid className={classes.boxTopBar}>
+              {saved ? (
+                <img
+                  src={savedIcon}
+                  className={classes.saveIcon}
+                  alt='Save'
+                  onClick={saveHandler}
+                />
+              ) : (
+                <img
+                  src={saveIcon}
+                  className={classes.saveIcon}
+                  alt='Save'
+                  onClick={saveHandler}
+                />
+              )}
+              <div className={classes.category}>
+                {question.category === "misc"
+                  ? "Miscelleneous"
+                  : question.category}
+              </div>
+              <img
+                className={classes.skipIcon}
+                src={skipIcon}
+                alt='Next'
+                onClick={nextHandler}
+              />
+            </Grid>
+            <div className={classes.question}>
+              <Grid className={classes.heading}>
+                <h2 className={classes.title}>{question.title}</h2>
+                <br />
+              </Grid>
+              <ChoiceGrid
+                className={classes.choiceGrid}
+                choices={question.choices}
+                index={index}
+                setIndex={setIndex}
+                voted={""}
+                results={question.results}
+              />
+              <Comments
+                comments={question.comments}
+                setCommentOpen={setCommentOpenHandler}
+              />
+            </div>
+          </Box>
+          <div className={classes.comments}></div>
+        </div>
+      </Container>
     );
   }
-
-  return (
-    <Container component='main' maxWidth='xs'>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <div className={classes.topBar}>
-          <img src={home} alt='Home' />
-          <Link to='/Trending'>
-            <img src={trending} alt='Trending' />
-          </Link>
-          <Link to='/StartPoll'>
-            <img src={addPoll} alt='Add Poll' />
-          </Link>
-          <Link to='/Me'>
-            <img src={profile} alt='Me' />
-          </Link>
-        </div>
-        <Box container className={classes.box} boxShadow={2}>
-          <Grid className={classes.boxTopBar}>
-            {saved ? (
-              <img
-                src={savedIcon}
-                className={classes.saveIcon}
-                alt='Save'
-                onClick={saveHandler}
-              />
-            ) : (
-              <img
-                src={saveIcon}
-                className={classes.saveIcon}
-                alt='Save'
-                onClick={saveHandler}
-              />
-            )}
-            <div className={classes.category}>
-              {question.category === "misc"
-                ? "Miscelleneous"
-                : question.category}
-            </div>
-            <img
-              className={classes.skipIcon}
-              src={skipIcon}
-              alt='Next'
-              onClick={skipHandler}
-            />
-          </Grid>
-          <div className={classes.question}>
-            <Grid className={classes.heading}>
-              <h2 className={classes.title}>{question.title}</h2>
-              <br />
-            </Grid>
-            <ChoiceGrid
-              className={classes.choiceGrid}
-              choices={question.choices}
-              index={index}
-              setIndex={setIndex}
-            />
-            <Comments
-              comments={question.comments}
-              setCommentOpen={setCommentOpenHandler}
-            />
-          </div>
-        </Box>
-        <div className={classes.comments}></div>
-      </div>
-    </Container>
-  );
 }

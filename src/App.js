@@ -24,57 +24,38 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-        <Route path="/" exact component={SignUp} />
+        <Route path='/' exact component={SignUp} />
         <PollProvider>
-          <Route path="/StartPoll">
+          <Route path='/StartPoll'>
             <StartPoll />
           </Route>
-          <Route path="/OptionsPoll">
+          <Route path='/OptionsPoll'>
             <OptionsPoll />
           </Route>
-          <Route path="/AgesPoll">
+          <Route path='/AgesPoll'>
             <AgesPoll />
           </Route>
-          <Route path="/LocationPoll">
+          <Route path='/LocationPoll'>
             <LocationPoll />
           </Route>
-          <Route path="/FinalPoll">
+          <Route path='/FinalPoll'>
             <FinalPoll />
           </Route>
         </PollProvider>
         <RegistrationProvider>
-          <Route path="/registration-personal-info" component={PersonalInfo} />
-          <Route path="/registration-create-account">
+          <Route path='/registration-personal-info' component={PersonalInfo} />
+          <Route path='/registration-create-account'>
             <CreateAccount />
           </Route>
-          <Route path="/registration-share-location">
+          <Route path='/registration-share-location'>
             <ShareLocation />
           </Route>
-          <Route path="/registration-personal-interest">
+          <Route path='/registration-personal-interest'>
             <PersonalInterest />
           </Route>
-          <Route
-            path="/Poll"
-            render={(props) => (
-              <Poll
-                category={this.state.category}
-                title={this.state.title}
-                choices={this.state.choices}
-                comments={this.state.comments}
-              />
-            )}
-          />
-          <Route path="/Trending" component={Trending} />
-          <Route
-            path="/Me"
-            component={() => (
-              <Me
-                polls={this.state.polls}
-                name={this.state.name}
-                location={this.state.location}
-              />
-            )}
-          />
+          <Route path='/Poll' component={Poll} />
+          <Route path='/Trending' component={Trending} />
+          <Route path='/Me' component={Me} />
         </RegistrationProvider>
       </Router>
     );

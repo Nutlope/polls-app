@@ -149,13 +149,7 @@ const useStyle = makeStyles((theme) => ({
 export default function VotedGrid(props) {
   console.log(props.choices);
   const classes = useStyle();
-  const percentages = {
-    //todo needs to grab from backend
-    choiceOne: "10",
-    choiceTwo: "20",
-    choiceThree: "70",
-    choiceFour: "",
-  };
+  const percentages = props.results;
 
   //helper functions
 
@@ -164,19 +158,21 @@ export default function VotedGrid(props) {
   };
 
   const blackBlock = (choice, result, backgroundColor) => {
-    const height = (105 / 100) * result;
+    const height = 105 * result;
     const heightStr = height + "px";
     const topHeight = 115 - height;
     const topHeightStr = topHeight + "px";
     return (
-      <Container variant="outlined" className={classes.choiceBlack}>
+      <Container variant='outlined' className={classes.choiceBlack}>
         <Container className={classes.topBar}>
           <Container className={classes.choiceWordsBlack}>{choice}</Container>
-          <Container className={classes.percentageBlack}>{result}%</Container>
+          <Container className={classes.percentageBlack}>
+            {result * 100}%
+          </Container>
         </Container>
 
         <Container
-          variant="outlined"
+          variant='outlined'
           className={classes.colorBand}
           style={{
             height: heightStr,
@@ -184,25 +180,27 @@ export default function VotedGrid(props) {
             top: topHeightStr,
           }}
         ></Container>
-        <img src={selected} className={classes.selected} alt="" />
+        <img src={selected} className={classes.selected} alt='' />
       </Container>
     );
   };
 
   const grayBlock = (choice, result, backgroundColor) => {
-    const height = (105 / 100) * result;
+    const height = 105 * result;
     const heightStr = height + "px";
     const topHeight = 115 - height;
     const topHeightStr = topHeight + "px";
     return (
-      <Container variant="outlined" className={classes.choiceGray}>
+      <Container variant='outlined' className={classes.choiceGray}>
         <Container className={classes.topBar}>
           <Container className={classes.choiceWordsGray}>{choice}</Container>
-          <Container className={classes.percentageGray}>{result}%</Container>
+          <Container className={classes.percentageGray}>
+            {result * 100}%
+          </Container>
         </Container>
 
         <Container
-          variant="outlined"
+          variant='outlined'
           className={classes.colorBand}
           style={{
             height: heightStr,
@@ -215,19 +213,21 @@ export default function VotedGrid(props) {
   };
 
   const blackBlockLong = (choice, result, backgroundColor) => {
-    const height = ((105 * 2) / 100) * result;
+    const height = 105 * 2 * result;
     const heightStr = height + "px";
     const topHeight = 235 - height;
     const topHeightStr = topHeight + "px";
     return (
-      <Container variant="outlined" className={classes.choiceBlackLong}>
+      <Container variant='outlined' className={classes.choiceBlackLong}>
         <Container className={classes.topBar}>
           <Container className={classes.choiceWordsBlack}>{choice}</Container>
-          <Container className={classes.percentageBlack}>{result}%</Container>
+          <Container className={classes.percentageBlack}>
+            {result * 100}%
+          </Container>
         </Container>
 
         <Container
-          variant="outlined"
+          variant='outlined'
           className={classes.colorBand}
           style={{
             height: heightStr,
@@ -235,26 +235,28 @@ export default function VotedGrid(props) {
             top: topHeightStr,
           }}
         >
-          <img src={selected} className={classes.selectedLong} alt="" />
+          <img src={selected} className={classes.selectedLong} alt='' />
         </Container>
       </Container>
     );
   };
 
   const grayBlockLong = (choice, result, backgroundColor) => {
-    const height = ((105 * 2) / 100) * result;
+    const height = 105 * 2 * result;
     const heightStr = height + "px";
     const topHeight = 235 - height;
     const topHeightStr = topHeight + "px";
     return (
-      <Container variant="outlined" className={classes.choiceGrayLong}>
+      <Container variant='outlined' className={classes.choiceGrayLong}>
         <Container className={classes.topBar}>
           <Container className={classes.choiceWordsGray}>{choice}</Container>
-          <Container className={classes.percentageGray}>{result}%</Container>
+          <Container className={classes.percentageGray}>
+            {result * 100}%
+          </Container>
         </Container>
 
         <Container
-          variant="outlined"
+          variant='outlined'
           className={classes.colorBand}
           style={{
             height: heightStr,
@@ -291,7 +293,7 @@ export default function VotedGrid(props) {
   };
 
   const blankGrid = () => {
-    return <Container variant="outlined" className={classes.choiceBlank} />;
+    return <Container variant='outlined' className={classes.choiceBlank} />;
   };
 
   const blockOneLong = (choiceOne, resultOne, backgroundColor) => {
@@ -308,7 +310,7 @@ export default function VotedGrid(props) {
 
   // render component
 
-  if (props.choices.choiceThree === "") {
+  if (props.choices.choiceThree === "" && props.choices.choiceFour === "") {
     return (
       <div>
         <Grid className={classes.formRow}>
@@ -326,7 +328,7 @@ export default function VotedGrid(props) {
         <img
           src={nextIcon}
           className={classes.nextIcon}
-          alt="next"
+          alt='next'
           onClick={nextHandler}
         />
       </div>
@@ -352,7 +354,7 @@ export default function VotedGrid(props) {
         <img
           src={nextIcon}
           className={classes.nextIcon}
-          alt="next"
+          alt='next'
           onClick={nextHandler}
         />
       </div>
@@ -377,7 +379,7 @@ export default function VotedGrid(props) {
       <img
         src={nextIcon}
         className={classes.nextIcon}
-        alt="next"
+        alt='next'
         onClick={nextHandler}
       />
     </div>
