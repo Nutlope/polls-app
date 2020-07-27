@@ -151,12 +151,6 @@ export default function VotedGrid(props) {
   const classes = useStyle();
   const percentages = props.results;
 
-  //helper functions
-
-  const nextHandler = () => {
-    props.setIndex(props.index + 1);
-  };
-
   const blackBlock = (choice, result, backgroundColor) => {
     const height = 105 * result;
     const heightStr = height + "px";
@@ -329,7 +323,7 @@ export default function VotedGrid(props) {
           src={nextIcon}
           className={classes.nextIcon}
           alt='next'
-          onClick={nextHandler}
+          onClick={props.nextHandler}
         />
       </div>
     );
@@ -355,7 +349,7 @@ export default function VotedGrid(props) {
           src={nextIcon}
           className={classes.nextIcon}
           alt='next'
-          onClick={nextHandler}
+          onClick={props.nextHandler}
         />
       </div>
     );
@@ -380,7 +374,7 @@ export default function VotedGrid(props) {
         src={nextIcon}
         className={classes.nextIcon}
         alt='next'
-        onClick={nextHandler}
+        onClick={props.nextHandler}
       />
     </div>
   );

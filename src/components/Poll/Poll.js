@@ -377,6 +377,8 @@ export default function Poll(props) {
       newQuestion.comments = data[newIndex].comments;
       newQuestion.comments.shift();
 
+      console.log("new question is", newQuestion);
+
       setQuestion(newQuestion);
       setSaved(false);
     }
@@ -448,7 +450,7 @@ export default function Poll(props) {
                 className={classes.skipIcon}
                 src={skipIcon}
                 alt='Next'
-                onClick={nextHandler}
+                onClick={skipHandler}
               />
             </Grid>
             <div className={classes.question}>
@@ -463,6 +465,7 @@ export default function Poll(props) {
                 setIndex={setIndex}
                 voted={""}
                 results={question.results}
+                nextHandler={nextHandler}
               />
               <Comments
                 comments={question.comments}
