@@ -19,6 +19,67 @@ import Trending from "./components/Trending/Trending";
 export default class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      category: "entertainment",
+      title: "Which Wes Anderson Movie should I watch tonight?",
+      choices: {
+        choiceOne: "The Royal sth",
+        choiceTwo: "Moonrise Kingdom",
+        choiceThree: "Grand Budapest Hotel",
+        choiceFour: "",
+      },
+      results: {
+        choiceOne: 234,
+        choiceTwo: 1,
+        choiceThree: 3434,
+        choiceFour: 0,
+      },
+      comments: [
+        "If you’re fan of animation, go with Isle of Dogs",
+        "Grand Budapest Hotel has a great cast!",
+      ],
+      name: "Jane Doe",
+      location: "Atlanta, GA",
+      polls: {
+        //only need id
+        posted: [
+          {
+            category: "politics",
+            title: "Should JHU install a private police force",
+            choices: {
+              choiceOne: "yes",
+              choiceTwo: "no",
+              choiceThree: "",
+              choiceFour: "",
+            },
+            results: {
+              choiceOne: "53",
+              choiceTwo: "47",
+              choiceThree: "",
+              choiceFour: "",
+            },
+          },
+        ],
+        saved: [
+          {
+            category: "fashion",
+            title: "Which pair should I buy?",
+            choices: {
+              choiceOne: "img 1",
+              choiceTwo: "img 2",
+              choiceThree: "img 3",
+              choiceFour: "",
+            },
+            results: {
+              choiceOne: "23",
+              choiceTwo: "50",
+              choiceThree: "27",
+              choiceFour: "",
+            },
+          },
+        ],
+      },
+    };
   }
 
   render() {

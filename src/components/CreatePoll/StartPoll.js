@@ -13,6 +13,7 @@ import logoDrawing from "./../../assets/logo-image.png";
 import ProgressDotUnfinished from "./../../assets/progress-dot-unfinished.png";
 import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorRight from "./../../assets/vector-right.png";
+import vectorLeft from "./../../assets/vector-left.png";
 import { Link } from "react-router-dom";
 import home from "./../../assets/home.png";
 import trending from "./../../assets/trending.png";
@@ -61,6 +62,12 @@ function StartPoll() {
           </Grid>
         </Grid>
         <div className={styles.progressBar}>
+          <img
+            type="submit"
+            src={vectorLeft}
+            className={styles.vector}
+            alt=""
+          />
           <img
             src={ProgressDotFinished}
             className={styles.progressDot}
