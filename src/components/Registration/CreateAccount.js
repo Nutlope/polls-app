@@ -124,44 +124,44 @@ export default function CreateAccount() {
   };
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.everythingElse}>
           <div className={classes.progressBar}>
-            <Link to='/registration-personal-info'>
-              <img src={vectorLeft} className={classes.vector} alt='Back' />
+            <Link to="/registration-personal-info">
+              <img src={vectorLeft} className={classes.vector} alt="Back" />
             </Link>
             <img
               src={ProgressDotFinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
             <img
               src={ProgressDotFinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
             <img
               src={ProgressDotUnfinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
             <img
               src={ProgressDotUnfinished}
               className={classes.progressDot}
-              alt=''
+              alt=""
             />
-            <Link to='/registration-share-location' onClick={submitHandler}>
-              <img src={vectorRight} className={classes.vector} alt='Next' />
+            <Link to="/registration-share-location" onClick={submitHandler}>
+              <img src={vectorRight} className={classes.vector} alt="Next" />
             </Link>
           </div>
           <img
             src={logoDrawing}
-            width='234px'
-            height='140px'
-            top='138px'
-            alt=''
+            width="234px"
+            height="140px"
+            top="138px"
+            alt=""
           />
 
           <p className={classes.topPara}>
@@ -172,26 +172,26 @@ export default function CreateAccount() {
               className={classes.textfield}
               required
               fullWidth
-              autoComplete='email'
-              id='email'
-              label='Email'
-              variant='outlined'
+              autoComplete="email"
+              id="email"
+              label="Email"
+              variant="outlined"
               onChange={changeEmailHandler}
             />
             <TextField
-              type='password'
+              type="password"
               required
               className={classes.textfield}
               fullWidth
-              id='create-password'
-              label='Create Password'
-              variant='outlined'
+              id="create-password"
+              label="Create Password"
+              variant="outlined"
               onChange={changePasswordHandler}
             />
           </form>
         </div>
         <Grid className={classes.login}>
-          Already have an account?&nbsp;<Link to='/'>Log in here.</Link>
+          Already have an account?&nbsp;<Link to="/">Log in here.</Link>
         </Grid>
       </div>
     </Container>

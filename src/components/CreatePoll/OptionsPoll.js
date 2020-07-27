@@ -109,60 +109,58 @@ function OptionsPoll() {
           </Link>
         </div>
         <div className={styles.title}>What do they have to choose from?</div>
-        <div className={styles.form}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <TextField
-                name="option1"
-                variant="outlined"
-                fullWidth
-                required
-                label="Option 1"
-                value={option1}
-                onChange={handleOptions}
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                name="option2"
-                variant="outlined"
-                fullWidth
-                required
-                label="Option 2"
-                value={option2}
-                onChange={handleOptions}
-                autoFocus
-              />
-            </Grid>
-            {isAdded >= 1 && (
-              <Grid item xs={12}>
-                <TextField
-                  name="option3"
-                  variant="outlined"
-                  fullWidth
-                  label="Enter Option 3 here"
-                  value={option3}
-                  onChange={handleOptions}
-                  autoFocus
-                />
-              </Grid>
-            )}
-            {isAdded >= 2 && (
-              <Grid item xs={12}>
-                <TextField
-                  name="option4"
-                  variant="outlined"
-                  fullWidth
-                  label="Enter Option 4 here"
-                  value={option4}
-                  onChange={handleOptions}
-                  autoFocus
-                />
-              </Grid>
-            )}
+        <Grid container spacing={3} className={styles.form}>
+          <Grid item xs={12}>
+            <TextField
+              name="option1"
+              variant="outlined"
+              fullWidth
+              required
+              label="Option 1"
+              value={option1}
+              onChange={handleOptions}
+              autoFocus
+            />
           </Grid>
-        </div>
+          <Grid item xs={12}>
+            <TextField
+              name="option2"
+              variant="outlined"
+              fullWidth
+              required
+              label="Option 2"
+              value={option2}
+              onChange={handleOptions}
+              autoFocus
+            />
+          </Grid>
+          {isAdded >= 1 && (
+            <Grid item xs={12}>
+              <TextField
+                name="option3"
+                variant="outlined"
+                fullWidth
+                label="Enter Option 3 here"
+                value={option3}
+                onChange={handleOptions}
+                autoFocus
+              />
+            </Grid>
+          )}
+          {isAdded >= 2 && (
+            <Grid item xs={12}>
+              <TextField
+                name="option4"
+                variant="outlined"
+                fullWidth
+                label="Enter Option 4 here"
+                value={option4}
+                onChange={handleOptions}
+                autoFocus
+              />
+            </Grid>
+          )}
+        </Grid>
         <Button onClick={clickHandler}>
           <Icon
             className={styles.addButton}

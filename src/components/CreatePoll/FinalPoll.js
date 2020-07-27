@@ -9,6 +9,7 @@ import logoDrawing from "./../../assets/logo-image.png";
 import { Link } from "react-router-dom";
 import ProgressDotFinished from "./../../assets/progress-dot-finished.png";
 import vectorLeft from "./../../assets/vector-left.png";
+import vectorRight from "./../../assets/vector-right.png";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import home from "./../../assets/home.png";
@@ -146,6 +147,12 @@ function LocationPoll() {
           <img
             src={ProgressDotFinished}
             className={styles.progressDot}
+            alt=""
+          />
+          <img
+            type="submit"
+            src={vectorRight}
+            className={styles.vector}
             alt=""
           />
         </div>
