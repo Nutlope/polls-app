@@ -54,12 +54,12 @@ function renderComments(comments, classes, props, len) {
   }
 
   // one comment occupies two lines, only display one
-  else if (len === 1 || comments[0].length >= "50") {
+  else if (len === 1 && comments[0]["text"].length >= "50") {
     return (
       <div>
         <div className={classes.comment}>
-          <img src={commenter} className={classes.commenter} alt="" />
-          <p>{comments[0]}</p>
+          <img src={commenter} className={classes.commenter} alt='' />
+          <p>{comments[0]["text"]}</p>
         </div>
         <div className={classes.viewAll} onClick={props.setCommentOpen}>
           View all comments &gt;
@@ -68,12 +68,12 @@ function renderComments(comments, classes, props, len) {
     );
   }
   // one comment occupies two lines, only display one
-  else if (comments[1].length >= "50") {
+  else if (len >= 2 && comments[1]["text"].length >= "50") {
     return (
       <div>
         <div className={classes.comment}>
-          <img src={commenter} className={classes.commenter} alt="" />
-          <p>{comments[1]}</p>
+          <img src={commenter} className={classes.commenter} alt='' />
+          <p>{comments[1]["text"]}</p>
         </div>
         <div className={classes.viewAll} onClick={props.setCommentOpen}>
           View all comments &gt;
@@ -85,12 +85,12 @@ function renderComments(comments, classes, props, len) {
   return (
     <div>
       <div className={classes.comment}>
-        <img src={commenter} className={classes.commenter} alt="" />
-        <p>{comments[0]}</p>
+        <img src={commenter} className={classes.commenter} alt='' />
+        <p>{comments[0]["text"]}</p>
       </div>
       <div className={classes.comment}>
-        <img src={commenter} className={classes.commenter} alt="" />
-        <p>{comments[1]}</p>
+        <img src={commenter} className={classes.commenter} alt='' />
+        <p>{comments[1]["text"]}</p>
       </div>
       <div className={classes.viewAll} onClick={props.setCommentOpen}>
         View all comments &gt;
@@ -107,6 +107,8 @@ export default function Comments(props) {
   const [comments, setComments] = useState(props.comments);
   const existingComments = renderComments(comments, classes, props, len);
 
+  console.log(">>> comments passed down to comments.js are", props.comments);
+
   const inputHandler = (e) => {
     if (e.target.value === "") {
       setActivatedIcon(false);
@@ -120,12 +122,13 @@ export default function Comments(props) {
   const sendHandler = (e) => {
     //todo
     setLen(len + 1);
-    let copyComments = [];
+    let copyComments = {};
     copyComments = comments;
 
-    copyComments.push(newComment); //todo
+    copyComments[Object.keys(comments).length] = { text: newComment, likes: 0 };
     setComments(copyComments);
     setNewComment("");
+    setActivatedIcon(false);
   };
 
   return (
@@ -135,8 +138,8 @@ export default function Comments(props) {
       <form className={classes.send}>
         <TextField
           className={classes.typeComment}
-          variant="outlined"
-          placeholder="Write a comment..."
+          variant='outlined'
+          placeholder='Write a comment...'
           onChange={inputHandler}
           value={newComment}
         />
@@ -144,12 +147,12 @@ export default function Comments(props) {
           <img
             className={classes.sendIcon}
             src={SendActivatedIcon}
-            alt="send"
-            type="submit"
+            alt='send'
+            type='submit'
             onClick={sendHandler}
           />
         ) : (
-          <img className={classes.sendIcon} src={SendIcon} alt="send" />
+          <img className={classes.sendIcon} src={SendIcon} alt='send' />
         )}{" "}
       </form>
     </div>

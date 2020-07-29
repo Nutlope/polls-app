@@ -45,6 +45,7 @@ const useStyle = makeStyles((theme) => ({
     width: "90%",
     position: "absolute",
     bottom: "70px",
+    paddingTop: "15px",
   },
   commentBar: {
     width: "100%",
@@ -65,6 +66,14 @@ const useStyle = makeStyles((theme) => ({
   sendIcon: {
     width: "25px",
   },
+  scrollerInside: {
+    width: "inherit",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
 
 export default function CommentsExpanded(props) {
@@ -80,55 +89,66 @@ export default function CommentsExpanded(props) {
   const inputHandler = (e) => {
     if (e.target.value === "") {
       setActivatedIcon(false);
+      setNewComment(e.target.value);
     } else {
       setActivatedIcon(true);
+      setNewComment(e.target.value);
     }
   };
 
   const sendHandler = (e) => {
-    //todo
-    let copyComments = props.commments;
-    copyComments[props.comments.length] = { text: newComment, likes: 0 };
+    console.log(comments);
+    let copyComments = {};
+    copyComments = comments;
+
+    copyComments[Object.keys(comments).length] = { text: newComment, likes: 0 };
     setComments(copyComments);
-    // todo check if the comments would be displayed on top
+    setNewComment("");
+    setActivatedIcon(false);
+    console.log(comments);
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
         <Container className={classes.topBar}>
           <img
             className={classes.backIcon}
             src={BackIcon}
-            alt="Back"
+            alt='Back'
             onClick={props.setCommentOpen}
           />
           <p>Comments</p>
         </Container>
         <ScrollContainer className={classes.commentScroll}>
+          {/* <div className={classes.scrollerInside}> */}
           {Object.values(comments).map((body) => {
             return <Comment comment={body} />;
           })}
+          {/* </div> */}
         </ScrollContainer>
-        <div className={classes.commentBar}>
+
+        <form className={classes.commentBar}>
           <TextField
             className={classes.typeComment}
-            variant="outlined"
-            placeholder="Write a comment..."
+            variant='outlined'
+            placeholder='Write a comment...'
             onChange={inputHandler}
+            value={newComment}
           />
           {activatedIcon ? (
             <img
               className={classes.sendIcon}
               src={SendActivatedIcon}
-              alt="send"
+              alt='send'
+              type='submit'
               onClick={sendHandler}
             />
           ) : (
-            <img className={classes.sendIcon} src={SendIcon} alt="send" />
+            <img className={classes.sendIcon} src={SendIcon} alt='send' />
           )}{" "}
-        </div>
+        </form>
       </div>
     </Container>
   );

@@ -166,21 +166,57 @@ export default function Poll(props) {
           title: "title1",
           options: ["1-1", "1-2"],
           votes: [40, 60],
-          comments: [],
+          comments: {
+            0: { text: "dummy", likes: 1 },
+            1: { text: "0-1", likes: 1 },
+            2: { text: "2", likes: 1 },
+            3: { text: "3", likes: 1 },
+            4: { text: "4", likes: 1 },
+            5: { text: "5", likes: 1 },
+            6: { text: "6", likes: 1 },
+            7: { text: "7", likes: 1 },
+            8: { text: "8", likes: 1 },
+            9: { text: "9", likes: 1 },
+            10: { text: "10", likes: 1 },
+          },
         },
         1: {
           category: "cat2",
           title: "title2",
           options: ["2-1", "2-2", "2-3", "2-4"],
           votes: [20, 50, 5, 25],
-          comments: [],
+          comments: {
+            0: { text: "dummy", likes: 1 },
+            1: { text: "1-1", likes: 1 },
+            2: { text: "2", likes: 1 },
+            3: { text: "3", likes: 1 },
+            4: { text: "4", likes: 1 },
+            5: { text: "5", likes: 1 },
+            6: { text: "6", likes: 1 },
+            7: { text: "7", likes: 1 },
+            8: { text: "8", likes: 1 },
+            9: { text: "9", likes: 1 },
+            10: { text: "10", likes: 1 },
+          },
         },
         2: {
           category: "cat3",
           title: "title3",
           options: ["3-1", "3-2", "3-3"],
           votes: [20, 50, 30],
-          comments: [],
+          comments: {
+            0: { text: "dummy", likes: 1 },
+            1: { text: "2-1", likes: 1 },
+            2: { text: "2", likes: 1 },
+            3: { text: "3", likes: 1 },
+            4: { text: "4", likes: 1 },
+            5: { text: "5", likes: 1 },
+            6: { text: "6", likes: 1 },
+            7: { text: "7", likes: 1 },
+            8: { text: "8", likes: 1 },
+            9: { text: "9", likes: 1 },
+            10: { text: "10", likes: 1 },
+          },
         },
       },
     };
@@ -233,7 +269,6 @@ export default function Poll(props) {
       };
     }
     newQuestion.comments = response.data[index].comments;
-    newQuestion.comments.shift();
 
     setQuestion(newQuestion);
     // })
@@ -323,7 +358,6 @@ export default function Poll(props) {
         };
       }
       newQuestion.comments = data[newIndex].comments;
-      newQuestion.comments.shift();
 
       setQuestion(newQuestion);
       setSaved(false);
@@ -375,7 +409,6 @@ export default function Poll(props) {
         };
       }
       newQuestion.comments = data[newIndex].comments;
-      newQuestion.comments.shift();
 
       console.log("new question is", newQuestion);
 
@@ -384,6 +417,7 @@ export default function Poll(props) {
     }
   };
 
+  // when all questions have been voted on/skipped
   if (index === Object.keys(data).length) {
     return (
       <Container component='main' maxWidth='xs'>
@@ -408,6 +442,18 @@ export default function Poll(props) {
       </Container>
     );
   } else {
+    // display the expanded comment section at the entire screen
+    if (commentOpen) {
+      return (
+        <div>
+          <CommentsExpanded
+            comments={question.comments}
+            setCommentOpen={setCommentOpenHandler}
+          />
+        </div>
+      );
+    }
+
     return (
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
