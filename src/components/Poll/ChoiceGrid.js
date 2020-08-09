@@ -42,7 +42,12 @@ export default function ChoiceGrid(props) {
   const [voted, setVoted] = useState("");
   const votedTemp = props.voted;
 
-  //setVoted(votedTemp);
+  setVoted(votedTemp);
+  if (voted === "") {
+    console.log(">>>>>voted temp is empty");
+  } else {
+    console.log(">>>>>voted temp is", voted);
+  }
 
   const refreshHandler = (qnNum) => {
     // use if statement to check if qnNum matches with this.qnNum
@@ -222,7 +227,6 @@ export default function ChoiceGrid(props) {
         choices={props.choices}
         results={props.results}
         voted={voted}
-        setVoted={setVoted}
         index={props.index}
         setIndex={props.setIndex}
         nextHandler={props.nextHandler}
