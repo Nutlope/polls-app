@@ -1,45 +1,17 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import logoDrawing from "./../assets/logo-image.png";
 import logoText from "./../assets/logo.png";
 import { Link } from "react-router-dom";
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    backgroundColor: "#2EC4B6",
-  },
-}));
+import styles from "./signup.module.css";
+import { Button, TextField, Grid, Container } from "@material-ui/core";
 
 export default function SignUp() {
-  const classes = useStyles();
-
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
+      <div className={styles.paper}>
         <img src={logoDrawing} width="309px" height="182px" alt="" />
         <img src={logoText} width="309px" height="182px" alt="" />
-        <form className={classes.form} noValidate>
+        <form className={styles.form}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -69,15 +41,14 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}
+              className={styles.submit}
             >
               Log in
             </Button>
           </Link>
           <Grid container justify="flex-end">
             <Grid item>
-              Don't have an account?{" "}
-              <Link to="/Registration-personal-info">Register here</Link>
+              Don't have an account? <Link to="/Registration-personal-info">Register here</Link>
             </Grid>
           </Grid>
         </form>
